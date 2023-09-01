@@ -93,35 +93,35 @@ const Home = () => {
       </div>
 
       <div>
-        <h4>Institution Administrator</h4>
+        <h4 className="text-center font-semibold text-xl my-4">Institution Administrator</h4>
         <img src={image} alt="" />
-        <p>
+        <p className="pt-7">
           ENFAVEDU provides a comprehensive management system that helps you
           efficiently streamline operations of the recruitment process on your
           institution.
         </p>
-        <ul className=" list-image-[url(check)]">
-          <li>Transparency</li>
-          <li>Fairness</li>
-          <li>Increase efficiency by 100%</li>
-          <li>Generate reports with ease</li>
-          <li>Seamless recruitment process</li>
+        <ul className="">
+          <li className="flex items-center gap-2 pb-2"><img src={check} alt="" />Transparency</li>
+          <li className="flex items-center gap-2 pb-2"><img src={check} alt="" />Fairness</li>
+          <li className="flex items-center gap-2 pb-2"><img src={check} alt="" />Increase efficiency by 100%</li>
+          <li className="flex items-center gap-2 pb-2"><img src={check} alt="" />Generate reports with ease</li>
+          <li className="flex items-center gap-2 pb-2"><img src={check} alt="" />Seamless recruitment process</li>
         </ul>
       </div>
       <div>
-        <h4>Prospective Staff</h4>
+        <h4 className="text-center text-lg font-semibold my-4">Prospective Staff</h4>
         <img src={staff} alt="" />
         <p>
           ENFAVEDU provides a comprehensive management system that helps you
           seamlessly carry out your staff recruitment process.
         </p>
-        <ul>
-          <li>TakeTest seamlessly</li>
-          <li>
+        <ul className="">
+          <li className="flex items-center gap-2 pb-2"><img src={check} alt="" />TakeTest seamlessly</li>
+          <li className="flex  gap-2 pb-2"><img src={check} alt="" />
             Compile results of your test swiftly and effortlessly with 100%
             accuracy
           </li>
-          <li>Fairness and Transparency</li>
+          <li className="flex items-center gap-2 pb-2"><img src={check} alt="" />Fairness and Transparency</li>
         </ul>
       </div>
       <div className="my-5 ">
@@ -157,7 +157,7 @@ const Home = () => {
           team always available to help you, we invite you to become one of the
           schools we are committed to, starting with a FREE account.
         </p>
-        <button className="bg-blue text-white py-3 px-4 rounded-3xl">Get Started for Free</button>
+        <button className="bg-blue text-white py-3 px-4 rounded-3xl my-3">Get Started for Free</button>
       </div>
       <div>
         
