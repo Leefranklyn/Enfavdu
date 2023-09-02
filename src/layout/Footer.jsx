@@ -2,10 +2,10 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className="flex flex-col text-center bg-black text-white pt-8 pb-12 px-6 gap-y-4">
+    <div className="flex flex-col text-center bg-black text-white pt-16 pb-12 px-6 gap-y-4">
     <div>
-        <h5 className='font-semibold text-lg'>Resources</h5>
-        <ul>
+        <h5 className='font-semibold text-lg mb-4'>Resources</h5>
+        <ul className='flex flex-col gap-y-2'>
           <li>
             <a href="">Blog</a>
           </li>
@@ -18,15 +18,15 @@ const Footer = () => {
         </ul>
     </div>
     <div>
-        <h5 className='font-semibold text-lg'>Legal</h5>
-        <ul>
+        <h5 className='font-semibold text-lg mb-4'>Legal</h5>
+        <ul  className='flex flex-col gap-y-2'>
           <li><a href="">Privacy Policy</a></li>
           <li><a href="">Terms of Use</a></li>
         </ul>
     </div>
     <div>
-        <h5 className='font-semibold text-lg'>Company</h5>
-        <ul>
+        <h5 className='font-semibold text-lg mb-4'>Company</h5>
+        <ul  className='flex flex-col gap-y-2'>
           <li><a href="">About Us</a></li>
           <li><a href=""></a>Contact us</li>
           <li><a href=""></a>History</li>
