@@ -11,7 +11,8 @@ export default {
         borderBlue: "#0464F4",
         lightBlue: "#9BC0F3",
         skyBlue: "#DCECFB",
-        lightGrey: "#F6F6F6"
+        lightGrey: "#F6F6F6",
+        blueishGray: "#97AAC5"
       },
       listStyleImage: {
         check: 'url("/assets/check.svg")',
