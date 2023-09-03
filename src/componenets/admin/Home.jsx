@@ -87,29 +87,29 @@ const Home = () => {
           <div className="flex flex-col md:flex-row md:flex-wrap md:w-[60%] items-center gap-y-6 md:gap-y-0 md:gap-x-5  py-5">
             <div className="border border-borderBlue rounded-md w-[80%] max-w-[250px] h-[150px] flex flex-col gap-1 py-3 px-4">
               <img src={symbol} className="w-9" alt="" />
-              <h5 className="text-xl font-semibold">Customer</h5>
-              <p className="text-[18px] md:text-[15px]">
+              <h5 className="text-lg md:text-xl font-semibold">Customer</h5>
+              <p className="text-[14px] md:text-[15px]">
                 We put our customers & their needs first
               </p>
             </div>
-            <div className="border border-borderBlue rounded-md w-[80%] max-w-[250px] h-[150px] flex flex-col gap-1 py-3  px-4">
+            <div className="border border-borderBlue rounded-md w-[80%] max-w-[250px] h-[150px] flex flex-col gap-1 py-3  px-3">
               <img src={symbol2} className="w-9" alt="" />
-              <h5 className="text-xl font-semibold">Customer support</h5>
-              <p className="text-[18px] md:text-[15px]">
+              <h5 className="text-lg md:text-xl font-semibold">Customer support</h5>
+              <p className="text-[14px] md:text-[15px]">
                 Excellent customer support
               </p>
             </div>
-            <div className="border border-borderBlue rounded-md w-[80%] max-w-[250px] h-[150px] flex flex-col gap-1 py-3 px-4">
+            <div className="border border-borderBlue rounded-md w-[80%] max-w-[250px] h-[150px] flex flex-col gap-1 py-3 px-3">
               <img src={symbol3} className="w-9" alt="" />
-              <h5 className="text-xl font-semibold">Experience</h5>
-              <p className="text-[18px] md:text-[15px]">
+              <h5 className="text-lg md:text-xl font-semibold">Experience</h5>
+              <p className="text-[14px] md:text-[15px]">
                 Certified and Experienced software engineers
               </p>
             </div>
             <div className="border border-borderBlue rounded-md w-[80%] max-w-[250px] h-[150px] flex flex-col gap-1 py-3 px-4">
               <img src={symbol4} className="w-9" alt="" />
-              <h5 className="text-xl font-semibold">Downtimes</h5>
-              <p className="text-[18px] md:text-[15px]">No downtimes</p>
+              <h5 className="text-lg md:text-xl font-semibold">Downtimes</h5>
+              <p className="text-[14px] md:text-[15px]">No downtimes</p>
             </div>
           </div>
         </div>
@@ -267,10 +267,10 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="w-[50%] mx-auto py-6">
+        <div className="w-[50%] mx-auto py-6 hidden md:block">
           <h3 className="font-bold drop-shadow-2xl text-2xl text-center">Testimonials</h3>
           <p className="text-center text-[14px] py-2">
-            Don’t just take our word for it. See what our satisfied customers
+            Don&apos;t just take our word for it. See what our satisfied customers
             have to say
           </p>
           <p className="text-center text-[14px] py-2">
@@ -286,16 +286,16 @@ const Home = () => {
           </div>
           </div>
         </div>
-        <div className="bg-skyBlue rounded-lg pt-3 my-6 md:mt-24 md:mb-10 px-4 md:flex shadow-lg my-container">
-          <div className="md:w-1/2">
-            <h4 className="text-lg font-semibold">Join the Train</h4>
-            <p>
+        <div className="bg-skyBlue rounded-lg pt-3   md:mt-24 md:mb-10  px-4 md:flex shadow-lg my-container">
+          <div className="md:w-1/2 flex flex-col gap-y-5 justify-center ">
+            <h4 className="text-lg font-semibold text-start">Join the Train</h4>
+            <p >
               With tools to make every part of your process more human and a
               support team always available to help you, we invite you to become
               one of the schools we are committed to, starting with a FREE
               account.
             </p>
-            <button className="bg-blue text-white py-3 px-4 rounded-3xl my-3">
+            <button className="bg-blue text-white py-3 w-[200px] rounded-3xl my-3">
               Get Started for Free
             </button>
           </div>
