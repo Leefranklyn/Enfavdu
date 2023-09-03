@@ -267,18 +267,18 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div>
-          <h3>Testimonials</h3>
-          <p>
+        <div className="w-[50%] mx-auto py-6">
+          <h3 className="font-bold drop-shadow-2xl text-2xl text-center">Testimonials</h3>
+          <p className="text-center text-[14px] py-2">
             Don’t just take our word for it. See what our satisfied customers
             have to say
           </p>
-          <p>
+          <p className="text-center text-[14px] py-2">
             With ENFAVEDU, you always have access to your data and it helps you
             analyze your data. I recommend ENFAVEDU to other schools that want
             to manage their data
           </p>
-          <div>
+          <div className="flex justify-center items-center gap-3">
           <div><img src={Profile} alt="" /></div>
           <div>
             <h3>Linda Osifor</h3>
@@ -286,7 +286,7 @@ const Home = () => {
           </div>
           </div>
         </div>
-        <div className="bg-skyBlue rounded-lg pt-3 my-6 md:mt-24 md:mb-10 px-4 md:flex my-container">
+        <div className="bg-skyBlue rounded-lg pt-3 my-6 md:mt-24 md:mb-10 px-4 md:flex shadow-lg my-container">
           <div className="md:w-1/2">
             <h4 className="text-lg font-semibold">Join the Train</h4>
             <p>

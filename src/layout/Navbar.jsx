@@ -24,7 +24,7 @@ const Navbar = () => {
           <div
             className={
               toggle
-                ? "fixed top-0 right-0 bg-white w-[55%] px-4 py-10 transition-all duration-500 ease-in-out"
+                ? "fixed  top-0 right-0 bg-white w-[55%] px-4 py-10 transition-all duration-500 ease-in-out"
                 : "fixed right-[-100%]"
             }
           >
