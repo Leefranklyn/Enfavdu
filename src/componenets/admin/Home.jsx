@@ -15,7 +15,11 @@ import svg from "../../assets/SVG.svg";
 import svg2 from "../../assets/SVG2.svg";
 import svg3 from "../../assets/SVG3.svg";
 import chart from "../../assets/Chart.jpg";
-import happy from "../../assets/happy.png"
+import happy from "../../assets/happy.png";
+import SVG1 from "../../assets/SVG1.svg";
+import Layer from "../../assets/Layer.svg";
+import SVGg from "../../assets/SVGg.svg";
+import Profile from "../../assets/Profile.svg"
 
 const Home = () => {
   return (
@@ -110,7 +114,9 @@ const Home = () => {
           </div>
         </div>
         <div className="hidden md:block  my-8 ">
-          <h3 className="text-[25px] font-bold w-[30ch] mx-auto text-center">The Reliable Online Recruitment Software Designed For:</h3>
+          <h3 className="text-[25px] font-bold w-[30ch] mx-auto text-center">
+            The Reliable Online Recruitment Software Designed For:
+          </h3>
         </div>
         <div className="my-container">
           <h4 className="text-center md:hidden font-semibold text-xl my-4">
@@ -121,11 +127,13 @@ const Home = () => {
               <img src={image} className="h-[350px]" alt="" />
             </div>
             <div>
-              <h5 className="hidden md:block my-2 text-lg">Institution Administrator</h5>
+              <h5 className="hidden md:block my-2 text-lg">
+                Institution Administrator
+              </h5>
               <p className="pt-7 md:pt-0 md:w-[40ch]">
-                ENFAVEDU provides a comprehensive management system that helps you
-                efficiently streamline operations of the recruitment process on your
-                institution.
+                ENFAVEDU provides a comprehensive management system that helps
+                you efficiently streamline operations of the recruitment process
+                on your institution.
               </p>
               <ul className="">
                 <li className="flex items-center gap-2 pb-2">
@@ -158,13 +166,15 @@ const Home = () => {
           </h4>
           <div className="md:flex md:flex-row-reverse md:justify-center md:items-center md:my-16">
             <div className="flex justify-center">
-              <img src={staff}  className="h-[350px]" alt="" />
+              <img src={staff} className="h-[350px]" alt="" />
             </div>
             <div className="">
-              <h5 className="hidden md:block my-2 text-lg">Prospective Staff</h5>
+              <h5 className="hidden md:block my-2 text-lg">
+                Prospective Staff
+              </h5>
               <p className=" md:w-[40ch]">
-                ENFAVEDU provides a comprehensive management system that helps you
-                seamlessly carry out your staff recruitment process.
+                ENFAVEDU provides a comprehensive management system that helps
+                you seamlessly carry out your staff recruitment process.
               </p>
               <ul className="">
                 <li className="flex items-center gap-2 pb-2">
@@ -173,14 +183,61 @@ const Home = () => {
                 </li>
                 <li className="flex  gap-2 pb-2 md:w-[30ch]">
                   <img src={check} alt="" />
-                  Compile results of your test swiftly and effortlessly with 100%
-                  accuracy
+                  Compile results of your test swiftly and effortlessly with
+                  100% accuracy
                 </li>
                 <li className="flex items-center gap-2 pb-2">
                   <img src={check} alt="" />
                   Fairness and Transparency
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+        <div className="hidden md:block bg-skyBlue py-8">
+          <h3 className="text-[20px] text-center font-semibold">
+            Tap into the Benefits of ENFAVEDU For Your Institution
+          </h3>
+          <div className="w-[70%] mx-auto py-14">
+            <div className="flex justify-center gap-6 py-5">
+              <div className="bg-white w-[350px] h-[250px] py-4 px-5 rounded-md">
+                <img src={SVG1} className="w-8" alt="" />
+                <h4 className="font-bold">Stress Free Result Compilation</h4>
+                <p className="text-[14px]">
+                  With ENFAVEDU, you can now have a fast, 100% accurate, and
+                  effortless result compilation of all your students with
+                  minimum effort on your part.
+                </p>
+              </div>
+
+              <div className="bg-white  w-[350px] h-[250px]  py-4 px-5 rounded-md">
+                <img src={Layer} className="w-8" alt="" />
+                <h4 className="font-bold">Data Protection</h4>
+                <p className="text-[14px]">
+                  You do not have to worry about the frustration of losing your
+                  school or prospective employee data anymore. With ENFAVEDU,
+                  you can be sure that your Institution data is protected
+                  forever.
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center gap-6">
+              <div className="bg-white w-[350px] h-[250px]  py-4 px-5 rounded-md">
+                <img src={SVGg} className="w-8" alt="" />
+                <h4 className="font-bold">Zero Paper Work</h4>
+                <p className="text-[14px]">
+                  Efficiently record, manage and analyze all prospective staff
+                  information on a single platform thereby reducing workload and
+                  saving time spent on paperwork
+                </p>
+              </div>
+              <div className="bg-blue text-white w-[350px] h-[250px]  py-4 px-5 rounded-md">
+                {/* <img src={SVGg} className="w-8" alt="" /> */}
+                <p className="text-[14px]">
+                  Embrace Productivity & Increase Your Revenue When You Use
+                  ENFAVEDU
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -210,6 +267,25 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <div>
+          <h3>Testimonials</h3>
+          <p>
+            Don’t just take our word for it. See what our satisfied customers
+            have to say
+          </p>
+          <p>
+            With ENFAVEDU, you always have access to your data and it helps you
+            analyze your data. I recommend ENFAVEDU to other schools that want
+            to manage their data
+          </p>
+          <div>
+          <div><img src={Profile} alt="" /></div>
+          <div>
+            <h3>Linda Osifor</h3>
+            <p>Proprietress</p>
+          </div>
+          </div>
+        </div>
         <div className="bg-skyBlue rounded-lg pt-3 my-6 md:mt-24 md:mb-10 px-4 md:flex my-container">
           <div className="md:w-1/2">
             <h4 className="text-lg font-semibold">Join the Train</h4>
@@ -223,7 +299,9 @@ const Home = () => {
               Get Started for Free
             </button>
           </div>
-          <div className="hidden md:block w-1/2 mt-[-100px]"><img src={happy} className="h-[350px]" alt="" /></div>
+          <div className="hidden md:block w-1/2 mt-[-100px]">
+            <img src={happy} className="h-[350px]" alt="" />
+          </div>
         </div>
       </div>
       <Footer />
