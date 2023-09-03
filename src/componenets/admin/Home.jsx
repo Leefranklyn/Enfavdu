@@ -14,7 +14,8 @@ import staff from "../../assets/staff.png";
 import svg from "../../assets/SVG.svg";
 import svg2 from "../../assets/SVG2.svg";
 import svg3 from "../../assets/SVG3.svg";
-import chart from "../../assets/Chart.jpg"
+import chart from "../../assets/Chart.jpg";
+import happy from "../../assets/happy.png"
 
 const Home = () => {
   return (
@@ -27,9 +28,9 @@ const Home = () => {
               Online School Recruitment System
             </h1>
             <p className="text-center py-3 max-w-[60ch] md:mx-auto">
-              ENFAVEDU is designed to help you streamline your Institution&apos;s
-              Recruitment and Employment service to ensure fairness and to curb
-              the challenges facing recruitment of staff
+              ENFAVEDU is designed to help you streamline your
+              Institution&apos;s Recruitment and Employment service to ensure
+              fairness and to curb the challenges facing recruitment of staff
             </p>
             <div className="flex justify-center">
               <button className="bg-blue flex justify-center py-2 px-7 rounded-md text-white outline-none border-none">
@@ -67,11 +68,15 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="py-5 my-container md:flex md:gap-8">
+        <div className="py-5 md:py-14 my-container md:flex md:gap-8">
           <div>
-            <h3 className="text-center md:text-left font-bold text-lg">Why ENFAVEDU?</h3>
+            <h3 className="text-center md:text-left font-bold text-lg">
+              Why ENFAVEDU?
+            </h3>
             <div className="hidden md:block">
-              <h3 className="text-[25px] font-extrabold w-[18ch]">Why Top Institutions Choose ENFAVEDU?</h3>
+              <h3 className="text-[25px] font-extrabold w-[18ch]">
+                Why Top Institutions Choose ENFAVEDU?
+              </h3>
               <img src={chart} alt="" />
             </div>
           </div>
@@ -86,7 +91,9 @@ const Home = () => {
             <div className="border border-borderBlue rounded-md w-[80%] max-w-[250px] h-[150px] flex flex-col gap-1 py-3  px-4">
               <img src={symbol2} className="w-9" alt="" />
               <h5 className="text-xl font-semibold">Customer support</h5>
-              <p className="text-[18px] md:text-[15px]">Excellent customer support</p>
+              <p className="text-[18px] md:text-[15px]">
+                Excellent customer support
+              </p>
             </div>
             <div className="border border-borderBlue rounded-md w-[80%] max-w-[250px] h-[150px] flex flex-col gap-1 py-3 px-4">
               <img src={symbol3} className="w-9" alt="" />
@@ -102,106 +109,121 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-        <div>
-          <h4 className="text-center font-semibold text-xl my-4">
+        <div className="hidden md:block  my-8 ">
+          <h3 className="text-[25px] font-bold w-[30ch] mx-auto text-center">The Reliable Online Recruitment Software Designed For:</h3>
+        </div>
+        <div className="my-container">
+          <h4 className="text-center md:hidden font-semibold text-xl my-4">
             Institution Administrator
           </h4>
-          <div className="flex justify-center">
-            <img src={image} alt="" />
+          <div className="md:flex md:justify-center md:items-center md:gap-16">
+            <div className="flex justify-center">
+              <img src={image} className="h-[350px]" alt="" />
+            </div>
+            <div>
+              <h5 className="hidden md:block my-2 text-lg">Institution Administrator</h5>
+              <p className="pt-7 md:pt-0 md:w-[40ch]">
+                ENFAVEDU provides a comprehensive management system that helps you
+                efficiently streamline operations of the recruitment process on your
+                institution.
+              </p>
+              <ul className="">
+                <li className="flex items-center gap-2 pb-2">
+                  <img src={check} alt="" />
+                  Transparency
+                </li>
+                <li className="flex items-center gap-2 pb-2">
+                  <img src={check} alt="" />
+                  Fairness
+                </li>
+                <li className="flex items-center gap-2 pb-2">
+                  <img src={check} alt="" />
+                  Increase efficiency by 100%
+                </li>
+                <li className="flex items-center gap-2 pb-2">
+                  <img src={check} alt="" />
+                  Generate reports with ease
+                </li>
+                <li className="flex items-center gap-2 pb-2">
+                  <img src={check} alt="" />
+                  Seamless recruitment process
+                </li>
+              </ul>
+            </div>
           </div>
-          <p className="pt-7">
-            ENFAVEDU provides a comprehensive management system that helps you
-            efficiently streamline operations of the recruitment process on your
-            institution.
-          </p>
-          <ul className="">
-            <li className="flex items-center gap-2 pb-2">
-              <img src={check} alt="" />
-              Transparency
-            </li>
-            <li className="flex items-center gap-2 pb-2">
-              <img src={check} alt="" />
-              Fairness
-            </li>
-            <li className="flex items-center gap-2 pb-2">
-              <img src={check} alt="" />
-              Increase efficiency by 100%
-            </li>
-            <li className="flex items-center gap-2 pb-2">
-              <img src={check} alt="" />
-              Generate reports with ease
-            </li>
-            <li className="flex items-center gap-2 pb-2">
-              <img src={check} alt="" />
-              Seamless recruitment process
-            </li>
-          </ul>
         </div>
-        <div>
-          <h4 className="text-center text-lg font-semibold my-4">
+        <div className="my-container">
+          <h4 className="text-center md:hidden text-lg font-semibold my-4">
             Prospective Staff
           </h4>
-          <div className="flex justify-center">
-            <img src={staff} alt="" />
+          <div className="md:flex md:flex-row-reverse md:justify-center md:items-center md:my-16">
+            <div className="flex justify-center">
+              <img src={staff}  className="h-[350px]" alt="" />
+            </div>
+            <div className="">
+              <h5 className="hidden md:block my-2 text-lg">Prospective Staff</h5>
+              <p className=" md:w-[40ch]">
+                ENFAVEDU provides a comprehensive management system that helps you
+                seamlessly carry out your staff recruitment process.
+              </p>
+              <ul className="">
+                <li className="flex items-center gap-2 pb-2">
+                  <img src={check} alt="" />
+                  TakeTest seamlessly
+                </li>
+                <li className="flex  gap-2 pb-2 md:w-[30ch]">
+                  <img src={check} alt="" />
+                  Compile results of your test swiftly and effortlessly with 100%
+                  accuracy
+                </li>
+                <li className="flex items-center gap-2 pb-2">
+                  <img src={check} alt="" />
+                  Fairness and Transparency
+                </li>
+              </ul>
+            </div>
           </div>
-          <p>
-            ENFAVEDU provides a comprehensive management system that helps you
-            seamlessly carry out your staff recruitment process.
-          </p>
-          <ul className="">
-            <li className="flex items-center gap-2 pb-2">
-              <img src={check} alt="" />
-              TakeTest seamlessly
-            </li>
-            <li className="flex  gap-2 pb-2">
-              <img src={check} alt="" />
-              Compile results of your test swiftly and effortlessly with 100%
-              accuracy
-            </li>
-            <li className="flex items-center gap-2 pb-2">
-              <img src={check} alt="" />
-              Fairness and Transparency
-            </li>
-          </ul>
         </div>
         <div className="my-5 ">
           <h3 className="text-lg font-semibold text-center">
             We are Trusted By:
           </h3>
-          <div className="flex flex-col items-center gap-y-6 my-7">
-            <div className="border border-lightBlue flex flex-col items-center gap-y-2 py-10 px-3 w-[85%] rounded-e-lg">
+          <div className="flex flex-col md:flex-row sm:w-[100%] lg:w-[70%] lg:mx-auto md:flex-wrap md:gap-x-5 md:justify-center items-center gap-y-6 my-7">
+            <div className="border border-lightBlue flex flex-col items-center gap-y-2 py-10 px-3 w-[85%] max-w-[350px] md:h-[200px] rounded-e-lg">
               <img src={svg} alt="" />
               <p className="text-3xl font-extrabold">376</p>
               <p className="text-center">
                 Institutions use ENFAVEDU across Africa
               </p>
             </div>
-            <div className="border border-lightBlue flex flex-col items-center gap-y-2 py-10 px-3 w-[85%] rounded-e-lg">
+            <div className="border border-lightBlue flex flex-col items-center gap-y-2 py-10 px-3 w-[85%] max-w-[350px] md:h-[200px] rounded-e-lg">
               <img src={svg2} alt="" />
               <p className="text-3xl font-extrabold">200+</p>
               <p className="text-center">
                 Prospective staff get their results in a shortest possible time
               </p>
             </div>
-            <div className="border border-lightBlue flex flex-col items-center gap-y-2 py-10 px-3 w-[85%] rounded-e-lg">
+            <div className="border border-lightBlue flex flex-col items-center gap-y-2 py-10 px-3 w-[85%] max-w-[350px] md:h-[200px] rounded-e-lg">
               <img src={svg3} alt="" />
               <p className="text-3xl font-extrabold">18</p>
               <p className="text-center">Countries presence</p>
             </div>
           </div>
         </div>
-        <div className="bg-skyBlue rounded-lg pt-3 my-6 px-4">
-          <h4 className="text-lg font-semibold">Join the Train</h4>
-          <p>
-            With tools to make every part of your process more human and a
-            support team always available to help you, we invite you to become
-            one of the schools we are committed to, starting with a FREE
-            account.
-          </p>
-          <button className="bg-blue text-white py-3 px-4 rounded-3xl my-3">
-            Get Started for Free
-          </button>
+        <div className="bg-skyBlue rounded-lg pt-3 my-6 md:mt-24 md:mb-10 px-4 md:flex my-container">
+          <div className="md:w-1/2">
+            <h4 className="text-lg font-semibold">Join the Train</h4>
+            <p>
+              With tools to make every part of your process more human and a
+              support team always available to help you, we invite you to become
+              one of the schools we are committed to, starting with a FREE
+              account.
+            </p>
+            <button className="bg-blue text-white py-3 px-4 rounded-3xl my-3">
+              Get Started for Free
+            </button>
+          </div>
+          <div className="hidden md:block w-1/2 mt-[-100px]"><img src={happy} className="h-[350px]" alt="" /></div>
         </div>
       </div>
       <Footer />
