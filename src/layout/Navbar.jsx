@@ -18,13 +18,13 @@ const Navbar = () => {
           <div>
             <img src={logo} alt="" />
           </div>
-          <div onClick={handleToggle} className="z-20">
+          <div onClick={handleToggle} className="z-50">
             <img src={hamburger} alt="" />
           </div>
           <div
             className={
               toggle
-                ? "fixed  top-0 right-0 bg-white w-[55%] px-4 py-10 transition-all duration-500 ease-in-out"
+                ? "fixed  top-0 right-0 z-30 bg-white w-[55%] px-4 py-10 transition-all duration-500 ease-in-out"
                 : "fixed right-[-100%]"
             }
           >

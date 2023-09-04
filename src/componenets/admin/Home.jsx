@@ -1,6 +1,5 @@
 import React from "react";
-import Navbar from "../../layout/Navbar";
-import Footer from "../../layout/Footer";
+import { Link } from "react-router-dom";
 import adminImage from "../../assets/Bitmap.svg";
 import exercise from "../../assets/Bitmap2.svg";
 import technician from "../../assets/Bitmap3.svg";
@@ -24,7 +23,6 @@ import Profile from "../../assets/Profile.svg"
 const Home = () => {
   return (
     <>
-      <Navbar />
       <div className=" ">
         <div className="md:bg-skyBlue md:py-16">
           <div className="my-container">
@@ -295,16 +293,17 @@ const Home = () => {
               one of the schools we are committed to, starting with a FREE
               account.
             </p>
-            <button className="bg-blue text-white py-3 w-[200px] rounded-3xl my-3">
-              Get Started for Free
-            </button>
+            <Link to="/Signup">
+              <button className="bg-blue text-white py-3 w-[200px] rounded-3xl my-3">
+                Get Started for Free
+              </button>
+            </Link>
           </div>
           <div className="hidden md:block w-1/2 mt-[-100px]">
             <img src={happy} className="h-[350px]" alt="" />
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
