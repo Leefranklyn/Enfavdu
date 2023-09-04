@@ -35,9 +35,11 @@ const Home = () => {
               fairness and to curb the challenges facing recruitment of staff
             </p>
             <div className="flex justify-center">
-              <button className="bg-blue flex justify-center py-2 px-7 rounded-md text-white outline-none border-none">
-                Login
-              </button>
+              <Link to="/login">
+                <button className="bg-blue flex justify-center py-2 px-7 rounded-md text-white outline-none border-none">
+                  Login
+                </button>
+              </Link>
             </div>
           </div>
         </div>
