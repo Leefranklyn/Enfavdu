@@ -1,4 +1,5 @@
 import React from "react";
+import show from "../../../assets/show.svg"
 
 
 const CreateNewPassword = () => {

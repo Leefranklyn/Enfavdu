@@ -16,10 +16,14 @@ export default {
         lightGrey: "#F6F6F6",
         blueishGray: "#97AAC5",
         footerGrey:"#35373E",
+        textGrey:"#444E6B"
       },
       listStyleImage: {
         check: 'url("/assets/check.svg")',
       },
+      backgroundImage: {
+        hero: 'url("/src/assets/AFIT1.png")'
+      }
     },
   },
   plugins: [],

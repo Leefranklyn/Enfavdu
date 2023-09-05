@@ -1,10 +1,10 @@
 import Home from "./componenets/admin/Home";
+import HomePage from "./componenets/user/home";
 import SignUp from "./componenets/admin/signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Navbar from "./layout/Navbar";
-// import Footer from "./layout/Footer";
 import Login from "./componenets/admin/login";
 import ResetPassword from "./componenets/admin/passwordreset";
+import Dashboard from "./componenets/admin/dashboard/INDEX.JSX";
 
 function App() {
   // const pathname = window.location.pathname;
@@ -17,6 +17,11 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/passwordreset" element={<ResetPassword />} />
+          <Route path="/dashboard" element={<Dashboard/>}>
+            <Route />
+            <Route/>
+          </Route>
+          <Route path="/user/home" element={<HomePage/>}/>
         </Routes>
       </BrowserRouter>
     </>
