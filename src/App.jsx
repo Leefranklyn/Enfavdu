@@ -4,7 +4,7 @@ import SignUp from "./componenets/admin/signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./componenets/admin/login";
 import ResetPassword from "./componenets/admin/passwordreset";
-import Dashboard from "./componenets/admin/dashboard/INDEX.JSX";
+import Dashboard from "./componenets/admin/dashboard"
 
 function App() {
   // const pathname = window.location.pathname;
