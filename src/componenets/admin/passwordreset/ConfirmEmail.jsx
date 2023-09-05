@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ConfirmEmail = () => {
   return (
@@ -10,13 +10,15 @@ const ConfirmEmail = () => {
             <p>Enter your email for a password reset link.</p>
             <div className="py-5 flex flex-col items-start">
                 <input type="text" placeholder="Email ,phone & username" className="w-[100%] mx-auto py-2 px-4 rounded-md border-gray border-[1px]" />
-                <div>
+                <div className="text-blue">
                     <Link>Forgot Email?</Link>
                 </div>
             </div>
         </div>
-        <div><button className="bg-blue text-white py-2 px-8 rounded-md">Send Reset Link</button></div>
-        <Link to="/signup" className="text-blue text-sm">Back to Sign In</Link>
+        <div>
+            <div><button className="bg-blue text-white py-2 px-8 rounded-md">Send Reset Link</button></div>
+            <Link to="/signup" className="text-blue text-sm">Back to Sign In</Link>
+        </div>
       </div>
     </div>
   );

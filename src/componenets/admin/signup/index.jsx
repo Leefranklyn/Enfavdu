@@ -14,7 +14,7 @@ const SignUp = () => {
     }
   };
   return (
-    <div className="bg-lightGrey pt-10 pb-14">
+    <div className="bg-lightGrey pt-10 pb-14 min-h-[100vh] flex justify-center items-center">
       <div className="my-container md:flex md:justify-between">
         <div>
           <div className="flex relative">
