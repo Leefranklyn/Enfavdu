@@ -1,6 +1,6 @@
 import React from 'react'
 import ConfirmEmail from './ConfirmEmail';
-import Otp from './Otp.JSX';
+import Otp from './Otp.jsx';
 import CreateNewPassword from './CreateNewPassword';
 import SuccessModal from './SuccessModal';
 
