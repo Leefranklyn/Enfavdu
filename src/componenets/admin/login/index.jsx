@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import man from "../../../assets/man.png";
 import google from "../../../assets/google.svg";
-// import icon from "../../../assets/icon.svg";
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
