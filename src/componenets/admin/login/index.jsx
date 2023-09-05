@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import man from "../../../assets/man.png";
 import google from "../../../assets/google.svg";
 import icon from "../../../assets/icon.svg"
@@ -28,7 +29,7 @@ const Login = () => {
           </div>
           <div className="lg:flex lg:items-center lg:justify-center">
               <div className="px-2 py-3">
-                <p>Forgot your password?<a href="" className="text-blue">Click here</a></p>
+                <p>Forgot your password?<Link to="/passwordreset" className="text-blue">Click here</Link></p>
               </div>
               <div className="flex flex-col gap-3 items-center md:flex-row my-5">
                 <button className="bg-white flex items-center justify-between py-3 px-3 rounded-md"><img src={google} alt="" />Login with Google</button>

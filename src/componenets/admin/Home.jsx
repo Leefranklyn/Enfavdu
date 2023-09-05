@@ -19,10 +19,13 @@ import SVG1 from "../../assets/SVG1.svg";
 import Layer from "../../assets/Layer.svg";
 import SVGg from "../../assets/SVGg.svg";
 import Profile from "../../assets/Profile.svg"
+import Navbar from "../../layout/Navbar";
+import Footer from "../../layout/Footer";
 
 const Home = () => {
   return (
     <>
+    <Navbar/>
       <div className=" ">
         <div className="md:bg-skyBlue md:py-16">
           <div className="my-container">
@@ -35,7 +38,7 @@ const Home = () => {
               fairness and to curb the challenges facing recruitment of staff
             </p>
             <div className="flex justify-center">
-              <Link to="/login">
+              <Link to="/login ">
                 <button className="bg-blue flex justify-center py-2 px-7 rounded-md text-white outline-none border-none">
                   Login
                 </button>
@@ -306,6 +309,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
