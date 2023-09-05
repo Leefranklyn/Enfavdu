@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import man from "../../../assets/man.png";
 import google from "../../../assets/google.svg";
-import icon from "../../../assets/icon.svg";
+// import icon from "../../../assets/icon.svg";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -55,7 +55,7 @@ const Login = () => {
                 Login with Google
               </button>
               <button className="bg-blue text-white flex items-center justify-between py-3 px-6 rounded-md">
-                Login <img src={icon} alt="" />
+                Login 
               </button>
             </div>
           </div>
