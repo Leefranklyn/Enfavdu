@@ -19,6 +19,7 @@ export default {
         footerGrey:"#35373E",
         textGrey:"#444E6B",
         socials:"#E8C5B0",
+        lineBlue:"#4A3AFF"
       },
       listStyleImage: {
         check: 'url("/assets/check.svg")',
