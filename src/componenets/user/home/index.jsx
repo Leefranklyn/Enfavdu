@@ -1,6 +1,7 @@
 import React from "react";
 import UserNav from "../../../layout/UserNav";
 import person from "../../../assets/person.png";
+import UserFooter from "../../../layout/UserFooter";
 
 const HomePage = () => {
   return (
@@ -71,6 +72,7 @@ const HomePage = () => {
         </p>
       </div>
     </div>
+    <UserFooter/>
     </>
   );
 };

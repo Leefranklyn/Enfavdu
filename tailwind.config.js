@@ -17,7 +17,8 @@ export default {
         lightGrey: "#F6F6F6",
         blueishGray: "#97AAC5",
         footerGrey:"#35373E",
-        textGrey:"#444E6B"
+        textGrey:"#444E6B",
+        socials:"#E8C5B0",
       },
       listStyleImage: {
         check: 'url("/assets/check.svg")',

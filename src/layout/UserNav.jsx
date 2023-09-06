@@ -12,7 +12,7 @@ const UserNav = () => {
   return (
     <div className="m-container">
       <div className="">
-        <div className="flex items-center justify-between py-5 md:py-2 w-full">
+        <div className="flex items-center justify-between py-3 md:py-2 w-full">
           <div className="flex flex-col justify-center items-start">
             <img src={logo} alt="" />
             <p className="text-[10px] hidden md:block">Airforce Institute of Technology</p>
@@ -36,7 +36,7 @@ const UserNav = () => {
               </button>
           </div>
           <div className="z-50 md:hidden" onClick={handleNav}>
-            <img src={hamburger} alt="" />
+          {nav ?  <img src={close} className="w-5" alt="" /> : <img src={hamburger} alt="" />}
           </div>
         </div>
       </div>
