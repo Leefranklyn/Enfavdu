@@ -1,39 +1,47 @@
-import React from 'react'
-import logo from "../assets/AFIT 1.svg"
-import hamburger from "../assets/Vector.svg"
+import React, { useState } from "react";
+import logo from "../assets/AFIT 1.svg";
+import hamburger from "../assets/Vector.svg";
+import close from "../assets/close.svg";
 
 const UserNav = () => {
+  const [nav, setnav] = useState(false);
+
+  const handleNav = () => {
+    setnav(!nav);
+  };
   return (
-    <div className="">
-      <div className="my-container">
-        <div className="flex items-center justify-between py-5 md:py-3">
-          <div>
+    <div className="m-container">
+      <div className="">
+        <div className="flex items-center justify-between py-5 md:py-2 w-full">
+          <div className="flex flex-col justify-center items-start">
             <img src={logo} alt="" />
+            <p className="text-[10px] hidden md:block">Airforce Institute of Technology</p>
           </div>
-          <div  className="z-50">
+          <div
+            className={`md:relative md:right-0 md:flex md:gap-4 text-sm ${
+              nav 
+                ? "fixed  top-0 right-0 z-30 bg-white w-[55%] px-4 py-10 transition-all duration-500 ease-in-out "
+                : "fixed right-[-100%]"
+            } `}
+          >
+            <ul className="flex flex-col md:flex-row md:items-center gap-5">
+              <li>Home</li>
+              <li>About</li>
+              <li>Resources</li>
+              <li>Contact</li>
+             
+            </ul>
+            <button className="bg-blue text-white py-2 px-5 mt-4 md:mt-0 rounded-lg">
+                Login
+              </button>
+          </div>
+          <div className="z-50 md:hidden" onClick={handleNav}>
             <img src={hamburger} alt="" />
           </div>
-          {/* <div
-            className={
-              toggle
-                ? "fixed  top-0 right-0 z-30 bg-white w-[55%] px-4 py-10 transition-all duration-500 ease-in-out"
-                : "fixed right-[-100%]"
-            }
-          >
-            <ul className="flex flex-col gap-y-5">
-              <li>Benefits</li>
-              <li>Features</li>
-              <li>Support</li>
-              <li>Login</li>
-              <button className="bg-blue text-white py-3 rounded-lg">
-                Get Started for Free
-              </button>
-            </ul>
-          </div> */}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UserNav
+export default UserNav;

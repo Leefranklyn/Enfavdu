@@ -18,14 +18,14 @@ import happy from "../../assets/happy.png";
 import SVG1 from "../../assets/SVG1.svg";
 import Layer from "../../assets/Layer.svg";
 import SVGg from "../../assets/SVGg.svg";
-import Profile from "../../assets/Profile.svg"
+import Profile from "../../assets/Profile.svg";
 import Navbar from "../../layout/Navbar";
 import Footer from "../../layout/Footer";
 
 const Home = () => {
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div className=" ">
         <div className="md:bg-skyBlue md:py-16">
           <div className="my-container">
@@ -38,9 +38,9 @@ const Home = () => {
               fairness and to curb the challenges facing recruitment of staff
             </p>
             <div className="flex justify-center">
-              <Link to="/login ">
-                <button className="bg-blue flex justify-center py-2 px-7 rounded-md text-white outline-none border-none">
-                  Login
+              <Link to="/signup ">
+                <button className="bg-blue flex justify-center py-2 px-5 rounded-3xl text-white outline-none border-none">
+                  Get Started for free
                 </button>
               </Link>
             </div>
@@ -97,7 +97,9 @@ const Home = () => {
             </div>
             <div className="border border-borderBlue rounded-md w-[80%] max-w-[250px] h-[150px] flex flex-col gap-1 py-3  px-3">
               <img src={symbol2} className="w-9" alt="" />
-              <h5 className="text-lg md:text-xl font-semibold">Customer support</h5>
+              <h5 className="text-lg md:text-xl font-semibold">
+                Customer support
+              </h5>
               <p className="text-[14px] md:text-[15px]">
                 Excellent customer support
               </p>
@@ -271,10 +273,12 @@ const Home = () => {
           </div>
         </div>
         <div className="w-[50%] mx-auto py-6 hidden md:block">
-          <h3 className="font-bold drop-shadow-2xl text-2xl text-center">Testimonials</h3>
+          <h3 className="font-bold drop-shadow-2xl text-2xl text-center">
+            Testimonials
+          </h3>
           <p className="text-center text-[14px] py-2">
-            Don&apos;t just take our word for it. See what our satisfied customers
-            have to say
+            Don&apos;t just take our word for it. See what our satisfied
+            customers have to say
           </p>
           <p className="text-center text-[14px] py-2">
             With ENFAVEDU, you always have access to your data and it helps you
@@ -282,17 +286,19 @@ const Home = () => {
             to manage their data
           </p>
           <div className="flex justify-center items-center gap-3">
-          <div><img src={Profile} alt="" /></div>
-          <div>
-            <h3>Linda Osifor</h3>
-            <p>Proprietress</p>
-          </div>
+            <div>
+              <img src={Profile} alt="" />
+            </div>
+            <div>
+              <h3>Linda Osifor</h3>
+              <p>Proprietress</p>
+            </div>
           </div>
         </div>
         <div className="bg-skyBlue rounded-lg pt-3   md:mt-24 md:mb-10  px-4 md:flex shadow-lg my-container">
           <div className="md:w-1/2 flex flex-col gap-y-5 justify-center ">
             <h4 className="text-lg font-semibold text-start">Join the Train</h4>
-            <p >
+            <p>
               With tools to make every part of your process more human and a
               support team always available to help you, we invite you to become
               one of the schools we are committed to, starting with a FREE
@@ -309,7 +315,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

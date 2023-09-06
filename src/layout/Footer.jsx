@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="hidden md:block w-[40%]">
             <p className="text-left">ENFAVEDU is a product of FlexiENFAV Edusoft Limited </p>
             <p className="text-left">Abuja: No.18 Garki Street,Abuja Nigeria</p>
-            <p className="text-left">Kaduna: No. 37 Ali Akilu road kadduna, Kaduna state, Nigeria</p>
+            <p className="text-left">Kaduna: No. 37 Ali Akilu road kaduna, Kaduna state, Nigeria</p>
             <a  href="/">info@ENFAVEDU.com</a>
           </div>
           <div>

@@ -7,6 +7,11 @@
     margin: auto;
     max-width: 1024px;
 }
+.m-container{
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
+}
 
 @layer base {
     html {
