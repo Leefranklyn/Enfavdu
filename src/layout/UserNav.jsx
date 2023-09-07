@@ -27,10 +27,14 @@ const UserNav = () => {
             } `}
           >
             <ul className="flex flex-col md:flex-row md:items-center gap-5">
-              <li>Home</li>
+              <Link to="/user/home">
+                <li>Home</li>
+              </Link>
               <li>About</li>
               <li>Resources</li>
-              <li>Contact</li>
+              <Link to="/user/contact">
+                <li>Contact</li>
+              </Link>
              
             </ul>
             <button className="bg-blue text-white border-buttonGrey border-[1px] py-2 px-5 mt-4 md:mt-0 rounded-lg">
