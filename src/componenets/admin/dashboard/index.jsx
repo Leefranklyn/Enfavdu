@@ -1,11 +1,79 @@
-import React from 'react'
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+import admin from "../../../assets/admin.svg";
+import view from "../../../assets/Overview.svg";
+import people from "../../../assets/Customers.svg";
+import up from "../../../assets/up.svg";
+import Reports from "../../../assets/Reports.svg";
+import payment from "../../../assets/payment.svg";
+import Settings from "../../../assets/Settings.svg";
+import out from "../../../assets/out.svg";
+import Context from "../../../context/ToggleContext"
+
 
 const Dashboard = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  const [toggle, setToggle] = useState(false);
+  
 
-export default Dashboard
+  return (
+    <>
+    <Context.Provider value={{toggle , setToggle}}>
+      <div className="flex relative bg-lightGrey">
+        <div className={`bg-blue md:w-[25%] lg:w-[15%]  rounded-e-[30px] ${ toggle ? "absolute top-0 w-[70%] h-full  translate-x-[0]" : "absolute translate-x-[-1000%]"} md:min-h-[100vh] md:relative md:translate-x-[0] `}>
+          <div className="flex flex-col justify-between items-center md:h-full px-12 py-10  md:pt-12 md:pb-32 ">
+            <div className="flex items-center">
+              <img src={admin} alt="" />
+              <h2 className="text-white text-3xl font-bold">Admin</h2>
+            </div>
+            <div>
+              <ul className="flex flex-col gap-4 my-4">
+                <li className="flex gap-2">
+                  <img src={view} alt="" />
+                  Dashboard
+                </li>
+                <li className="flex gap-2">
+                  <img src={view} alt="" />
+                  Home
+                </li>
+                <li className="flex gap-2">
+                  <img src={people} alt="" />
+                  Exams
+                </li>
+                <li className="flex gap-2">
+                  <img src={up} alt="" />
+                  Register
+                </li>
+                <li className="flex gap-2">
+                  <img src={Reports} alt="" />
+                  Reports
+                </li>
+                <li className="flex gap-2">
+                  <img src={payment} alt="" />
+                  Payment
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul className="flex flex-col gap-4">
+                <li className="flex gap-2">
+                  <img src={Settings} alt="" />
+                  Settings
+                </li>
+                <li className="flex gap-2">
+                  <img src={out} alt="" />
+                  Sign out
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="w-[100%] md:w-[75%] lg:w-[85%]">
+          <Outlet/>
+        </div>
+      </div>
+      </Context.Provider>
+    </>
+  );
+};
+
+export default Dashboard;

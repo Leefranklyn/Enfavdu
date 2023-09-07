@@ -2,6 +2,7 @@ import React from "react";
 import UserNav from "../../../layout/UserNav";
 import person from "../../../assets/person.png";
 import UserFooter from "../../../layout/UserFooter";
+import user from "../../../assets/user.png"
 
 const HomePage = () => {
   return (
@@ -9,18 +10,25 @@ const HomePage = () => {
     <UserNav />
     <div className="bg-veryLightGrey">
     <div className="m-container">
-        <div className="bg-hero  py-16 bg-contain bg-center bg-no-repeat">
-          <h2 className="text-[30px] text-center font-extrabold">
-            Welcome to the AFIT Online Recruitment Service
-          </h2>
-        </div>
-        <div className="w-[80%] mx-auto">
-          <p className="text-center">
-            The AFIT online recruitment service is a service set up by the
-            Institution to enhance recruitment of staff into the Institution in
-            fairness and an organized manner, to curb the challenges faced in the
-            recruitment of staff in the Institution.
-          </p>
+        <div className="md:flex md:items-center md:py-9">
+          <div className="md:w-[60%]">
+            <div className="bg-hero  py-16 md:pt-0 md:pb-5 bg-contain bg-center bg-no-repeat">
+              <h2 className="text-[30px] text-center  md:text-left font-extrabold">
+                Welcome to the AFIT Online Recruitment Service
+              </h2>
+            </div>
+            <div className="w-[80%] md:w-full mx-auto">
+              <p className="text-center md:text-left">
+                The AFIT online recruitment service is a service set up by the
+                Institution to enhance recruitment of staff into the Institution in
+                fairness and an organized manner, to curb the challenges faced in the
+                recruitment of staff in the Institution.
+              </p>
+            </div>
+          </div>
+          <div className="hidden md:block">
+           <img src={user} className="h-[300px]" alt="" />
+          </div>
         </div>
         <div className="px-3 py-4">
           <h3 className="text-[25px] font-semibold text-center my-5 text-textGrey">

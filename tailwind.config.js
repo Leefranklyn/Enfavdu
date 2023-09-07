@@ -5,6 +5,8 @@ export default {
     extend: {
       colors: {
         blue: "#4A3AFF",
+        buttonGrey : "#D4D2E3",
+        linkGrey : "#CCCCCC",
         lightGrey : "#D9D9D9",
         veryLightGrey :'#E5E5E5',
         gray: "#D8D8E3",
@@ -19,13 +21,15 @@ export default {
         footerGrey:"#35373E",
         textGrey:"#444E6B",
         socials:"#E8C5B0",
-        lineBlue:"#4A3AFF"
+        lineBlue:"#4A3AFF",
+        inputGray:"#8E8383"
       },
       listStyleImage: {
         check: 'url("/assets/check.svg")',
       },
       backgroundImage: {
-        hero: 'url("/src/assets/AFIT1.png")'
+        hero: 'url("/src/assets/AFIT1.png")',
+        contact: 'url("/src/assets/background.png")'
       }
     },
   },

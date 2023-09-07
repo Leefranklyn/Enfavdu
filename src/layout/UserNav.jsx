@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import logo from "../assets/AFIT 1.svg";
 import hamburger from "../assets/Vector.svg";
 import close from "../assets/close.svg";
+import { Link } from "react-router-dom";
+
 
 const UserNav = () => {
   const [nav, setnav] = useState(false);
@@ -31,8 +33,8 @@ const UserNav = () => {
               <li>Contact</li>
              
             </ul>
-            <button className="bg-blue text-white py-2 px-5 mt-4 md:mt-0 rounded-lg">
-                Login
+            <button className="bg-blue text-white border-buttonGrey border-[1px] py-2 px-5 mt-4 md:mt-0 rounded-lg">
+                <Link to="/user/contact">Login</Link>
               </button>
           </div>
           <div className="z-50 md:hidden" onClick={handleNav}>

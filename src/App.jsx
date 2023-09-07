@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./componenets/admin/login";
 import ResetPassword from "./componenets/admin/passwordreset";
 import Dashboard from "./componenets/admin/dashboard"
+import Contact from "./componenets/user/contact";
+import Overview from "./componenets/admin/dashboard/Overview";
 
 function App() {
   // const pathname = window.location.pathname;
@@ -18,10 +20,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/passwordreset" element={<ResetPassword />} />
           <Route path="/dashboard" element={<Dashboard/>}>
-            <Route />
+            <Route path="/dashboard" element={<Overview/>}/>
             <Route/>
           </Route>
           <Route path="/user/home" element={<HomePage/>}/>
+          <Route path="/user/contact" element={<Contact/>} />
         </Routes>
       </BrowserRouter>
     </>
