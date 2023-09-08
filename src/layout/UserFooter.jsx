@@ -2,12 +2,13 @@ import React from "react";
 import facebook from "../assets/facebook.svg";
 import twitter from "../assets/twitter.svg";
 import instagram from "../assets/instagram.svg"
+import { Link } from "react-router-dom";
 
 const UserFooter = () => {
   return (
     <div className="bg-black md:bg-white px-10 ">
       <div className="my-container">
-        <div className="flex flex-col md:flex-row text-center md:text-start gap-x-14  text-white md:text-black pt-5  pb-12 md:pb-5 px-6 gap-y-4">
+        <div className="flex flex-col md:flex-row md:justify-center text-center md:text-start gap-x-14  text-white md:text-black pt-16  pb-12 md:pb-5 px-6 gap-y-4">
           <div>
             <h5 className="font-semibold text-lg mb-4">Mobile App</h5>
             <ul className="flex flex-col gap-y-2">
@@ -68,6 +69,9 @@ const UserFooter = () => {
                 </a>
               </div>
             </div>
+          </div>
+          <div className="hidden md:flex justify-center items-center ">
+            <Link to="/login"><button className="bg-blue text-white py-3 px-12 text-xl rounded-md">ADMIN</button></Link>
           </div>
         </div>
         <div className="md:flex md:justify-between md:items-center md:mt-4 md:mb-6 border-t-[1px] border-lightGrey  md:border-black  pb-10 md:pb-0">

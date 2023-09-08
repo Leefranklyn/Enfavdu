@@ -38,7 +38,7 @@ const UserNav = () => {
              
             </ul>
             <button className="bg-blue text-white border-buttonGrey border-[1px] py-2 px-5 mt-4 md:mt-0 rounded-lg">
-                <Link to="/user/contact">Login</Link>
+                <Link to="/user/login">Login</Link>
               </button>
           </div>
           <div className="z-50 md:hidden" onClick={handleNav}>
