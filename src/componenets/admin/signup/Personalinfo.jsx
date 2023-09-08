@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+
 
 const Personalinfo = () => {
+  const [showPassword, setShowPassword] = useState(false)
+  const toggle = () => {
+    setShowPassword(!showPassword)
+  }
   return (
     <div>
       <div>
         <label className="font-bold text-[13px]">
-          FIRST NAME<span className="text-red-500">*</span>
+          FIRST NAME<span className="text-red">*</span>
         </label>
         <input
           type="text"
@@ -15,7 +20,7 @@ const Personalinfo = () => {
       </div>
       <div>
         <label className="font-bold text-[13px]">
-          LAST NAME<span className="text-red-500">*</span>
+          LAST NAME<span className="text-red">*</span>
         </label>
         <input
           type="text"
@@ -25,7 +30,7 @@ const Personalinfo = () => {
       </div>
       <div>
         <label className="font-bold text-[13px]">
-          EMAIL<span className="text-red-500">*</span>
+          EMAIL<span className="text-red">*</span>
         </label>
         <input
           type="text"
@@ -35,7 +40,7 @@ const Personalinfo = () => {
       </div>
       <div>
         <label className="font-bold text-[13px]">
-          EMAIL<span className="text-red-500">*</span>
+          EMAIL<span className="text-red">*</span>
         </label>
         <input
           type="text"
@@ -45,18 +50,20 @@ const Personalinfo = () => {
       </div>
       <div>
         <label className="font-bold text-[13px]">
-          PASSWORD<span className="text-red-500">*</span>
+          PASSWORD<span className="text-red">*</span>
         </label>
         <input
-          type="password"
-          name=""
-          id=""
-          className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
+          type={showPassword ? "text" : "password"}
+          className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-2"
         />
+        <div className="flex items-center gap-2">
+          <input type="checkbox" name="" id="" onChange={toggle} />
+          <label className="text-xs">View Password</label>
+        </div>
       </div>
-      <div>
-        <p>Password must Contain</p>
-        <ul>
+      <div className="my-3 italic">
+        <p className="text-red underline">Password must Contain</p>
+        <ul className="list-disc list-inside">
           <li>Minimum of 8 characters</li>
           <li>One uppercase letter and One lowercase</li>
           <li>One number</li>
@@ -65,12 +72,18 @@ const Personalinfo = () => {
       </div>
       <fieldset>
         <label className="font-bold text-[13px]">
-          GENDER<span className="text-red-500">*</span>
+          GENDER<span className="text-red">*</span>
         </label>
-        <label >MALE</label>
-        <input type="radio" name="" id="" />
-        <label >FEMALE</label>
-        <input type="radio" name="" id="" />
+        <div className="flex gap-3">
+          <div className="flex gap-2 items-center">
+            <input type="radio" name="gender" id="" />
+            <label >MALE</label>
+          </div>
+          <div className="flex gap-2 items-center">
+            <input type="radio" name="gender" id="" />
+            <label >FEMALE</label>
+          </div>
+        </div>
       </fieldset>
     </div>
   );

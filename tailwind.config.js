@@ -22,7 +22,8 @@ export default {
         textGrey:"#444E6B",
         socials:"#E8C5B0",
         lineBlue:"#4A3AFF",
-        inputGray:"#8E8383"
+        inputGray:"#8E8383",
+        red:'#D81E5B',
       },
       listStyleImage: {
         check: 'url("/assets/check.svg")',

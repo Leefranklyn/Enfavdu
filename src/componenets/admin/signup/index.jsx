@@ -36,7 +36,7 @@ const SignUp = () => {
             <h1 className="font-bold"> {formTitles[page]}</h1>
             <div>{pageDisplay()}</div>
           </div>
-          <div className="flex justify-between items-center py-4 ">
+          <div className="flex justify-end gap-5 items-center py-4 ">
             {page === 0 ? (
               ""
             ) : (

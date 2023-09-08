@@ -8,7 +8,7 @@ const Schoolinfo = () => {
       </div>
       <div>
         <label className="font-bold text-[13px]">
-          SCHOOL NAME<span className="text-red-500">*</span>
+          SCHOOL NAME<span className="text-red">*</span>
         </label>
         <input
           type="text"
@@ -18,7 +18,7 @@ const Schoolinfo = () => {
       </div>
       <div>
         <label className="font-bold text-[13px]">
-          SCHOOL SHORT NAME<span className="text-red-500">*</span>
+          SCHOOL SHORT NAME<span className="text-red">*</span>
         </label>
         <input
           type="text"
@@ -28,7 +28,7 @@ const Schoolinfo = () => {
       </div>
       <div>
         <label className="font-bold text-[13px]">
-          COUNTRY<span className="text-red-500">*</span>
+          COUNTRY<span className="text-red">*</span>
         </label>
 
         <select
@@ -351,7 +351,7 @@ const Schoolinfo = () => {
       </div>
       <div>
         <label className="font-bold text-[13px]">
-          SCHOOL WEBSITE<span className="text-red-500">*</span>
+          SCHOOL WEBSITE<span className="text-red">*</span>
         </label>
         <input
           type="text"

@@ -68,16 +68,20 @@ const HomePage = () => {
             </button>
           </div>
         </div>
-        <div>
-          <h3 className="text-[25px] font-semibold text-center my-5 ">
-            You are in good company
-          </h3>
-          <img src={person} alt="" />
+          {/* <div>
+            <h3 className="text-[25px] font-semibold text-center my-5 ">
+              You are in good company
+            </h3>
+          </div> */}
+        <div className="md:flex-row-reverse">
+          <div><img src={person} alt="" /></div>
+          <div>
+            <p className="text-center md:text-left">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+              tempor incididunt ut labore
+            </p>
+          </div>
         </div>
-        <p className="text-center">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore
-        </p>
       </div>
     </div>
     <UserFooter/>
