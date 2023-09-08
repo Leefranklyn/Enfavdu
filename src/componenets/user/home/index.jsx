@@ -3,6 +3,7 @@ import UserNav from "../../../layout/UserNav";
 import person from "../../../assets/person.png";
 import UserFooter from "../../../layout/UserFooter";
 import user from "../../../assets/user.png"
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -12,7 +13,7 @@ const HomePage = () => {
     <div className="m-container">
         <div className="md:flex md:items-center md:py-9">
           <div className="md:w-[60%]">
-            <div className="bg-hero  py-16 md:pt-0 md:pb-5 bg-contain bg-center bg-no-repeat">
+            <div className=" py-16 md:pt-0 md:pb-5 bg-contain bg-center bg-no-repeat">
               <h2 className="text-[30px] text-center  md:text-left font-extrabold">
                 Welcome to the AFIT Online Recruitment Service
               </h2>
@@ -27,7 +28,7 @@ const HomePage = () => {
             </div>
           </div>
           <div className="hidden md:block">
-           <img src={user} className="h-[300px]" alt="" />
+           <img src={user} className="h-[350px]" alt="" />
           </div>
         </div>
         <div className="px-3 py-4">
@@ -63,9 +64,11 @@ const HomePage = () => {
             </li>
           </ol>
           <div className="flex justify-center">
-            <button className="bg-blue my-5 text-white py-4 px-5 rounded-lg">
-              Take Test
-            </button>
+            <Link to = "/user/login">
+              <button className="bg-blue my-5 text-white py-4 px-5 rounded-lg">
+                Take Test
+              </button>
+            </Link>
           </div>
         </div>
           {/* <div>

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Personalinfo from "./Personalinfo";
 import Schoolinfo from "./Schoolinfo";
+import Navbar from "../../../layout/Navbar"
 
 const SignUp = () => {
   const [page, setPage] = useState(0);
@@ -14,6 +15,8 @@ const SignUp = () => {
     }
   };
   return (
+    <>
+    {/* <Navbar/> */}
     <div className="bg-lightGrey pt-10 pb-14 min-h-[100vh] flex justify-center items-center">
       <div className="my-container md:flex md:justify-between">
         <div>
@@ -21,12 +24,12 @@ const SignUp = () => {
             <div className="border-gray border-[1px] w-[50px] h-[50px] rounded-full bg-white absolute flex justify-center items-center">
               <div className="bg-gray w-[20px] h-[20px] rounded-full"></div>
             </div>
-            <div className="border-gray border-[1px] rounded-3xl py-3 px-8 bg-white text-blue flex items-center shadow-md">
+            <div className="border-gray border-[1px] rounded-3xl py-3 px-8 bg-white text-blue flex  items-center shadow-md">
               <h2 className="relative ml-7">School SignUp</h2>
             </div>
           </div>
           <div>
-            <div className="border-gray border-[1px] w-[150px] rounded-3xl py-3 my-3 bg-white text-blue flex items-center shadow-md">
+            <div className="border-gray border-[1px] w-[150px] md:h-[50px] rounded-3xl py-3 my-3 bg-white text-blue flex flex-col md:rotate-90  md:my-20 items-center shadow-md">
               <div></div>
             </div>
           </div>
@@ -36,18 +39,18 @@ const SignUp = () => {
             <h1 className="font-bold"> {formTitles[page]}</h1>
             <div>{pageDisplay()}</div>
           </div>
-          <div className="flex justify-end gap-5 items-center py-4 ">
+          <div className="flex justify-center md:justify-end gap-9 md:gap-5 items-center py-4 ">
             {page === 0 ? (
               ""
             ) : (
               <button
-                className="py-2 px-9 bg-blue text-white rounded-md "
+                className="py-2 px-9 border-black border-[1px]  text-black rounded-md "
                 disabled={page === 0}
                 onClick={() => {
                   setPage((currPage) => currPage - 1);
                 }}
               >
-                Prev
+                Previous
               </button>
             )}
             {/* <button onClick={handleSubmit} className="py-2 px-9 bg-orange text-white rounded-md">Submit</button> */}
@@ -67,6 +70,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

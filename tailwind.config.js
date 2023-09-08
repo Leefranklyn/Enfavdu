@@ -24,6 +24,9 @@ export default {
         lineBlue:"#4A3AFF",
         inputGray:"#8E8383",
         red:'#D81E5B',
+        loginGrey: '#8E8383',
+        textGray: '#555454'
+
       },
       listStyleImage: {
         check: 'url("/assets/check.svg")',
