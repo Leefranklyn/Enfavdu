@@ -12,32 +12,34 @@ const Login = () => {
   };
   return (
     <div className="md:flex">
-      <div className="bg-blue flex justify-center items-center py-16 md:w-1/2 h-[100vh]">
+      <div className="bg-blue flex justify-center items-center py-16 md:w-[35%] h-[100vh]">
         <img src={man} alt="" />
       </div>
-      <div className="bg-lightGrey py-28 flex flex-col justify-center md:w-1/2 h-[100vh]">
-        <div className="w-[80%] mx-auto">
-          <h5 className="px-2">Login</h5>
-          <input
-            type="text"
-            placeholder="EMAIL"
-            className="w-full outline-none my-3 py-2 px-3 rounded-md"
-          />
-          <div>
+      <div className="bg-lightGrey py-28 flex flex-col justify-center md:w-[65%] h-[100vh]">
+        <div className="w-[80%]  mx-auto">
+          <div className=" lg:w-[550px] mx-auto">
+          <h5 className="px-2 text-lg">Login</h5>
             <input
-              type={showPassword ? "text" : "password"}
-              placeholder="PASSWORD"
-              className=" w-full outline-none my-3 py-2 px-3 rounded-md"
+              type="text"
+              placeholder="EMAIL"
+              className="w-full outline-none my-3 py-2 px-3 rounded-md"
             />
-            <div className="mx-2">
+            <div>
               <input
-                type="checkbox"
-                name=""
-                id=""
-                className="mr-2"
-                onChange={handleShowPassword}
+                type={showPassword ? "text" : "password"}
+                placeholder="PASSWORD"
+                className=" w-full outline-none my-3 py-2 px-3 rounded-md"
               />
-              <label>View password</label>
+              <div className="mx-2">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  className="mr-2"
+                  onChange={handleShowPassword}
+                />
+                <label>View password</label>
+              </div>
             </div>
           </div>
           <div className="lg:flex lg:items-center lg:justify-center">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/AFIT 1.svg";
+
 import hamburger from "../assets/Vector.svg";
 import close from "../assets/close.svg"
 import { Link } from "react-router-dom";
@@ -18,7 +18,9 @@ const Navbar = () => {
       <div className="my-container">
         <div className="flex items-center justify-between py-5 md:py-2">
           <div>
-            <img src={logo} alt="" />
+            <Link to="/">
+              <h1 className="font-['Abril_Fatface']">ENFAVEDU</h1>
+            </Link>
           </div>
           <div
             className={`md:relative md:right-0 md:flex md:items-center md:gap-5 md:justify-between md:w-[80%] text-sm   ${

@@ -9,9 +9,9 @@ const ResetPassword = () => {
     <>
    
     <div className='h-[100vh] bg-lightGrey'>
-      <ConfirmEmail/>
+      {/* <ConfirmEmail/> */}
       {/* {<SuccessModal/>} */}
-      {/* <Otp/> */}
+      <Otp/>
       {/* <CreateNewPassword/> */}
     </div>
     </>
