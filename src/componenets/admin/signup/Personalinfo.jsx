@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css'
+import FormContext from "../../../context/FormContext"
 
 const Personalinfo = () => {
+  const {formData, setFormData} = useContext(FormContext)
   const [showPassword, setShowPassword] = useState(false);
   const toggle = () => {
     setShowPassword(!showPassword);
@@ -49,7 +51,7 @@ const Personalinfo = () => {
           <PhoneInput
             country={"us"}
             inputProps={{required:true}}
-            className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
+            // className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
           />
         </div>
       </div>

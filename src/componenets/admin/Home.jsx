@@ -22,7 +22,8 @@ import Profile from "../../assets/Profile.svg";
 import Navbar from "../../layout/Navbar";
 import Footer from "../../layout/Footer";
 
-const Home = () => {
+const Home = ({path}) => {
+  console.log(path)
   return (
     <>
       <Navbar />
@@ -38,7 +39,7 @@ const Home = () => {
               fairness and to curb the challenges facing recruitment of staff
             </p>
             <div className="flex justify-center">
-              <Link to="/signup ">
+              <Link to={`/user/${path}`}>
                 <button className="bg-blue flex justify-center py-2 px-5 rounded-3xl text-white outline-none border-none">
                   Get Started for free
                 </button>

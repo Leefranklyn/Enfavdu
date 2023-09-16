@@ -12,7 +12,9 @@
     margin: auto;
     max-width: 1050px;
 }
-
+.css-b62m3t-container{
+   max-width: 900px;
+}
 @layer base {
     html {
         font-family: 'Poppins', sans-serif;
