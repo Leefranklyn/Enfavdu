@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import Personalinfo from "./Personalinfo";
 import Schoolinfo from "./Schoolinfo";
-import Navbar from "../../../layout/Navbar";
 import FormContext from "../../../context/FormContext";
 
 const SignUp = ({ path, setPath }) => {
@@ -50,15 +49,20 @@ const SignUp = ({ path, setPath }) => {
                   <h2 className="relative ml-7">School SignUp</h2>
                 </div>
               </div>
-              <div>
-                <div className="border-gray border-[1px] w-[150px] h-[40px] rounded-3xl  px-4 my-3 bg-white text-blue  shadow-md flex  items-center">
-                  <div className={`${page === 0 ? "w-5 h-5  rounded-full  border-blue  border-t  border-[1px] border-dashed flex justify-center items-center" : ""}`}>
+              <div className="flex items-center gap-4">
+                <div className="border-gray border-[1px] w-[150px] h-[40px] md:w-[40px] md:h-[150px] rounded-3xl  px-4 my-3 bg-white text-blue  shadow-md flex md:flex-col  md:justify-center
+                 items-center">
+                  <div className={`${page === 0 ? "w-5 h-5  rounded-full  border-blue  border-t  border-[1px] border-dashed flex md:flex-col justify-center items-center" : ""}`}>
                     <div className="bg-blue w-3 h-3 rounded-full "></div>
                   </div>
-                  <span className="h-[1px] w-16 border-t bg-blue border-dashed"></span>
+                  <span className="h-[1px] md:h-16 md:w-[1px] w-16 border-t bg-blue border-dashed"></span>
                   <div className={`${page === 1 ? "w-5 h-5  rounded-full  border-blue  border-t  border-[1px] border-dashed flex justify-center items-center" : ""}`}>
                     <div className="bg-blue w-3 h-3 rounded-full "></div>
                   </div>
+                </div>
+                <div className="hidden md:flex  flex-col justify-between gap-14">
+                  <h3 className="font-extrabold">{page === 0 ? "About School" : "About You"}</h3>
+                  <h3>{page === 0 ? "About You" : "About School"}</h3>
                 </div>
               </div>
             </div>
