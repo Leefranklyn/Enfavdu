@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import admin from "../../../assets/admin.svg";
 import view from "../../../assets/Overview.svg";
 import people from "../../../assets/Customers.svg";
@@ -14,12 +15,19 @@ import Context from "../../../context/ToggleContext"
 const Dashboard = () => {
   const [toggle, setToggle] = useState(false);
   
+  const handleToggle = () => {
+    setToggle(!toggle);
+    !toggle
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "unset");
+  }
+
 
   return (
     <>
     <Context.Provider value={{toggle , setToggle}}>
-      <div className="flex relative bg-lightGrey">
-        <div className={`bg-blue md:w-[25%] lg:w-[15%]  rounded-e-[30px] ${ toggle ? "absolute top-0 w-[70%] h-full  translate-x-[0]" : "absolute translate-x-[-1000%]"} md:min-h-[100vh] md:relative md:translate-x-[0] `}>
+      <div className="flex relative bg-lightGrey min-h-full">
+        <div className={`bg-blue md:w-[25%] lg:w-[15%]  rounded-e-[30px] ${ toggle ? "absolute top-0 w-[70%] h-full  translate-x-[0]" : "absolute translate-x-[-1000%]"} min-h-[100vh] md:relative md:translate-x-[0] `}>
           <div className="flex flex-col justify-between items-center md:h-full px-12 py-10  md:pt-12 md:pb-32 ">
             <div className="flex items-center">
               <img src={admin} alt="" />
@@ -27,27 +35,31 @@ const Dashboard = () => {
             </div>
             <div>
               <ul className="flex flex-col gap-4 my-4">
-                <li className="flex gap-2">
-                  <img src={view} alt="" />
-                  Dashboard
-                </li>
-                <li className="flex gap-2">
+                <Link to="/dashboard">
+                  <li className="flex gap-2" onClick={handleToggle}>
+                    <img src={view} alt="" />
+                    Dashboard
+                  </li>
+                </Link>
+                <li className="flex gap-2"  onClick={handleToggle}>
                   <img src={view} alt="" />
                   Home
                 </li>
-                <li className="flex gap-2">
-                  <img src={people} alt="" />
-                  Exams
-                </li>
-                <li className="flex gap-2">
+                <Link to="/dashboard/scores">
+                  <li className="flex gap-2"  onClick={handleToggle}>
+                    <img src={people} alt="" />
+                    Exams
+                  </li>
+                </Link>
+                <li className="flex gap-2"  onClick={handleToggle}>
                   <img src={up} alt="" />
                   Register
                 </li>
-                <li className="flex gap-2">
+                <li className="flex gap-2"  onClick={handleToggle}>
                   <img src={Reports} alt="" />
                   Reports
                 </li>
-                <li className="flex gap-2">
+                <li className="flex gap-2"  onClick={handleToggle}>
                   <img src={payment} alt="" />
                   Payment
                 </li>
@@ -55,11 +67,11 @@ const Dashboard = () => {
             </div>
             <div>
               <ul className="flex flex-col gap-4">
-                <li className="flex gap-2">
+                <li className="flex gap-2"  onClick={handleToggle}>
                   <img src={Settings} alt="" />
                   Settings
                 </li>
-                <li className="flex gap-2">
+                <li className="flex gap-2"  onClick={handleToggle}>
                   <img src={out} alt="" />
                   Sign out
                 </li>

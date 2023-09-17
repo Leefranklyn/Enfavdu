@@ -10,6 +10,7 @@ import Overview from "./componenets/admin/dashboard/Overview";
 import UserLogin from "./componenets/user/login";
 import { useState } from "react";
 import FormContext from "../src/context/FormContext"
+import Scores from "./componenets/admin/dashboard/Scores";
 
 function App() {
   const [path, setPath] = useState ("run")
@@ -40,7 +41,7 @@ function App() {
           <Route path="/passwordreset" element={<ResetPassword />} />
           <Route path="/dashboard" element={<Dashboard/>}>
             <Route path="/dashboard" element={<Overview/>}/>
-            <Route/>
+            <Route path="/dashboard/scores" element={<Scores/>}/>
           </Route>
           <Route path="/user/:path" element={<HomePage/>}/>
           {console.log(path)}
