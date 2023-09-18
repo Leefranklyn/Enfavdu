@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "./Header";
 import box from "../../../assets/Shadow 05.svg";
 import box2 from "../../../assets/Shadow 6.svg";
@@ -15,9 +16,11 @@ const Overview = ({}) => {
         </div>
 
         <div className="flex flex-col md:flex-row pt-10">
-          <div>
-            <img src={box} className="" alt="" />
-          </div>
+          <Link to="/dashboard/scores">
+            <div>
+              <img src={box} className="" alt="" />
+            </div>
+          </Link>
           <div>
             <img src={box2} className="" alt="" />
           </div>

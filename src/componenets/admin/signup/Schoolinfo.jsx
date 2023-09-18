@@ -1,21 +1,21 @@
-import React, { useState, useMemo, useContext } from 'react'
-import Select from 'react-select'
-import countryList from 'react-select-country-list'
-import FormContext from "../../../context/FormContext"
+import React, { useState, useMemo, useContext } from "react";
+import Select from "react-select";
+import countryList from "react-select-country-list";
+import FormContext from "../../../context/FormContext";
 
-
-
-
-const Schoolinfo = ({path, setPath}) => {
-  const {formData, setFormData} = useContext(FormContext);
-  const [value, setValue] = useState('')
+const Schoolinfo = ({ path, setPath }) => {
+  const { formData, setFormData } = useContext(FormContext);
+  const [value, setValue] = useState("");
   const options = useMemo(() => countryList().getData(), []);
 
-  const changeHandler = value => {
-    setValue(value)
-  }
+  const changeHandler = (value) => {
+    setValue(value);
+  };
   const handleInputChange = (e) => {
-    setPath(e.target.value); 
+    setPath(e.target.value);
+  };
+  const handleCountryChange = (value) => {
+    setFormData({ ...formData, country: value });
   };
   return (
     <div>
@@ -31,9 +31,11 @@ const Schoolinfo = ({path, setPath}) => {
           placeholder="e.g KadBiz Institute"
           className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
           value={formData.schoolName}
-          onChange={(e) => setFormData({ ...formData, schoolName: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, schoolName: e.target.value })
+          }
         />
-      </div> 
+      </div>
       <div className="md:flex gap-5 w-full">
         <div>
           <label className="font-bold text-[13px]">
@@ -44,14 +46,21 @@ const Schoolinfo = ({path, setPath}) => {
             placeholder="e.g KadBiz "
             className="w-full  outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
             value={formData.shortName}
-            onChange={(e) => setFormData({ ...formData, shortName: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, shortName: e.target.value })
+            }
           />
         </div>
         <div>
           <label className="font-bold text-[13px]">
             COUNTRY<span className="text-red">*</span>
           </label>
-         <div className='lg:w-[20rem] md:w-[17rem]'><Select  options={options} value={value} onChange={changeHandler} /></div>
+          <div className="lg:w-[20rem] md:w-[17rem]">
+            <Select
+              options={options}
+              onChange={handleCountryChange}
+            />
+          </div>
         </div>
       </div>
       <div className="my-4">
@@ -73,9 +82,11 @@ const Schoolinfo = ({path, setPath}) => {
           type="text"
           placeholder="e.g www.kadbizinstitute.com "
           className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
+          onChange={(e) =>
+            setFormData({ ...formData, schoolWebsite: e.target.value })
+          }
         />
       </div>
-     
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Personalinfo from "./Personalinfo";
 import Schoolinfo from "./Schoolinfo";
 import FormContext from "../../../context/FormContext";
+import right from "../../../assets/right.svg"
 
 const SignUp = ({ path, setPath }) => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,6 @@ const SignUp = ({ path, setPath }) => {
     url: "",
     schoolWebsite: "",
     firstName: "",
-    department: "",
     lastName: "",
     email: "",
     phoneNumber: "",
@@ -87,7 +87,7 @@ const SignUp = ({ path, setPath }) => {
                 )}
                 {/* <button onClick={handleSubmit} className="py-2 px-9 bg-orange text-white rounded-md">Submit</button> */}
                 <button
-                  className="py-2 px-9 bg-blue text-white rounded-md"
+                  className="py-2 px-9 bg-blue text-white rounded-md flex items-center gap-6"
                   onClick={(e) => {
                     if (page === formTitles.length - 1) {
                       e.preventDefault();
@@ -98,6 +98,7 @@ const SignUp = ({ path, setPath }) => {
                   }}
                 >
                   {page === formTitles.length - 1 ? "Finish" : " Next"}
+                  {page ==- 0 ? <img src={right} alt="" /> : ""}
                 </button>
               </div>
             </div>
