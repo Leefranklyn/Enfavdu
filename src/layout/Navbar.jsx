@@ -31,17 +31,17 @@ const Navbar = () => {
           >
             <div className="md:mx-auto">
               <ul className="flex flex-col md:flex-row md:items-center md:gap-5  gap-y-5">
-                <li>Benefits</li>
-                <li>Features</li>
-                <li>Support</li>
+                <li onClick={handleToggle}>Benefits</li>
+                <li onClick={handleToggle}>Features</li>
+                <li onClick={handleToggle}>Support</li>
                 <Link to="/login">
-                  <li>Login</li>
+                  <li onClick={handleToggle}>Login</li>
                 </Link>
               </ul>
             </div>
             <div>
               <Link to="/signup">
-                <button className="bg-blue text-white text-sm md:px-2 md:py-2 mt-4 md:mt-0 py-3 px-3 rounded-lg md:rounded-3xl">
+                <button onClick={handleToggle} className="bg-blue text-white text-sm md:px-2 md:py-2 mt-4 md:mt-0 py-3 px-3 rounded-lg md:rounded-3xl">
                     Get Started for Free
                   </button>
               </Link>

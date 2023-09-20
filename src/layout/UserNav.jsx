@@ -28,12 +28,12 @@ const UserNav = () => {
           >
             <ul className="flex flex-col md:flex-row md:items-center gap-5">
               <Link to="/user/home">
-                <li>Home</li>
+                <li onClick={handleNav}>Home</li>
               </Link>
-              <li>About</li>
-              <li>Resources</li>
+              <li onClick={handleNav}>About</li>
+              <li onClick={handleNav}>Resources</li>
               <Link to="/user/contact">
-                <li>Contact</li>
+                <li onClick={handleNav}>Contact</li>
               </Link>
              
             </ul>

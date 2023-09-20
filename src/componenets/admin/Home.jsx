@@ -69,7 +69,7 @@ const Home = ({path}) => {
             </div>
           </div>
         </div>
-        <div className="md:bg-skyBlue">
+        <div className="md:bg-skyBlue py-8">
           <p className="text-center max-w-[35ch] mx-auto md:py-36 ">
             Over 200+ Institutions Trust & Use ENFAVEDU for Online recruitment
             exercises
@@ -128,7 +128,7 @@ const Home = ({path}) => {
           <h4 className="text-center md:hidden font-semibold text-xl my-4">
             Institution Administrator
           </h4>
-          <div className="md:flex md:justify-center md:items-center md:gap-16">
+          <div className="md:flex md:justify-center md:items-center gap-10 md:gap-16">
             <div className="flex justify-center">
               <img src={image} className="h-[350px]" alt="" />
             </div>
@@ -136,7 +136,7 @@ const Home = ({path}) => {
               <h5 className="hidden md:block my-2 text-lg">
                 Institution Administrator
               </h5>
-              <p className="pt-7 md:pt-0 md:w-[40ch]">
+              <p className=" md:pt-0 md:w-[40ch]">
                 ENFAVEDU provides a comprehensive management system that helps
                 you efficiently streamline operations of the recruitment process
                 on your institution.
@@ -296,7 +296,7 @@ const Home = ({path}) => {
             </div>
           </div>
         </div>
-        <div className="bg-skyBlue rounded-lg pt-3   md:mt-24 md:mb-10  px-4 md:flex shadow-lg my-container">
+        <div className="bg-skyBlue rounded-lg pt-3 mb-12  md:mt-24 md:mb-10  px-4 md:flex shadow-lg my-container">
           <div className="md:w-1/2 flex flex-col gap-y-5 justify-center ">
             <h4 className="text-lg font-semibold text-start">Join the Train</h4>
             <p>

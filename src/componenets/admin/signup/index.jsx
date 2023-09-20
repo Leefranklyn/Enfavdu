@@ -4,19 +4,20 @@ import Personalinfo from "./Personalinfo";
 import Schoolinfo from "./Schoolinfo";
 import FormContext from "../../../context/FormContext";
 import right from "../../../assets/right.svg"
+import axios from "axios";
 
 const SignUp = ({ path, setPath }) => {
   const [formData, setFormData] = useState({
     schoolName: "",
-    shortName: "",
+    schoolShortName: "",
     country: "",
-    url: "",
-    schoolWebsite: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
+    schoolUrl: "",
+    website: "",
+    adminFirstName: "",
+    adminLastName: "",
+    adminEmail: "",
+    adminPhone: "",
+    adminPassword: "",
   });
 
   const [page, setPage] = useState(0);
@@ -29,10 +30,37 @@ const SignUp = ({ path, setPath }) => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
+  
+
+  const handleSubmit = async (event) => {
+    // event.preventDefault()
+    console.log(path)
+    await fetch("https://testmanagement.onrender.com/api/institution/signup", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log("yesss")
+  
+        // window.location.href = `/signin.html`;
+      })
+  
+      .catch((err) => console.log(err));
+    console.log("clicked");
+   
   };
+  // const handleSubmit = (e) => {
+  //   // e.preventDefault();
+  //   axios.post('https://testmanagement.onrender.com/api/institution/signup', {formData})
+  //   .then((res) => console.log(res))
+  //   .catch((err) => console.log(err))
+  //   // console.log(formData);
+  // };
 
   return (
     <>
@@ -88,17 +116,17 @@ const SignUp = ({ path, setPath }) => {
                 {/* <button onClick={handleSubmit} className="py-2 px-9 bg-orange text-white rounded-md">Submit</button> */}
                 <button
                   className="py-2 px-9 bg-blue text-white rounded-md flex items-center gap-6"
-                  onClick={(e) => {
+                  onClick={() => {
                     if (page === formTitles.length - 1) {
-                      e.preventDefault();
-                      console.log(formData);
+                      handleSubmit()
+                      console.log(formData)
                     } else {
                       setPage((currPage) => currPage + 1);
                     }
                   }}
                 >
                   {page === formTitles.length - 1 ? "Finish" : " Next"}
-                  {page ==- 0 ? <img src={right} alt="" /> : ""}
+                  {page === 0 ? <img src={right} alt="" /> : ""}
                 </button>
               </div>
             </div>

@@ -15,8 +15,15 @@ const Schoolinfo = ({ path, setPath }) => {
     setPath(e.target.value);
   };
   const handleCountryChange = (value) => {
-    setFormData({ ...formData, country: value });
+    const countryCode = value.label.toUpperCase();
+    setFormData({ ...formData, country: countryCode });
   };
+  const handleMirrorInput = () => {
+   
+   console.log(path)
+  }
+
+
   return (
     <div>
       <div className="my-4">
@@ -45,9 +52,9 @@ const Schoolinfo = ({ path, setPath }) => {
             type="text"
             placeholder="e.g KadBiz "
             className="w-full  outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
-            value={formData.shortName}
+            value={formData.schoolShortName}
             onChange={(e) =>
-              setFormData({ ...formData, shortName: e.target.value })
+              setFormData({ ...formData, schoolShortName: e.target.value })
             }
           />
         </div>
@@ -67,8 +74,8 @@ const Schoolinfo = ({ path, setPath }) => {
         <input
           type="text"
           className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3"
-          value={path}
-          onChange={(e) => setPath({ ...formData, shortName: e.target.value })}
+          value={formData.website}
+          onChange={(e) => setFormData({ ...formData, website: e.target.value })}
         />
         <p className="text-[13px]">
           This will be the main url link to your portal
@@ -82,8 +89,9 @@ const Schoolinfo = ({ path, setPath }) => {
           type="text"
           placeholder="e.g www.kadbizinstitute.com "
           className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
+          value={formData.schoolUrl}
           onChange={(e) =>
-            setFormData({ ...formData, schoolWebsite: e.target.value })
+            setFormData({ ...formData, schoolUrl: e.target.value })
           }
         />
       </div>

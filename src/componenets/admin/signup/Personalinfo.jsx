@@ -13,7 +13,7 @@ const Personalinfo = () => {
   };
 
   const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phoneNumber: value });
+    setFormData({ ...formData, adminPhone: value });
   };
 
   
@@ -29,8 +29,9 @@ const Personalinfo = () => {
             type="text"
             placeholder="e.g John"
             className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
+            value={formData.adminFirstName}
             onChange={(e) =>
-              setFormData({ ...formData, firstName: e.target.value })
+              setFormData({ ...formData, adminFirstName: e.target.value })
             }
           />
         </div>
@@ -42,8 +43,9 @@ const Personalinfo = () => {
             type="text"
             placeholder="e.g Doe"
             className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
+            value={formData.adminLastName}
             onChange={(e) =>
-              setFormData({ ...formData, lastName: e.target.value })
+              setFormData({ ...formData, adminLastName: e.target.value })
             }
           />
         </div>
@@ -57,8 +59,9 @@ const Personalinfo = () => {
             type="text"
             placeholder="e.g johndoe@example.com"
             className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
+            value={formData.adminEmail}
             onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
+              setFormData({ ...formData, adminEmail: e.target.value })
             }
           />
         </div>
@@ -69,7 +72,7 @@ const Personalinfo = () => {
           <PhoneInput
             country={"us"}
             inputProps={{ required: true }}
-            value={formData.phoneNumber}
+            value={formData.adminPhone}
             onChange={handlePhoneChange}
             // className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
           />
@@ -83,8 +86,9 @@ const Personalinfo = () => {
           <input
             type={showPassword ? "text" : "password"}
             className="w-full  outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-2"
+            value={formData.adminPassword}
             onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
+              setFormData({ ...formData, adminPassword: e.target.value })
             }
           />
         </div>
@@ -111,10 +115,10 @@ const Personalinfo = () => {
             <input
               type="radio"
               name="gender"
-              value="male"
-              checked={formData.gender === "male"}
+              value="MALE"
+              checked={formData.adminGender === "MALE"}
               onChange={(e) => {
-                setFormData({ ...formData, gender: e.target.value });
+                setFormData({ ...formData, adminGender: e.target.value });
               }}
             />
             <label>MALE</label>
@@ -124,10 +128,10 @@ const Personalinfo = () => {
               type="radio"
               name="gender"
               id=""
-              value="female"
-              checked={formData.gender === "female"}
+              value="FEMALE"
+              checked={formData.adminGender === "FEMALE"}
               onChange={(e) => {
-                setFormData({ ...formData, gender: e.target.value });
+                setFormData({ ...formData, adminGender: e.target.value });
               }}
             />
             <label>FEMALE</label>
