@@ -25,7 +25,9 @@ export default {
         inputGray:"#8E8383",
         red:'#D81E5B',
         loginGrey: '#8E8383',
-        textGray: '#555454'
+        textGray: '#555454',
+        formGray: "#EEEEEE",
+        overlay: "rgba(0,0,0,0.2)"
 
       },
       listStyleImage: {

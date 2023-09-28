@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Otp = () => {
+const Otp = ({id}) => {
   const [otp, setOtp] = useState(new Array(4).fill(""));
 
   const handleChange = (element, index) => {
@@ -15,6 +15,34 @@ const Otp = () => {
    }
 
   }
+  
+  const handleOtp = async () => {
+    console.log(otp)
+    const enteredOTP = otp.join('');
+    console.log(JSON.stringify({ otp: enteredOTP }))
+    try {
+      const response = await fetch(
+        `https://testmanagement.onrender.com/api/admin/verifyotp/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ otp: enteredOTP }), // Send user credentials
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        console.log('yesss')
+        console.log(data)
+        // Successful login, perform necessary actions (e.g., redirect)
+      } else {
+        // Handle authentication errors (e.g., show error message)
+      }
+    } catch (error) {
+      // Handle network errors
+    }
+  };
 
   return (
     <div className="h-[100%] flex justify-center">
@@ -48,7 +76,7 @@ const Otp = () => {
         </div>
         <div>
           <div>
-            <button className="bg-blue text-white py-2 px-8 rounded-md">
+            <button onClick={handleOtp} className="bg-blue text-white py-2 px-8 rounded-md">
               Confirm
             </button>
           </div>

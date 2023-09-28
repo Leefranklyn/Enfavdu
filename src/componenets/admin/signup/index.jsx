@@ -2,11 +2,19 @@ import React from "react";
 import { useState } from "react";
 import Personalinfo from "./Personalinfo";
 import Schoolinfo from "./Schoolinfo";
+import CompleteSignUp from "./CompleteSignUp"
 import FormContext from "../../../context/FormContext";
-import right from "../../../assets/right.svg"
-import axios from "axios";
+import right from "../../../assets/right.svg";
+import load from "../../../assets/Loading 4.svg";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 const SignUp = ({ path, setPath }) => {
+  const navigate = useNavigate();
+  const [id, setId] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(false);
   const [formData, setFormData] = useState({
     schoolName: "",
     schoolShortName: "",
@@ -30,43 +38,95 @@ const SignUp = ({ path, setPath }) => {
     }
   };
 
-  
+  async function handleSubmit(event) {
+    // event.preventDefault(); // Prevent the form from submitting in the default way
 
-  const handleSubmit = async (event) => {
-    // event.preventDefault()
-    console.log(path)
-    await fetch("https://testmanagement.onrender.com/api/institution/signup", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    setLoading(true);
+    console.log(path);
+
+    try {
+      const response = await fetch(
+        "https://testmanagement.onrender.com/api/institution/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
         console.log(data);
-        console.log("yesss")
-  
-        // window.location.href = `/signin.html`;
-      })
-  
-      .catch((err) => console.log(err));
-    console.log("clicked");
-   
-  };
-  // const handleSubmit = (e) => {
-  //   // e.preventDefault();
-  //   axios.post('https://testmanagement.onrender.com/api/institution/signup', {formData})
-  //   .then((res) => console.log(res))
-  //   .catch((err) => console.log(err))
-  //   // console.log(formData);
-  // };
+        const adminId = data.data._id;
+        setId(adminId);
+        console.log(adminId);
+        console.log(id);
+        console.log(window.location.href);
+        setIsSubmitted(true)
+        setMessage(false)
+        setLoading(false)
+      } else {
+        const errorData = data || {};
+        setLoading(false);
+        setMessage("true");
+      }
+    } catch (error) {
+      setLoading(false);
+      setMessage(true);
+      console.error(error);
+    }
+  }
+
+  // async function handleSubmit(event) {
+  //   // event.preventDefault()
+  //   setLoading(true);
+  //   console.log(path);
+  //   const response = await fetch(
+  //     "https://testmanagement.onrender.com/api/institution/signup",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     }
+  //   )
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //     const adminId = data.data._id;
+  //      setId(adminId)
+  //   })
+  //   if (response.ok) {
+  //     console.log("of course");
+  //     console.log(window.location.href);
+  //     setLoading(false);
+  //     navigate("/completesignup");
+  //     // window.location.href = '/completesignup';
+  //   } else {
+  //     const errorData = response.json();
+  //     setLoading(false);
+  //     setMessage(errorData.message || "An error occurred.");
+  //   }
+
+  // }
 
   return (
     <>
       {/* <Navbar/> */}
       <FormContext.Provider value={{ formData, setFormData, path, setPath }}>
-        <div className="bg-lightGrey pt-10 pb-14 min-h-[100vh] flex justify-center items-center">
+      {isSubmitted && <CompleteSignUp formData={formData} id={id}/>}
+        {loading ? (
+          <div className="fixed h-[100vh] w-[100%] z-40 top-0 left-0 bg-overlay flex justify-center items-center">
+            <img className="animate-spin" src={load} alt="" />
+          </div>
+        ) : (
+          ""
+        )}
+        <div className={ ` ${isSubmitted ? "hidden" : "bg-lightGrey pt-10 pb-14 min-h-[100vh] flex justify-center items-center"}`}>
           <div className="my-container md:flex md:justify-between">
             <div>
               <div className="flex relative">
@@ -78,18 +138,34 @@ const SignUp = ({ path, setPath }) => {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="border-gray border-[1px] w-[150px] h-[40px] md:w-[40px] md:h-[150px] rounded-3xl  px-4 my-3 bg-white text-blue  shadow-md flex md:flex-col  md:justify-center
-                 items-center">
-                  <div className={`${page === 0 ? "w-5 h-5  rounded-full  border-blue  border-t  border-[1px] border-dashed flex md:flex-col justify-center items-center" : ""}`}>
+                <div
+                  className="border-gray border-[1px] w-[150px] h-[40px] md:w-[40px] md:h-[150px] rounded-3xl  px-4 my-3 bg-white text-blue  shadow-md flex md:flex-col  md:justify-center
+                 items-center"
+                >
+                  <div
+                    className={`${
+                      page === 0
+                        ? "w-5 h-5  rounded-full  border-blue  border-t  border-[1px] border-dashed flex md:flex-col justify-center items-center"
+                        : ""
+                    }`}
+                  >
                     <div className="bg-blue w-3 h-3 rounded-full "></div>
                   </div>
                   <span className="h-[1px] md:h-16 md:w-[1px] w-16 border-t bg-blue border-dashed"></span>
-                  <div className={`${page === 1 ? "w-5 h-5  rounded-full  border-blue  border-t  border-[1px] border-dashed flex justify-center items-center" : ""}`}>
+                  <div
+                    className={`${
+                      page === 1
+                        ? "w-5 h-5  rounded-full  border-blue  border-t  border-[1px] border-dashed flex justify-center items-center"
+                        : ""
+                    }`}
+                  >
                     <div className="bg-blue w-3 h-3 rounded-full "></div>
                   </div>
                 </div>
                 <div className="hidden md:flex  flex-col justify-between gap-14">
-                  <h3 className="font-extrabold">{page === 0 ? "About School" : "About You"}</h3>
+                  <h3 className="font-extrabold">
+                    {page === 0 ? "About School" : "About You"}
+                  </h3>
                   <h3>{page === 0 ? "About You" : "About School"}</h3>
                 </div>
               </div>
@@ -99,6 +175,7 @@ const SignUp = ({ path, setPath }) => {
                 <h1 className="font-bold"> {formTitles[page]}</h1>
                 <div>{pageDisplay()}</div>
               </div>
+              {message && <div><p className="text-red">An error occurred.Please try again</p></div>}
               <div className="flex justify-center md:justify-end gap-9 md:gap-5 items-center py-4 ">
                 {page === 0 ? (
                   ""
@@ -118,8 +195,8 @@ const SignUp = ({ path, setPath }) => {
                   className="py-2 px-9 bg-blue text-white rounded-md flex items-center gap-6"
                   onClick={() => {
                     if (page === formTitles.length - 1) {
-                      handleSubmit()
-                      console.log(formData)
+                      handleSubmit();
+                      console.log(formData);
                     } else {
                       setPage((currPage) => currPage + 1);
                     }

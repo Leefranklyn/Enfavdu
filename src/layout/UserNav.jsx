@@ -17,7 +17,7 @@ const UserNav = () => {
         <div className="flex items-center justify-between py-3 md:py-2 w-full">
           <div className="flex flex-col justify-center items-start">
             <img src={logo} alt="" />
-            <p className="text-[10px] hidden md:block">Airforce Institute of Technology</p>
+            <p className="text-[10px] ">Airforce Institute of Technology</p>
           </div>
           <div
             className={`md:relative md:right-0 md:flex md:gap-4 text-sm ${

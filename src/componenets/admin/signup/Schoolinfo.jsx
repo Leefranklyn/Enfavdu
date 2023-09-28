@@ -20,7 +20,7 @@ const Schoolinfo = ({ path, setPath }) => {
   };
   const handleMirrorInput = () => {
    
-   console.log(path)
+  //  console.log(path)
   }
 
 
