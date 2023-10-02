@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import man from "../../../assets/man.png";
 import google from "../../../assets/google.svg";
+import LoginContext from "../../../context/LoginContext"
 import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
   const navigate = useNavigate();
+  const { userId, setUserId } = useContext(LoginContext);
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     adminEmail: "",
@@ -32,7 +35,14 @@ const Login = () => {
       const data = await response.json();
       if (response.ok) {
         console.log(data)
+        const adminId = data.data.id;
+        const token = data.token;
+        localStorage.setItem('jwt', token);
+        console.log(token)
+        setUserId(adminId)
+        console.log(adminId)
         navigate("/dashboard")
+
         // Successful login, perform necessary actions (e.g., redirect)
       } else {
         // Handle authentication errors (e.g., show error message)

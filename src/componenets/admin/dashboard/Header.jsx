@@ -2,13 +2,14 @@ import React, { useState, useContext } from 'react'
 import Context from "../../../context/ToggleContext"
 import bell from "../../../assets/Notification.svg"
 import hamburger from "../../../assets/Vector.svg";
+import { Link } from 'react-router-dom';
 
 
 
 const Header = () => {
  
   const {toggle, setToggle} = useContext(Context)
-  console.log(toggle)
+
   const handleToggle = () => {
     setToggle(!toggle);
     !toggle
@@ -31,7 +32,9 @@ const Header = () => {
           </div>
           <div className=' items-center  hidden md:flex gap-1'>
              <img src={bell} alt="" />
-             <div className='w-8 h-8 bg-blue rounded-full text-white flex justify-center items-center'>U</div>
+             <Link to="/dashboard/profile">
+               <div className='w-8 h-8 bg-blue rounded-full text-white flex justify-center items-center'>U</div>
+             </Link>
           </div>
       </div>
     </div>

@@ -1,9 +1,10 @@
 import React from 'react'
+import success from "../../../assets/success.svg"
 
 const Sent = () => {
   return (
-    <div>
-       <div className="bg-white h-[50%]  w-[90%] max-w-[350px] flex flex-col  md:gap-y-5 my-auto text-center py-7 px-3 rounded-lg shadow-xl">
+    <div className='flex justify-center'>
+       <div className="bg-white h-[300px]  w-[90%] max-w-[350px] flex flex-col justify-center items-center    md:gap-y-5 my-auto text-center px-2 rounded-lg shadow-xl">
         <div className=" w-20 mx-auto">
           <img src={success} alt="" />
         </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Otp = ({id}) => {
+const Otp = ({id, page, setPage}) => {
   const [otp, setOtp] = useState(new Array(4).fill(""));
 
   const handleChange = (element, index) => {
@@ -33,6 +33,7 @@ const Otp = ({id}) => {
       );
       const data = await response.json();
       if (response.ok) {
+        setPage("create")
         console.log('yesss')
         console.log(data)
         // Successful login, perform necessary actions (e.g., redirect)

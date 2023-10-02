@@ -1,6 +1,49 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import UserLoginContext from "../../../context/UserLoginContext"
+import { useNavigate } from "react-router-dom";
+
 
 const UserLogin = () => {
+  const navigate = useNavigate();
+  const {id, setId} = useContext(UserLoginContext)
+  const [form, setForm] = useState({
+    userName: "",
+    password: "",
+  })
+
+  const handleLogin = async () => {
+    console.log(form)
+    try {
+      const response = await fetch(
+        "https://testmanagement.onrender.com/api/user/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form), // Send user credentials
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        const token = data.token;
+        const userId = data.data.id;
+        localStorage.setItem('userJwt', token);
+        console.log(token)
+        setId(userId)
+        console.log(data)
+
+        navigate("/user/test")
+
+        // Successful login, perform necessary actions (e.g., redirect)
+      } else {
+        // Handle authentication errors (e.g., show error message)
+      }
+    } catch (error) {
+      // Handle network errors
+    }
+  };
+
   return (
     <div className="flex items-center bg-lightGrey h-[100vh] ">
       <div className=" w-[90%] md:w-[400px] mx-auto">
@@ -20,15 +63,23 @@ const UserLogin = () => {
             type="text"
             placeholder="Username"
             className="w-full border-loginGrey border-[1px] py-2 px-4 outline-none rounded-md text-textGray"
+            value={form.userName}
+            onChange={(e) => {
+              setForm({ ...form, userName: e.target.value });
+            }}
           />
           <input
             type="password"
             placeholder="Password"
             className="w-full border-loginGrey border-[1px] py-2 px-4 outline-none rounded-md text-textGray"
+            value={form.password}
+            onChange={(e) => {
+              setForm({ ...form, password: e.target.value });
+            }}
           />
         </div>
         <div className="flex justify-center items-center my-6">
-          <button className="border-lineBlue border-[1px] py-2 px-8 text-lineBlue rounded-md ">
+          <button onClick={handleLogin} className="border-lineBlue border-[1px] py-2 px-8 text-lineBlue rounded-md ">
             Login
           </button>
         </div>

@@ -80,39 +80,6 @@ const SignUp = ({ path, setPath }) => {
     }
   }
 
-  // async function handleSubmit(event) {
-  //   // event.preventDefault()
-  //   setLoading(true);
-  //   console.log(path);
-  //   const response = await fetch(
-  //     "https://testmanagement.onrender.com/api/institution/signup",
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-type": "application/json",
-  //       },
-  //       body: JSON.stringify(formData),
-  //     }
-  //   )
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //     const adminId = data.data._id;
-  //      setId(adminId)
-  //   })
-  //   if (response.ok) {
-  //     console.log("of course");
-  //     console.log(window.location.href);
-  //     setLoading(false);
-  //     navigate("/completesignup");
-  //     // window.location.href = '/completesignup';
-  //   } else {
-  //     const errorData = response.json();
-  //     setLoading(false);
-  //     setMessage(errorData.message || "An error occurred.");
-  //   }
-
-  // }
 
   return (
     <>

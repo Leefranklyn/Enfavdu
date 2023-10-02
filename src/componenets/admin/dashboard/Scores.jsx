@@ -1,10 +1,41 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import Header from './Header'
 import edit from '../../../assets/edit.svg'
 import trash from '../../../assets/trash.svg'
 import plus from '../../../assets/plus.svg'
+import LoginContext from '../../../context/LoginContext'
 
 const Scores = () => {
+  const { userId } = useContext(LoginContext);
+
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+  
+    async function fetchData() {
+      const headers = {
+        'Authorization': `Bearer ${jwt}`,
+        'Content-Type': 'application/json' // Add any other headers you need
+      };
+  
+      const options = {
+        headers: headers
+      };
+  
+      try {
+        const response = await fetch(`https://testmanagement.onrender.com/api/admin/institution/users/:adminId/${userId}`, options);
+        if (!response.ok) {
+          throw new Error("Failed to fetch ID");
+        }
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        // Handle the error
+      }
+    }
+  
+    fetchData();
+  }, []);
+  
   return (
     <div  className="bg-lightGrey min-h-[100vh]">
         <Header/>

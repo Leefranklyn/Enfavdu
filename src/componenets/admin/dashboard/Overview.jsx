@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LoginContext from "../../../context/LoginContext";
 import Header from "./Header";
 import box from "../../../assets/Shadow 05.svg";
 import box2 from "../../../assets/Shadow 6.svg";
 
 const Overview = ({}) => {
+  const { userId } = useContext(LoginContext);
+  const [adminName, setAdminName] = useState("")
+
+  const jwt = localStorage.getItem('jwt');
+
+useEffect(() => {
+  const fetchData = async () => {
+    const headers = {
+      'Authorization': `Bearer ${jwt}`,
+      'Content-Type': 'application/json' // Add any other headers you need
+    };
+
+    const options = {
+      headers: headers
+    };
+
+    try {
+      const response = await fetch(`https://testmanagement.onrender.com/api/institution/${userId}`, options);
+      if (!response.ok) {
+        throw new Error("Failed to fetch ID");
+      }
+      const data = await response.json();
+      console.log(data);
+      const adminName = data.data.adminFirstName;
+      console.log(adminName);
+      setAdminName(adminName);
+    } catch (error) {
+      // Handle the error
+    }
+  };
+
+  fetchData();
+}, [jwt, userId]);
+
+
   return (
     <div className="bg-lightGrey min-h-[100%]">
       <Header />
@@ -12,7 +48,7 @@ const Overview = ({}) => {
       <div className="flex flex-col items-center justify-center  ">
         <div className=" flex flex-col items-start justify-start w-[80%]  pt-4 md:pt-10 mx-auto">
           <h1 className="text-[20px] font-bold ">Admin Dashboard</h1>
-          <h3 className="text-lg font-semibold">Welcome back,Jo</h3>
+          <h3 className="text-lg font-semibold">{`Welcome back,${adminName}`}</h3>
         </div>
 
         <div className="flex flex-col md:flex-row pt-10">

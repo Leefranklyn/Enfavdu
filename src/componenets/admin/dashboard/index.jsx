@@ -27,7 +27,7 @@ const Dashboard = () => {
     <>
     <Context.Provider value={{toggle , setToggle}}>
       <div className="flex relative bg-lightGrey min-h-full">
-        <div className={`bg-blue md:w-[25%] lg:w-[15%]  rounded-e-[30px] ${ toggle ? "absolute top-0 w-[70%] h-full  translate-x-[0]" : "absolute translate-x-[-1000%]"} min-h-[100vh] md:relative md:translate-x-[0] `}>
+        <div className={`bg-blue md:w-[25%] lg:w-[18%]  rounded-e-[30px] ${ toggle ? "absolute top-0 w-[70%] h-full  translate-x-[0]" : "absolute translate-x-[-1000%]"} min-h-[100vh] md:relative md:translate-x-[0] `}>
           <div className="flex flex-col justify-start md:justify-between  min-h-[100%] px-12 py-10  md:pt-12 md:pb-32 ">
             <div className="flex items-center">
               <img src={admin} alt="" />
@@ -41,10 +41,12 @@ const Dashboard = () => {
                     Dashboard
                   </li>
                 </Link>
-                <li className="flex gap-2"  onClick={handleToggle}>
-                  <img src={view} alt="" />
-                  Home
-                </li>
+                <Link to="/dashboard/adduser">
+                  <li className="flex gap-2"  onClick={handleToggle}>
+                    <img src={view} alt="" />
+                    Add User
+                  </li>
+                </Link>
                 <Link to="/dashboard/scores">
                   <li className="flex gap-2"  onClick={handleToggle}>
                     <img src={people} alt="" />

@@ -1,29 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import UserNav from "../../../layout/UserNav";
 import UserFooter from "../../../layout/UserFooter";
+import Message from "./Message";
+import Sent from "./Sent"
 
 const Contact = () => {
+  const [page, setPage] = useState("message")
+  const [contact, setContact] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+
+
+  const handleMessage = async () => {
+    console.log(contact)
+    try {
+      const response = await fetch(
+        "https://testmanagement.onrender.com/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(contact), // Send user credentials
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        setPage("success")
+        console.log("yesss");
+        console.log(data);
+
+        
+        // Successful login, perform necessary actions (e.g., redirect)
+      } else {
+        // Handle authentication errors (e.g., show error message)
+      }
+    } catch (error) {
+      // Handle network errors
+    }
+  };
+
+  const pageDisplay = () => {
+    if (page === "message") {
+      return <Message contact={contact} setContact={setContact} handleMessage={handleMessage}/>;
+    } else if (page === "success") {
+      return <Sent/>;
+    }
+  }
+
   return (
     <>
       <UserNav />
       <div className=" h-[100%] flex justify-center items-center my-14 md:py-10 lg:py-16  md:bg-contact md:bg-no-repeat md:bg-center md:bg-contain">
         <div className="w-[90%] md:w-[350px] ">
-          <h3 className="text-[25px] font-extrabold text-center z-[-10]">Contact Us</h3>
-          <p className="text-center">Some contact information on how to reach out</p>
-          <div className="flex flex-col gap-3 my-6">
-            <input type="text" name="" id="" placeholder="Name" className="w-[90%]  p-2.5 block mx-auto text-sm border border-inputGray outline-none rounded-sm" />
-            <input type="text" name="" id="" placeholder="Email" className="w-[90%]  p-2.5 block mx-auto text-sm border border-inputGray outline-none rounded-sm"   />
-            <textarea
-              id="message"
-              rows="5"
-              class="block p-2.5 w-[90%] mx-auto text-sm  rounded-sm border border-inputGray outline-none"
-              placeholder="Message"
-            ></textarea>
-          </div>
-          <div className="flex justify-center"><button className="bg-blue text-white px-10 py-3 md:w-[300px] rounded-md">Send Message</button></div>
+          <h3 className="text-[25px] font-extrabold text-center z-[-10]">
+            Contact Us
+          </h3>
+         <div className="">
+          {pageDisplay()}
+         </div>
         </div>
       </div>
-      <UserFooter/>
+      <UserFooter />
     </>
   );
 };

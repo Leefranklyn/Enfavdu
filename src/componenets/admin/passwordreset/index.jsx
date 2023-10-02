@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ConfirmEmail from "./ConfirmEmail";
 import Otp from "./Otp.jsx";
-import OtpContext from "../../../context/OtpContext"
+import OtpContext from "../../../context/LoginContext"
 import CreateNewPassword from "./CreateNewPassword";
 import SuccessModal from "./SuccessModal";
 
@@ -32,7 +32,7 @@ const ResetPassword = () => {
     if (response.ok) {
       console.log('yesss')
       console.log(data)
-      const otpId = data.otp._id;
+      const otpId = data.data._id;
       setId(otpId)
       setPage("otp")
       console.log(otpId)
@@ -49,10 +49,10 @@ const ResetPassword = () => {
     if (page === "confirmEmail") {
       return <ConfirmEmail form={form} setForm={setForm} handleEmail={handleEmail} />;
     } else if (page === "otp") {
-      return <Otp  id={id}/>;
-    }else if (page === 2) {
-      return <CreateNewPassword/>
-    }else if (page === 3) {
+      return <Otp  id={id} page={page} setPage={setPage}/>;
+    }else if (page === "create") {
+      return <CreateNewPassword id={id}  page={page} setPage={setPage}/>
+    }else if (page === "success") {
       return <SuccessModal/>
     }
   };
@@ -60,10 +60,6 @@ const ResetPassword = () => {
     <>
       <div className="h-[100vh] bg-lightGrey">
         {pageDisplay()}
-        {/* <ConfirmEmail page={page} setPage={setPage} />
-        {<SuccessModal/>}
-        <Otp/>
-        <CreateNewPassword/> */}
       </div>
     </>
   );

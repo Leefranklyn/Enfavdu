@@ -27,7 +27,9 @@ export default {
         loginGrey: '#8E8383',
         textGray: '#555454',
         formGray: "#EEEEEE",
-        overlay: "rgba(0,0,0,0.2)"
+        overlay: "rgba(0,0,0,0.2)",
+        green: "#90F69A",
+        btngray: '#8692A6',
 
       },
       listStyleImage: {
