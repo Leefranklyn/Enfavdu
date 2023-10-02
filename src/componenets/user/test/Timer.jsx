@@ -29,7 +29,7 @@ const Timer = ({handleSubmit}) => {
   const seconds = remainingTime % 60;
   return(
     <div>
-      <p className='text-2xl font-bold'>
+      <p className='text-xl font-bold'>
         Timer:{minutes}:{seconds < 10 ? '0' : ''}
             {seconds}
       </p>

@@ -31,9 +31,15 @@ const AddUser = () => {
     e.preventDefault();
     ref.current.click();
   };
+  
+  const handleFileInput = (e) => {
+      const file = e.target.files[0].name;
+      console.log(file)
+      setForm({...form, profilePhoto: file})
+  };
+
 
   const handleUpload = async() => {
-    console.log(cover)
     console.log(form)
     if (form.password !== confirmPassword) {
       setMessage('Passwords do not match.');
@@ -42,58 +48,34 @@ const AddUser = () => {
       setMessage("");
     }
     
-    // try {
-    //   const jwt = localStorage.getItem('jwt');
+    try {
+      const jwt = localStorage.getItem('jwt');
     
-    //   const response = await fetch(
-    //     `https://testmanagement.onrender.com/api/user/signup/${userId}`,
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Authorization": `Bearer ${jwt}`, // Include the JWT token in the Authorization header
-    //         "Content-type": "application/json",
-    //       },
-    //       body: JSON.stringify(form),
-    //     }
-    //   );
+      const response = await fetch(
+        `https://testmanagement.onrender.com/api/user/signup/${userId}`,
+        {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${jwt}`, // Include the JWT token in the Authorization header
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
     
-    //   const data = await response.json();
+      const data = await response.json();
     
-    //   if (response.ok) {
-    //     console.log(data);
-    //     navigate("/user/login")
-    //   } else {
-    //     const errorData = data || {};
-    //     // Handle the error
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    // }
-    const jwt = localStorage.getItem('jwt');
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append('firstName', firstName);
-    formData.append('lastName', lastName);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('userName', userName);
-
-    if (profilePhoto) {
-      formData.append('profilePhoto', profilePhoto, profilePhoto.name);
+      if (response.ok && data.success ) {
+        console.log(data);
+        navigate("/user/login")
+      } else {
+        const errorData = data || {};
+        // Handle the error
+      }
+    } catch (error) {
+      console.error(error);
     }
-
-    const requestOptions = {
-      method: 'POST',
-      body: formData,
-    };
-
-    fetch(`https://testmanagement.onrender.com/api/user/signup/${userId}`, requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
-  };
+   
   };
  
   return (
@@ -195,9 +177,7 @@ const AddUser = () => {
             ref={ref}
             value={cover}
             className="hidden"
-            onChange={(e) =>
-              setForm({ ...form, profilePhoto: e.target.files[0] })
-            }
+            onChange={handleFileInput }
           />
         </div>
         <div className="flex justify-center items-center my-5">

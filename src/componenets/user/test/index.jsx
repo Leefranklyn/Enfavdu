@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserLoginContext from "../../../context/UserLoginContext";
+import support from "../../../assets/support2.svg"
+import notification from "../../../assets/notification4.svg"
+import out from "../../../assets/out2.svg"
 import Timer from "./Timer";
+import Header from "./Header";
+import { useNavigate } from "react-router-dom";
+
 
 const Test = () => {
+  const navigate = useNavigate();
   const { id } = useContext(UserLoginContext);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -79,7 +86,7 @@ const Test = () => {
       const data = await response.json();
       if (response.ok) {
         console.log(data);
-
+        navigate('/user/:path')
         // Successful login, perform necessary actions (e.g., redirect)
       } else {
         // Handle authentication errors (e.g., show error message)
@@ -90,13 +97,23 @@ const Test = () => {
     }
   };
   return (
-    <div>
-      <div className="md:w-[20%] ">
-       
+    <div className="md:flex bg-lightGrey md:bg-white text-btngray">
+      <div className="hidden md:block md:w-[25%] lg:w-[20%]  py-8 px-10">
+       <h3 className="font-bold text-xl">Quiz Time</h3>
+       <div className="flex flex-col justify-between h-[90%] py-8 ">
+         <ul>
+          <li className="flex gap-2 mb-3"><img src={support} alt="" />Support</li>
+          <li className="flex gap-2"><img src={notification} alt="" />Notification</li>
+          </ul>
+          <ul>
+          <li className="flex gap-2"><img src={out} alt="" />Log Out</li>
+          </ul>
+       </div>
       </div>
-      <div className="bg-lightGrey w-[100%] min-h-[100vh] flex justify-center items-center">
-        <div className="bg-white my-container h-[80vh] rounded-lg shadow-lg  my-auto text-btngray ">
-          <div className="flex justify-end items-center px-5 pt-8">
+      <div className="bg-lightGrey w-[100%]  min-h-[100vh] flex flex-col justify-center items-center">
+        <div className="md:w-[80%] lg:w-[85%] hidden md:block"><Header/></div>
+        <div className="bg-white my-container rounded-lg shadow-lg  my-auto text-btngray ">
+          <div className="flex justify-end items-center px-5 pt-5">
             <Timer handleSubmit={handleSubmit}/>
           </div>
           <div className="mt-3">
@@ -109,16 +126,18 @@ const Test = () => {
                 <h2 className="text-center font-bold">
                   Question {currentQuestionIndex + 1}
                 </h2>
-                <div className="w-[80%] mx-auto max-w-[400px]">
-                  <img
-                    className="rounded-lg w-full"
-                    src={questions[currentQuestionIndex].questionImage}
-                    alt=""
-                  />
+                <div className="flex">
+                  <div className="w-[90%] md:w-full mx-auto max-w-[400px]">
+                    <img
+                      className="rounded-lg w-full"
+                      src={questions[currentQuestionIndex].questionImage}
+                      alt=""
+                    />
+                  </div>
+                    <p>{questions[currentQuestionIndex].questionText}</p>
                 </div>
-                <div className="my-4 w-[80%] mx-auto">
-                  <p>{questions[currentQuestionIndex].questionText}</p>
-                  <h3 className="text-center">Choose answer</h3>
+                <div className="my-4 w-[90%] md:w-full mx-auto">
+                  <h3 className="text-center md:text-left">Choose answer</h3>
                   <ul className="flex flex-col gap-3">
                     {questions[currentQuestionIndex].options.map(
                       (option, index) => (
@@ -143,7 +162,7 @@ const Test = () => {
                   </ul>
                 </div>
                 {/* Render options or answer choices here */}
-                <div className="flex justify-center">
+                <div className="flex justify-center md:justify-end">
                   {currentQuestionIndex === questions.length - 1 ? (
                     <button
                       className="bg-btngray text-white px-14 py-2 rounded-3xl"

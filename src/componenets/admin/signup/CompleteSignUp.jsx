@@ -12,28 +12,27 @@ const CompleteSignUp = ({ formData, id }) => {
   const navigate = useNavigate();
   const [cover, setCover] = useState("");
   const [input, setInput] = useState("");
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
   const options = useMemo(() => countryList().getData(), []);
   const ref = useRef(null);
   const file = useRef(null);
   const [form, setForm] = useState({
     schoolName: "",
     schoolShortName: "",
-    schoolOwner:"",
+    schoolOwner: "",
     country: "",
     schoolUrl: "",
     website: "",
     schoolType: "",
-    schoolMotto:"",
+    schoolMotto: "",
     schoolAddress: "",
     stateOrProvince: "",
-    schoolLogo:null,
-    schoolContactPhone:"",
-    schoolContactEmail:"",
-    technicaLContactPhone:"",
-    technicaLContactEmail:"",
-    proprietorSignature:"",
-
+    schoolLogo: null,
+    schoolContactPhone: "",
+    schoolContactEmail: "",
+    technicaLContactPhone: "",
+    technicaLContactEmail: "",
+    proprietorSignature: "",
   });
 
   const handleCoverInput = (e) => {
@@ -44,6 +43,18 @@ const CompleteSignUp = ({ formData, id }) => {
   const handleFileInput = (e) => {
     e.preventDefault;
     file.current.click();
+  };
+
+  const handleFile = (e) => {
+    const file = e.target.files[0].name;
+    console.log(file);
+    setForm({ ...form, schoolLogo: file });
+  };
+
+  const handleFile2 = (e) => {
+    const file = e.target.files[0].name;
+    console.log(file);
+    setForm({ ...form, proprietorSignature: file });
   };
 
   const handleInputChange = (e) => {
@@ -86,11 +97,7 @@ const CompleteSignUp = ({ formData, id }) => {
     fetchData();
   }, []);
 
-
-
-  
   async function handleSubmit(event) {
-
     // setLoading(true);
     console.log(form);
 
@@ -190,9 +197,7 @@ const CompleteSignUp = ({ formData, id }) => {
               type="text"
               className="w-full outline-0 border-[2px] bg-lightGrey border-black border-dashed rounded-md py-2 px-3 mb-3"
               value={form.schoolType}
-              onChange={(e) =>
-                setForm({ ...form, schoolType: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, schoolType: e.target.value })}
             />
           </div>
           <div>
@@ -248,9 +253,7 @@ const CompleteSignUp = ({ formData, id }) => {
               type="text"
               className="w-full outline-0 border-[2px] bg-lightGrey border-black border-dashed rounded-md py-2 px-3 mb-3"
               value={form.website}
-              onChange={(e) =>
-                setForm({ ...form, website: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, website: e.target.value })}
             />
           </div>
           <div>
@@ -261,9 +264,8 @@ const CompleteSignUp = ({ formData, id }) => {
               type="text"
               className="w-full outline-0 border-[2px] bg-lightGrey border-black border-dashed rounded-md py-2 px-3 mb-3"
               name="schoolUrl"
-                value={form.schoolUrl}
-                onChange={handleInputChange}
-
+              value={form.schoolUrl}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -287,9 +289,7 @@ const CompleteSignUp = ({ formData, id }) => {
               ref={ref}
               value={cover}
               className="hidden"
-              onChange={(e) =>
-                setForm({ ...form, schoolLogo: e.target.files[0]})
-              }
+              onChange={handleFile}
             />
           </div>
           <h3>Select school colour</h3>
@@ -308,8 +308,8 @@ const CompleteSignUp = ({ formData, id }) => {
                 value={form.schoolContactPhone}
                 onChange={handlePhoneChange}
                 containerStyle={{
-                  border:"2px  dashed black",
-                  borderRadius: "6px"
+                  border: "2px  dashed black",
+                  borderRadius: "6px",
                 }}
                 // className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
               />
@@ -349,7 +349,6 @@ const CompleteSignUp = ({ formData, id }) => {
                 onChange={(e) =>
                   setForm({ ...form, technicaLContactPhone: e.target.value })
                 }
-                
               />
             </div>
             <div>
@@ -389,16 +388,16 @@ const CompleteSignUp = ({ formData, id }) => {
                   value={input}
                   ref={file}
                   className="hidden"
-                  onChange={(e) =>
-                    setForm({ ...form,  proprietorSignature: e.target.files[0]})
-                  }
-
+                  onChange={handleFile2}
                 />
               </div>
             </div>
           </div>
           <div className="flex justify-end items-center py-5">
-            <button onClick={handleSubmit} className="bg-blue text-white px-8 py-3 rounded-2xl">
+            <button
+              onClick={handleSubmit}
+              className="bg-blue text-white px-8 py-3 rounded-2xl"
+            >
               Finish
             </button>
           </div>
