@@ -12,9 +12,9 @@ const Header = () => {
 
   const handleToggle = () => {
     setToggle(!toggle);
-    !toggle
-      ? (document.body.style.overflow = "hidden")
-      : (document.body.style.overflow = "unset");
+    // !toggle
+    //   ? (document.body.style.overflow = "hidden")
+    //   : (document.body.style.overflow = "unset");
   };
   
   return (

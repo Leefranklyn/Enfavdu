@@ -17,9 +17,9 @@ const Dashboard = () => {
   
   const handleToggle = () => {
     setToggle(!toggle);
-    !toggle
-    ? (document.body.style.overflow = "hidden")
-    : (document.body.style.overflow = "unset");
+    // !toggle
+    // ? (document.body.style.overflow = "hidden")
+    // : (document.body.style.overflow = "unset");
   }
 
 
@@ -53,10 +53,12 @@ const Dashboard = () => {
                     Exams
                   </li>
                 </Link>
-                <li className="flex gap-2"  onClick={handleToggle}>
-                  <img src={up} alt="" />
-                  Register
-                </li>
+                <Link to="/dashboard/editquestion">
+                  <li className="flex gap-2"  onClick={handleToggle}>
+                    <img src={up} alt="" />
+                    Edit Questions
+                  </li>
+                </Link>
                 <li className="flex gap-2"  onClick={handleToggle}>
                   <img src={Reports} alt="" />
                   Reports

@@ -110,9 +110,9 @@ const Test = () => {
           </ul>
        </div>
       </div>
-      <div className="bg-lightGrey w-[100%]  min-h-[100vh] flex flex-col justify-center items-center">
-        <div className="md:w-[80%] lg:w-[85%] hidden md:block"><Header/></div>
-        <div className="bg-white my-container rounded-lg shadow-lg  my-auto text-btngray ">
+      <div className="bg-lightGrey w-[100%]  min-h-[100vh]  flex flex-col justify-center items-center">
+        {/* <div className="md:w-[80%] lg:w-[85%] hidden md:block"><Header/></div> */}
+        <div className="bg-white my-container lg:h-[90%] rounded-lg shadow-lg  my-auto text-btngray ">
           <div className="flex justify-end items-center px-5 pt-5">
             <Timer handleSubmit={handleSubmit}/>
           </div>
@@ -122,7 +122,7 @@ const Test = () => {
           </div>
           <div className="flex flex-col items-center">
             {questions.length > 0 && (
-              <div className="my-10">
+              <div className="">
                 <h2 className="text-center md:text-left my-5 font-bold">
                   Question {currentQuestionIndex + 1}
                 </h2>
@@ -137,7 +137,7 @@ const Test = () => {
                   </div>
                     <p>{questions[currentQuestionIndex].questionText}</p>
                 </div>
-                <div className="my-4 w-[80%] md:w-full mx-auto">
+                <div className=" w-[80%] md:w-full mx-auto">
                   <h3 className="text-center md:text-left my-3">Choose answer</h3>
                   <ul className="flex flex-col gap-3">
                     {questions[currentQuestionIndex].options.map(
@@ -163,7 +163,7 @@ const Test = () => {
                   </ul>
                 </div>
                 {/* Render options or answer choices here */}
-                <div className="flex justify-center md:justify-end">
+                <div className="flex justify-center md:justify-end mb-3">
                   {currentQuestionIndex === questions.length - 1 ? (
                     <button
                       className="bg-btngray text-white px-14 py-2 rounded-3xl"

@@ -1,8 +1,9 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import Header from "./Header";
 import solid from "../../../assets/solid.svg";
 import LoginContext from "../../../context/LoginContext";
 import { Form, useNavigate } from "react-router-dom";
+
 
 
 const AddUser = () => {
@@ -10,14 +11,9 @@ const AddUser = () => {
   const navigate = useNavigate();
   const { userId } = useContext(LoginContext);
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
   const [cover, setCover] = useState("");
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [profilePhoto, setProfilePhoto] = useState("");
-  
+  const jwt = localStorage.getItem("jwt");
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -27,58 +23,71 @@ const AddUser = () => {
     userName: "",
   });
 
+  const checkTokenExpiration = async () => {
+    const jwt = localStorage.getItem("jwt");
+    const expirationTime = localStorage.getItem("expirationTime");
+  
+    if (jwt && expirationTime) {
+      const currentTime = new Date().getTime();
+      if (currentTime > parseInt(expirationTime)) {
+        // Token has expired, navigate the user to the login page
+        navigate("/login");
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkTokenExpiration();
+  }, []);
+
   const handleCoverInput = (e) => {
     e.preventDefault();
     ref.current.click();
   };
-  
+
   const handleFileInput = (e) => {
-      const file = e.target.files[0].name;
-      console.log(file)
-      setForm({...form, profilePhoto: file})
+    const file = e.target.files[0];
+    console.log(file);
+    setForm({ ...form, profilePhoto: file });
   };
 
-
-  const handleUpload = async() => {
-    console.log(form)
+  const handleUpload = async () => {
+    console.log(form);
     if (form.password !== confirmPassword) {
-      setMessage('Passwords do not match.');
+      setMessage("Passwords do not match.");
       return;
     } else {
       setMessage("");
     }
-    
+
     try {
-      const jwt = localStorage.getItem('jwt');
-    
       const response = await fetch(
         `https://testmanagement.onrender.com/api/user/signup/${userId}`,
         {
           method: "POST",
           headers: {
-            "Authorization": `Bearer ${jwt}`, // Include the JWT token in the Authorization header
+            Authorization: `Bearer ${jwt}`, // Include the JWT token in the Authorization header
             "Content-type": "application/json",
           },
           body: JSON.stringify(form),
         }
       );
-    
+
       const data = await response.json();
-    
-      if (response.ok && data.success ) {
+
+      if (response.ok && data.success) {
         console.log(data);
-        navigate("/user/login")
+        navigate("/user/login");
       } else {
         const errorData = data || {};
-        console.log(errorData)
+        console.log(errorData);
         // Handle the error
       }
     } catch (error) {
       console.error(error);
     }
-   
   };
- 
+
   return (
     <div className="bg-lightGrey min-h-[100vh]">
       <Header />
@@ -92,9 +101,7 @@ const AddUser = () => {
               name="firstName"
               className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
               value={form.firstName}
-              onChange={(e) =>
-                setForm({ ...form, firstName: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, firstName: e.target.value })}
             />
           </div>
           <div className="md:w-1/2">
@@ -105,9 +112,7 @@ const AddUser = () => {
               placeholder="Enter Last Name"
               className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
               value={form.lastName}
-              onChange={(e) =>
-                setForm({ ...form, lastName: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, lastName: e.target.value })}
             />
           </div>
         </div>
@@ -120,9 +125,7 @@ const AddUser = () => {
               placeholder="name@example.com"
               className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
               value={form.email}
-              onChange={(e) =>
-                setForm({ ...form, email: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
           </div>
           <div className="md:w-1/2">
@@ -133,9 +136,7 @@ const AddUser = () => {
               placeholder="Enter Username"
               className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
               value={form.userName}
-              onChange={(e) =>
-                setForm({ ...form, userName: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, userName: e.target.value })}
             />
           </div>
         </div>
@@ -148,9 +149,7 @@ const AddUser = () => {
               placeholder="Enter user password"
               className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
               value={form.password}
-              onChange={(e) =>
-                setForm({ ...form, password: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
           </div>
           <div className="md:w-1/2">
@@ -160,9 +159,7 @@ const AddUser = () => {
               placeholder="Re-enter Password"
               className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
               value={confirmPassword}
-              onChange={(e) =>
-                setConfirmPassword(e.target.value)
-              }
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
         </div>
@@ -178,11 +175,16 @@ const AddUser = () => {
             ref={ref}
             value={cover}
             className="hidden"
-            onChange={handleFileInput }
+            onChange={handleFileInput}
           />
         </div>
         <div className="flex justify-center items-center my-5">
-          <button onClick={handleUpload} className="bg-blue text-white py-2 px-6 rounded-md">Create User</button>
+          <button
+            onClick={handleUpload}
+            className="bg-blue text-white py-2 px-6 rounded-md"
+          >
+            Create User
+          </button>
         </div>
       </div>
     </div>

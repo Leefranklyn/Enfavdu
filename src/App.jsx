@@ -18,6 +18,7 @@ import AddUser from "./componenets/admin/dashboard/AddUser";
 import Test from "./componenets/user/test";
 import Profile from "./componenets/admin/dashboard/Profile";
 import EditProfile from "./componenets/admin/dashboard/EditProfile"
+import Edit from "./componenets/admin/dashboard/Edit";
 
 function App() {
   const [path, setPath] = useState("run");
@@ -60,6 +61,7 @@ function App() {
                 <Route path="/dashboard/scores/" element={<Scores />} />
                 <Route path="/dashboard/profile" element={<Profile />} />
                 <Route path="/dashboard/editprofile" element={<EditProfile />} />
+                <Route path="/dashboard/editquestion" element={<Edit/>}/>
               </Route>
               <Route path="/user/:path" element={<HomePage />} />
               {console.log(path)}
