@@ -16,7 +16,8 @@
     "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^6.15.0",
     "react-select": "^5.7.4",
-    "react-select-country-list": "^2.2.3"
+    "react-select-country-list": "^2.2.3",
+    "react-spinners": "^0.13.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

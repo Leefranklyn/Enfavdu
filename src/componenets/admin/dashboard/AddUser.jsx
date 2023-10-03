@@ -1,17 +1,18 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 import Header from "./Header";
+import { css } from "@emotion/react";
+import { BeatLoader} from "react-spinners";
 import solid from "../../../assets/solid.svg";
 import LoginContext from "../../../context/LoginContext";
 import { Form, useNavigate } from "react-router-dom";
-
-
 
 const AddUser = () => {
   const ref = useRef(null);
   const navigate = useNavigate();
   const { userId } = useContext(LoginContext);
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(false);
   const [cover, setCover] = useState("");
   const jwt = localStorage.getItem("jwt");
   const [form, setForm] = useState({
@@ -26,7 +27,7 @@ const AddUser = () => {
   const checkTokenExpiration = async () => {
     const jwt = localStorage.getItem("jwt");
     const expirationTime = localStorage.getItem("expirationTime");
-  
+
     if (jwt && expirationTime) {
       const currentTime = new Date().getTime();
       if (currentTime > parseInt(expirationTime)) {
@@ -46,9 +47,28 @@ const AddUser = () => {
   };
 
   const handleFileInput = (e) => {
+    setForm({ ...form, schoolLogo: e.target.files[0] });
     const file = e.target.files[0];
-    console.log(file);
-    setForm({ ...form, profilePhoto: file });
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    formData.append("api_key", "148857165459491");
+    formData.append("upload_preset", "p9rngv4l");
+
+    fetch("https://api.cloudinary.com/v1_1/your_cloud_name/image/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        const url = data.url;
+        console.log(url);
+        setForm({ ...form, profilePhoto: url });
+        // Handle the response data
+      })
+      .catch((error) => {
+        // Handle any errors
+      });
   };
 
   const handleUpload = async () => {
@@ -59,7 +79,7 @@ const AddUser = () => {
     } else {
       setMessage("");
     }
-
+    setLoading(true);
     try {
       const response = await fetch(
         `https://testmanagement.onrender.com/api/user/signup/${userId}`,
@@ -77,18 +97,38 @@ const AddUser = () => {
 
       if (response.ok && data.success) {
         console.log(data);
+        setLoading(false);
         navigate("/user/login");
       } else {
         const errorData = data || {};
+        setMessage(true);
         console.log(errorData);
         // Handle the error
       }
     } catch (error) {
+      setMessage(true);
+      setLoading(false);
       console.error(error);
     }
   };
 
   return (
+    <>
+     {loading ? (
+          <div className="fixed h-[100vh] w-[100%] z-40 top-0 left-0 bg-overlay flex justify-center items-center">
+            <BeatLoader
+              css={css`
+                display: block;
+                margin: 0 auto;
+              `}
+              size={24}
+              color={"#FFFFFF"}
+              loading={loading}
+            />
+          </div>
+        ) : (
+          ""
+        )}
     <div className="bg-lightGrey min-h-[100vh]">
       <Header />
       <div className="my-container py-9 flex flex-col justify-center">
@@ -178,6 +218,9 @@ const AddUser = () => {
             onChange={handleFileInput}
           />
         </div>
+        <div>
+          <p className="text-center text-red">{message}</p>
+        </div>
         <div className="flex justify-center items-center my-5">
           <button
             onClick={handleUpload}
@@ -188,6 +231,7 @@ const AddUser = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

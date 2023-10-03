@@ -2,26 +2,31 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import man from "../../../assets/man.png";
 import google from "../../../assets/google.svg";
-import LoginContext from "../../../context/LoginContext"
+import LoginContext from "../../../context/LoginContext";
 import { useNavigate } from "react-router-dom";
-
+import { css } from "@emotion/react";
+import { ClipLoader } from "react-spinners";
 
 const Login = () => {
   const navigate = useNavigate();
   const { userId, setUserId } = useContext(LoginContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const [form, setForm] = useState({
     adminEmail: "",
     adminPassword: "",
-  })
+  });
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
   const handleLogin = async () => {
-    console.log(form)
+    console.log(form);
     try {
+      setMessage(false);
+      setLoading(true);
       const response = await fetch(
         "https://testmanagement.onrender.com/api/admin/login",
         {
@@ -34,20 +39,24 @@ const Login = () => {
       );
       const data = await response.json();
       if (response.ok) {
-        console.log(data)
+        console.log(data);
         const adminId = data.data.id;
         const token = data.token;
-        localStorage.setItem('jwt', token);
-        console.log(token)
-        setUserId(adminId)
-        console.log(adminId)
-        navigate("/dashboard")
+        localStorage.setItem("jwt", token);
+        console.log(token);
+        setUserId(adminId);
+        console.log(adminId);
+        navigate("/dashboard");
+        setMessage(false);
 
         // Successful login, perform necessary actions (e.g., redirect)
       } else {
+        setMessage(true);
         // Handle authentication errors (e.g., show error message)
       }
     } catch (error) {
+      setLoading(false);
+      setMessage(true);
       // Handle network errors
     }
   };
@@ -92,6 +101,13 @@ const Login = () => {
               </div>
             </div>
           </div>
+          {message && (
+            <div>
+              <p className="text-center text-red">
+                An error occurred.Check the user name or password and Try again
+              </p>
+            </div>
+          )}
           <div className="lg:flex lg:items-center lg:justify-center">
             <div className="px-2 py-3">
               <p>
@@ -108,9 +124,22 @@ const Login = () => {
               </button>
               <button
                 onClick={handleLogin}
+                disabled={loading}
                 className="bg-blue text-white flex items-center justify-between py-3 px-6 rounded-md"
               >
-                Login
+                {loading ? (
+                  <ClipLoader
+                    css={css`
+                      display: block;
+                      margin: 0 auto;
+                    `}
+                    size={24}
+                    color={"#FFFFFF"}
+                    loading={loading}
+                  />
+                ) : (
+                  "Login"
+                )}
               </button>
             </div>
           </div>

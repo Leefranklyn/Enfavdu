@@ -1,13 +1,16 @@
 import React, { useState, useContext } from "react";
 import UserLoginContext from "../../../context/UserLoginContext"
 import { useNavigate } from "react-router-dom";
-
+import { css } from "@emotion/react";
+import { ClipLoader } from "react-spinners";
 
 
 
 const UserLogin = () => {
   const navigate = useNavigate();
-  const {id, setId} = useContext(UserLoginContext)
+  const {id, setId} = useContext(UserLoginContext);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(false)
   const [form, setForm] = useState({
     userName: "",
     password: "",
@@ -15,7 +18,9 @@ const UserLogin = () => {
 
   const handleLogin = async () => {
     console.log(form)
+    setLoading(true);
     try {
+      setMessage(false)
       const response = await fetch(
         "https://testmanagement.onrender.com/api/user/login",
         {
@@ -34,14 +39,19 @@ const UserLogin = () => {
         console.log(token)
         setId(userId)
         console.log(data)
+        setMessage(false);
 
         navigate("/user/test")
 
         // Successful login, perform necessary actions (e.g., redirect)
       } else {
+        setLoading(false);
+        setMessage(true)
         // Handle authentication errors (e.g., show error message)
       }
     } catch (error) {
+      setLoading(false);
+      setMessage(true);
       // Handle network errors
     }
   };
@@ -80,9 +90,28 @@ const UserLogin = () => {
             }}
           />
         </div>
+        {message && (
+            <div>
+              <p className="text-center text-red">
+                An error occurred.Check the user name or password and Try again
+              </p>
+            </div>
+          )}
         <div className="flex justify-center items-center my-6">
           <button onClick={handleLogin} className="border-lineBlue border-[1px] py-2 px-8 text-lineBlue rounded-md ">
-            Login
+          {loading ? (
+                  <ClipLoader
+                    css={css`
+                      display: block;
+                      margin: 0 auto;
+                    `}
+                    size={24}
+                    color={"#4A3AFF"}
+                    loading={loading}
+                  />
+                ) : (
+                  "Login"
+                )}
           </button>
         </div>
         <div className="w-[80%] mx-auto pt-5">

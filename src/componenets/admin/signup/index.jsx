@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import { css } from "@emotion/react";
+import { BeatLoader} from "react-spinners";
 import Personalinfo from "./Personalinfo";
 import Schoolinfo from "./Schoolinfo";
-import CompleteSignUp from "./CompleteSignUp"
+import CompleteSignUp from "./CompleteSignUp";
 import FormContext from "../../../context/FormContext";
 import right from "../../../assets/right.svg";
-import load from "../../../assets/Loading 4.svg";
 import { Navigate, useNavigate } from "react-router-dom";
-
 
 const SignUp = ({ path, setPath }) => {
   const navigate = useNavigate();
@@ -43,8 +43,9 @@ const SignUp = ({ path, setPath }) => {
 
     setLoading(true);
     console.log(path);
-
+    
     try {
+      setMessage(false)
       const response = await fetch(
         "https://testmanagement.onrender.com/api/institution/signup",
         {
@@ -65,9 +66,9 @@ const SignUp = ({ path, setPath }) => {
         console.log(adminId);
         console.log(id);
         console.log(window.location.href);
-        setIsSubmitted(true)
-        setMessage(false)
-        setLoading(false)
+        setIsSubmitted(true);
+        setMessage(false);
+        setLoading(false);
       } else {
         const errorData = data || {};
         setLoading(false);
@@ -80,20 +81,33 @@ const SignUp = ({ path, setPath }) => {
     }
   }
 
-
   return (
     <>
       {/* <Navbar/> */}
       <FormContext.Provider value={{ formData, setFormData, path, setPath }}>
-      {isSubmitted && <CompleteSignUp formData={formData} id={id}/>}
+        {isSubmitted && <CompleteSignUp formData={formData} id={id} />}
         {loading ? (
           <div className="fixed h-[100vh] w-[100%] z-40 top-0 left-0 bg-overlay flex justify-center items-center">
-            <img className="animate-spin" src={load} alt="" />
+            <BeatLoader
+              css={css`
+                display: block;
+                margin: 0 auto;
+              `}
+              size={24}
+              color={"#FFFFFF"}
+              loading={loading}
+            />
           </div>
         ) : (
           ""
         )}
-        <div className={ ` ${isSubmitted ? "hidden" : "bg-lightGrey pt-10 pb-14 min-h-[100vh] flex justify-center items-center"}`}>
+        <div
+          className={` ${
+            isSubmitted
+              ? "hidden"
+              : "bg-lightGrey pt-10 pb-14 min-h-[100vh] flex justify-center items-center"
+          }`}
+        >
           <div className="my-container md:flex md:justify-between">
             <div>
               <div className="flex relative">
@@ -142,7 +156,11 @@ const SignUp = ({ path, setPath }) => {
                 <h1 className="font-bold"> {formTitles[page]}</h1>
                 <div>{pageDisplay()}</div>
               </div>
-              {message && <div><p className="text-red">An error occurred.Please try again</p></div>}
+              {message && (
+                <div>
+                  <p className="text-red">An error occurred.Please try again</p>
+                </div>
+              )}
               <div className="flex justify-center md:justify-end gap-9 md:gap-5 items-center py-4 ">
                 {page === 0 ? (
                   ""

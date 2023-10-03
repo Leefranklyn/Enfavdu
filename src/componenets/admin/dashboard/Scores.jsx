@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import Header from './Header'
 import edit from '../../../assets/edit.svg'
 import trash from '../../../assets/trash.svg'
@@ -7,9 +7,28 @@ import LoginContext from '../../../context/LoginContext'
 
 const Scores = () => {
   const { userId } = useContext(LoginContext);
+  const [scores, setScores] = useState([])
+
+  const jwt = localStorage.getItem('jwt');
+  const checkTokenExpiration = async () => {
+    const jwt = localStorage.getItem("jwt");
+    const expirationTime = localStorage.getItem("expirationTime");
+  
+    if (jwt && expirationTime) {
+      const currentTime = new Date().getTime();
+      if (currentTime > parseInt(expirationTime)) {
+        // Token has expired, navigate the user to the login page
+        navigate("/login");
+      }
+    }
+  };
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
+    checkTokenExpiration();
+  }, []); 
+
+
+  useEffect(() => {
   
     async function fetchData() {
       const headers = {
@@ -22,7 +41,7 @@ const Scores = () => {
       };
   
       try {
-        const response = await fetch(`https://testmanagement.onrender.com/api/admin/institution/users/:adminId/${userId}`, options);
+        const response = await fetch(`https://testmanagement.onrender.com/api/admin/institution/userswithresults/${userId}`, options);
         if (!response.ok) {
           throw new Error("Failed to fetch ID");
         }

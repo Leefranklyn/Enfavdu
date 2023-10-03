@@ -1,4 +1,6 @@
 import React from "react";
+import { css } from "@emotion/react";
+import { BeatLoader} from "react-spinners";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Select from "react-select";
@@ -12,7 +14,8 @@ const CompleteSignUp = ({ formData, id }) => {
   const navigate = useNavigate();
   const [cover, setCover] = useState("");
   const [input, setInput] = useState("");
-  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(false);
   const options = useMemo(() => countryList().getData(), []);
   const ref = useRef(null);
   const file = useRef(null);
@@ -46,15 +49,56 @@ const CompleteSignUp = ({ formData, id }) => {
   };
 
   const handleFile = (e) => {
-    const file = e.target.files[0].name;
-    console.log(file);
-    setForm({ ...form, schoolLogo: file });
+    setForm({...form, schoolLogo: e.target.files[0]});
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', e.target.files[0]);
+    formData.append("api_key", "148857165459491");
+    formData.append("upload_preset", "p9rngv4l");
+
+
+    fetch('https://api.cloudinary.com/v1_1/your_cloud_name/image/upload', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        const url = data.url;
+        console.log(url)
+       setForm({ ...form, schoolLogo: url });
+        // Handle the response data
+      })
+      .catch((error) => {
+        // Handle any errors
+      });
+    
   };
 
   const handleFile2 = (e) => {
-    const file = e.target.files[0].name;
-    console.log(file);
-    setForm({ ...form, proprietorSignature: file });
+    setForm({...form, schoolLogo: e.target.files[0]});
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', e.target.files[0]);
+    formData.append("api_key", "148857165459491");
+    formData.append("upload_preset", "p9rngv4l");
+
+
+    fetch('https://api.cloudinary.com/v1_1/your_cloud_name/image/upload', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        const url = data.url;
+        console.log(url)
+       setForm({ ...form, proprietorSignature: url });
+        // Handle the response data
+      })
+      .catch((error) => {
+        // Handle any errors
+      });
   };
 
   const handleInputChange = (e) => {
@@ -102,6 +146,8 @@ const CompleteSignUp = ({ formData, id }) => {
     console.log(form);
 
     try {
+      setLoading(true);
+      setMessage(false)
       const response = await fetch(
         `https://testmanagement.onrender.com/api/institution/completeregistration/${id}`,
         {
@@ -117,17 +163,20 @@ const CompleteSignUp = ({ formData, id }) => {
 
       if (response.ok) {
         console.log(data);
+        setLoading(false);
+        setMessage(false)
         console.log(window.location.href);
         // setLoading(false)
         navigate("/login");
       } else {
-        const errorData = data || {};
         // setLoading(false);
-        setMessage(errorData.message || "An error occurred.");
+        setLoading(false);
+        setMessage(true);
       }
     } catch (error) {
       // setLoading(false);
-      setMessage("An error occurred.");
+      setMessage(true);
+      setLoading(false);
       console.error(error);
     }
   }

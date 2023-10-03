@@ -30,8 +30,8 @@ const Header = () => {
                 <option value="">This Week</option>
               </select>
           </div>
-          <div className=' items-center  hidden md:flex gap-1'>
-             <img src={bell} alt="" />
+          <div className=' items-center flex  gap-1'>
+             <div><img src={bell} alt="" /></div>
              <Link to="/dashboard/profile">
                <div className='w-8 h-8 bg-blue rounded-full text-white flex justify-center items-center'>U</div>
              </Link>
