@@ -70,6 +70,7 @@ const AddUser = () => {
         navigate("/user/login")
       } else {
         const errorData = data || {};
+        console.log(errorData)
         // Handle the error
       }
     } catch (error) {

@@ -118,16 +118,17 @@ const Test = () => {
           </div>
           <div className="mt-3">
             <h4 className="text-center mb-3 text-btngray font-bold">Quiz</h4>
-            <p className="text-center">Answer the question below</p>
+            <p className="text-center md:hidden">Answer the question below</p>
           </div>
           <div className="flex flex-col items-center">
             {questions.length > 0 && (
               <div className="my-10">
-                <h2 className="text-center font-bold">
+                <h2 className="text-center md:text-left my-5 font-bold">
                   Question {currentQuestionIndex + 1}
                 </h2>
-                <div className="flex">
-                  <div className="w-[90%] md:w-full mx-auto max-w-[400px]">
+                <p className="text-center md:text-left mb-3 hidden md:block">Answer the question below</p>
+                <div className="md:flex md:gap-10">
+                  <div className="w-[80%]  md:w-full mx-auto max-w-[400px]">
                     <img
                       className="rounded-lg w-full"
                       src={questions[currentQuestionIndex].questionImage}
@@ -136,8 +137,8 @@ const Test = () => {
                   </div>
                     <p>{questions[currentQuestionIndex].questionText}</p>
                 </div>
-                <div className="my-4 w-[90%] md:w-full mx-auto">
-                  <h3 className="text-center md:text-left">Choose answer</h3>
+                <div className="my-4 w-[80%] md:w-full mx-auto">
+                  <h3 className="text-center md:text-left my-3">Choose answer</h3>
                   <ul className="flex flex-col gap-3">
                     {questions[currentQuestionIndex].options.map(
                       (option, index) => (
