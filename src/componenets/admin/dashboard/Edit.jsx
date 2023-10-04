@@ -31,8 +31,8 @@ const Edit = () => {
           throw new Error("Failed to fetch TEST");
         }
         const data = await response.json();
-        setQuestions(questions);
-        console.log(questions)
+        // setQuestions(questions);
+        // console.log(questions)
         const arr = data.data.questions;
         setQuestionText(data.data.questions);
         console.log(questionText);
