@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/react";
-import { BeatLoader} from "react-spinners";
+import { BeatLoader } from "react-spinners";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Select from "react-select";
@@ -51,53 +51,50 @@ const CompleteSignUp = ({ formData, id }) => {
   };
 
   const handleFile = (e) => {
-    setForm({...form, schoolLogo: e.target.files[0]});
+    setForm({ ...form, schoolLogo: e.target.files[0] });
     const file = e.target.files[0];
     setImagePreview(URL.createObjectURL(file));
     const formData = new FormData();
-    formData.append('file', e.target.files[0]);
+    formData.append("file", e.target.files[0]);
     formData.append("api_key", "148857165459491");
     formData.append("upload_preset", "p9rngv4l");
 
-
-    fetch('https://api.cloudinary.com/v1_1/your_cloud_name/image/upload', {
-      method: 'POST',
+    fetch("https://api.cloudinary.com/v1_1/your_cloud_name/image/upload", {
+      method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         const url = data.url;
-        console.log(url)
-       setForm({ ...form, schoolLogo: url });
+        console.log(url);
+        setForm({ ...form, schoolLogo: url });
         // Handle the response data
       })
       .catch((error) => {
         // Handle any errors
       });
-    
   };
 
   const handleFile2 = (e) => {
-    setForm({...form, schoolLogo: e.target.files[0]});
+    setForm({ ...form, schoolLogo: e.target.files[0] });
     const file = e.target.files[0];
     setImagePreview2(URL.createObjectURL(file));
     const formData = new FormData();
-    formData.append('file', e.target.files[0]);
+    formData.append("file", e.target.files[0]);
     formData.append("api_key", "148857165459491");
     formData.append("upload_preset", "p9rngv4l");
 
-
-    fetch('https://api.cloudinary.com/v1_1/your_cloud_name/image/upload', {
-      method: 'POST',
+    fetch("https://api.cloudinary.com/v1_1/your_cloud_name/image/upload", {
+      method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         const url = data.url;
-        console.log(url)
-       setForm({ ...form, proprietorSignature: url });
+        console.log(url);
+        setForm({ ...form, proprietorSignature: url });
         // Handle the response data
       })
       .catch((error) => {
@@ -151,7 +148,7 @@ const CompleteSignUp = ({ formData, id }) => {
 
     try {
       setLoading(true);
-      setMessage(false)
+      setMessage(false);
       const response = await fetch(
         `https://testmanagement.onrender.com/api/institution/completeregistration/${id}`,
         {
@@ -168,7 +165,7 @@ const CompleteSignUp = ({ formData, id }) => {
       if (response.ok) {
         console.log(data);
         setLoading(false);
-        setMessage(false)
+        setMessage(false);
         console.log(window.location.href);
         // setLoading(false)
         navigate("/login");
@@ -328,8 +325,14 @@ const CompleteSignUp = ({ formData, id }) => {
             <div className="bg-white px-3 py-3">
               <div className="bg-lightGrey h-20 w-20 rounded-full flex justify-center items-center">
                 {imagePreview ? (
-                  <img src={imagePreview}  className="w-[100] h-[100] object-contain" alt="Image Preview" />
-                  ) : (<img src={adminPicture} alt="" />)}    
+                  <img
+                    src={imagePreview}
+                    className="w-[100] h-[100] object-contain"
+                    alt="Image Preview"
+                  />
+                ) : (
+                  <img src={adminPicture} alt="" />
+                )}
               </div>
             </div>
             <div>
@@ -428,7 +431,15 @@ const CompleteSignUp = ({ formData, id }) => {
               <div className="flex flex-col justify-center items-center gap-3 my-3">
                 <div className="bg-white px-3 py-3">
                   <div className="bg-lightGrey h-20 w-20 rounded-full flex justify-center items-center">
-                    <img src={adminPicture} alt="" />
+                    {imagePreview ? (
+                      <img
+                        src={imagePreview}
+                        className="w-[100] h-[100] object-contain"
+                        alt="Image Preview"
+                      />
+                    ) : (
+                      <img src={adminPicture} alt="" />
+                    )}
                   </div>
                 </div>
                 <div>
