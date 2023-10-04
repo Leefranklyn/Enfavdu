@@ -3,8 +3,10 @@ import LoginContext from "../../../context/LoginContext";
 import Header from "./Header";
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
+  const navigate = useNavigate();
   const jwt = localStorage.getItem("jwt");
   const { userId } = useContext(LoginContext);
   const ref = useRef(null);
@@ -171,35 +173,6 @@ const EditProfile = () => {
       });
   };
 
-  const handleSubmit = async () => {
-    try {
-      const response = await fetch(
-        `https://testmanagement.onrender.com/api/admin/proprietorSignature/upload/${userId}`,
-        {
-          method: "PATCH",
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-            "Content-Type": "application/json",
-          },
-          // body: JSON.stringify(form), // Send user credentials
-        }
-      );
-      const data = await response.json();
-      if (response.ok) {
-        console.log(data);
-        // navigate('/user/:path')
-        // Successful login, perform necessary actions (e.g., redirect)
-      } else {
-        setLoading(false);
-        // Handle authentication errors (e.g., show error message)
-      }
-    } catch (error) {
-      setLoading(false);
-      console.error(error);
-      // Handle network errors
-    }
-  };
-
   const handleForm = async () => {
     console.log(form);
     try {
@@ -221,6 +194,7 @@ const EditProfile = () => {
         console.log(data);
         setLoading(false);
         setMessage(false);
+        navigate("/dashboard")
         // navigate('/user/:path')
         // Successful login, perform necessary actions (e.g., redirect)
       } else {
