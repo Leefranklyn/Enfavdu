@@ -95,7 +95,7 @@ const EditProfile = () => {
     ref3.current.click();
   };
   const handleFileInput = (e) => {
-    setForm({ ...form, adminProfilePhoto: e.target.files[0] });
+    // setForm({ ...form, adminProfilePhoto: e.target.files[0] });
     const file = e.target.files[0];
     setImagePreview(URL.createObjectURL(file));
     const formData = new FormData();
@@ -111,7 +111,6 @@ const EditProfile = () => {
       .then((data) => {
         console.log(data);
         const url = data.url;
-        setSchoolLogo(url);
         setForm({ ...form, adminProfilePhoto: url });
         // Handle the response data
       })
@@ -121,7 +120,7 @@ const EditProfile = () => {
   };
 
   const handleFileInput2 = (e) => {
-    setForm({ ...form, schoolLogo: e.target.files[0] });
+    // setForm({ ...form, schoolLogo: e.target.files[0] });
     const file = e.target.files[0];
     setImagePreview2(URL.createObjectURL(file));
     const formData = new FormData();
@@ -137,7 +136,6 @@ const EditProfile = () => {
       .then((data) => {
         console.log(data);
         const url = data.url;
-        setSchoolLogo(url);
         setForm({ ...form, schoolLogo: url });
         // Handle the response data
       })
@@ -147,7 +145,7 @@ const EditProfile = () => {
   };
 
   const handleFileInput3 = (e) => {
-    setForm({ ...form, proprietorSignature: e.target.files[0] });
+    // setForm({ ...form, proprietorSignature: e.target.files[0] });
     const file = e.target.files[0];
     setImagePreview3(URL.createObjectURL(file));
     const formData = new FormData();
@@ -163,8 +161,8 @@ const EditProfile = () => {
       .then((data) => {
         console.log(data);
         const url = data.url;
-        console.log(url);
-        setSchoolLogo(url);
+        console.log(data);
+        console.log(data.url)
         setForm({ ...form, proprietorSignature: url });
         // Handle the response data
       })
@@ -279,7 +277,7 @@ const EditProfile = () => {
               </div>
               <input
                 type="file"
-                name="proprietorSignature"
+                name=""
                 id=""
                 ref={ref}
                 value={cover}
