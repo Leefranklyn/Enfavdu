@@ -47,6 +47,8 @@ const Scores = () => {
         }
         const data = await response.json();
         console.log(data);
+        const arr = data.userInfo;
+        setScores(arr);
       } catch (error) {
         // Handle the error
       }

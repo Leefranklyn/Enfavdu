@@ -24,7 +24,7 @@ const ConfirmEmail = ({form, setForm, handleEmail}) => {
         </div>
         <div>
             <div><button  onClick={handleEmail} className="bg-blue text-white py-2 px-8 rounded-md">Send Reset Link</button></div>
-            <Link to="/signup" className="text-blue text-sm">Back to Sign In</Link>
+            <Link to="/login" className="text-blue text-sm">Back to Sign In</Link>
         </div>
       </div>
     </div>

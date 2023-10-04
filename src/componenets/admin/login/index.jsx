@@ -52,6 +52,7 @@ const Login = () => {
         // Successful login, perform necessary actions (e.g., redirect)
       } else {
         setMessage(true);
+        setLoading(false)
         // Handle authentication errors (e.g., show error message)
       }
     } catch (error) {
