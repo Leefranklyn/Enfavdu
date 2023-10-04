@@ -111,7 +111,7 @@ const Login = () => {
           )}
           <div className="lg:flex lg:items-center lg:justify-center">
             <div className="px-2 py-3">
-              <p>
+              <p className="px-2">
                 Forgot your password?
                 <Link to="/passwordreset" className="text-blue">
                   Click here
