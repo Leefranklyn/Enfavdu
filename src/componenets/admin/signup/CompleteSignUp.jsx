@@ -184,6 +184,22 @@ const CompleteSignUp = ({ formData, id }) => {
   return (
     // <FormContext.Provider value={{id, setId}}>
     // {console.log(id)}
+    <>
+    {loading ? (
+          <div className="fixed h-[100vh] w-[100%] z-40 top-0 left-0 bg-overlay flex justify-center items-center">
+            <BeatLoader
+              css={css`
+                display: block;
+                margin: 0 auto;
+              `}
+              size={24}
+              color={"#FFFFFF"}
+              loading={loading}
+            />
+          </div>
+        ) : (
+          ""
+        )}
     <div className="bg-formGray min-h-[50%]">
       <div className="my-container ">
         <div className="flex items-center  py-5 justify-between">
@@ -431,9 +447,9 @@ const CompleteSignUp = ({ formData, id }) => {
               <div className="flex flex-col justify-center items-center gap-3 my-3">
                 <div className="bg-white px-3 py-3">
                   <div className="bg-lightGrey h-20 w-20 rounded-full flex justify-center items-center">
-                    {imagePreview ? (
+                    {imagePreview2 ? (
                       <img
-                        src={imagePreview}
+                        src={imagePreview2}
                         className="w-[100] h-[100] object-contain"
                         alt="Image Preview"
                       />
@@ -470,6 +486,7 @@ const CompleteSignUp = ({ formData, id }) => {
         </div>
       </div>
     </div>
+    </>
     // </FormContext.Provider>
   );
 };
