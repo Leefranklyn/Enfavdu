@@ -13,11 +13,11 @@ const EditProfile = () => {
   const [cover, setCover] = useState("");
   const [cover2, setCover2] = useState("");
   const [cover3, setCover3] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview2, setImagePreview2] = useState(null);
+  const [imagePreview3, setImagePreview3] = useState(null);
   const [loading, setLoading] = useState("");
   const [message, setMessage] = useState(false);
-  const [proprietorSignature, setProprietorSignature] = useState("");
-  const [schoolLogo, setSchoolLogo] = useState("");
-  const [adminPhoto, setAdminPhoto] = useState("");
   const [form, setForm] = useState({
     adminGender: "",
     adminFirstName: "",
@@ -30,6 +30,9 @@ const EditProfile = () => {
     schoolContactPhone: "",
     schoolAddress: "",
     adminDateOfBirth: "",
+    adminProfilePhoto: "",
+    schoolLogo: "",
+    proprietorSignature: "",
   });
 
   const handleDate = (e) => {
@@ -92,27 +95,24 @@ const EditProfile = () => {
     ref3.current.click();
   };
   const handleFileInput = (e) => {
-    setAdminPhoto(e.target.files[0]);
-    console.log(adminPhoto);
+    setForm({ ...form, adminProfilePhoto: e.target.files[0] });
+    const file = e.target.files[0];
+    setImagePreview(URL.createObjectURL(file));
     const formData = new FormData();
-    formData.append("adminPhoto", e.target.files[0]);
+    formData.append("file", e.target.files[0]);
+    formData.append("api_key", "148857165459491");
+    formData.append("upload_preset", "p9rngv4l");
 
-    fetch(
-      `https://testmanagement.onrender.com/api/admin/adminprofilephoto/upload/${userId}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-        body: formData,
-      }
-    )
+    fetch("https://api.cloudinary.com/v1_1/your_cloud_name/image/upload", {
+      method: "POST",
+      body: formData,
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        // const url = data.url;
-        // console.log(url);
-        // setForm({ ...form, profilePhoto: url });
+        const url = data.url;
+        setSchoolLogo(url);
+        setForm({ ...form, adminProfilePhoto: url });
         // Handle the response data
       })
       .catch((error) => {
@@ -121,8 +121,35 @@ const EditProfile = () => {
   };
 
   const handleFileInput2 = (e) => {
-    setSchoolLogo(e.target.files[0]);
+    setForm({ ...form, schoolLogo: e.target.files[0] });
     const file = e.target.files[0];
+    setImagePreview2(URL.createObjectURL(file));
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    formData.append("api_key", "148857165459491");
+    formData.append("upload_preset", "p9rngv4l");
+
+    fetch("https://api.cloudinary.com/v1_1/your_cloud_name/image/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        const url = data.url;
+        setSchoolLogo(url);
+        setForm({ ...form, schoolLogo: url });
+        // Handle the response data
+      })
+      .catch((error) => {
+        // Handle any errors
+      });
+  };
+
+  const handleFileInput3 = (e) => {
+    setForm({ ...form, proprietorSignature: e.target.files[0] });
+    const file = e.target.files[0];
+    setImagePreview3(URL.createObjectURL(file));
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
     formData.append("api_key", "148857165459491");
@@ -138,36 +165,7 @@ const EditProfile = () => {
         const url = data.url;
         console.log(url);
         setSchoolLogo(url);
-        // Handle the response data
-      })
-      .catch((error) => {
-        // Handle any errors
-      });
-  };
-
-  const handleFileInput3 = (e) => {
-    setProprietorSignature(e.target.files[0]);
-    console.log(proprietorSignature);
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("proprietorSignature", e.target.files[0]);
-
-    fetch(
-      `https://testmanagement.onrender.com/api/admin/proprietorSignature/upload/${userId}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-        body: formData,
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        // const url = data.url;
-        // console.log(url);
-        // setForm({ ...form, profilePhoto: url });
+        setForm({ ...form, proprietorSignature: url });
         // Handle the response data
       })
       .catch((error) => {
@@ -256,7 +254,15 @@ const EditProfile = () => {
                 <div>
                   <p className="text-[10px] pb-2">Change Admin Photo</p>
                 </div>
-                <div className="border-[1px] border-grey w-[100px] h-[100px]"></div>
+                <div className="border-[1px] border-grey w-[100px] h-[100px] flex justify-center items-center">
+                  {imagePreview && (
+                    <img
+                      src={imagePreview}
+                      className="w-[100] h-[100] object-contain"
+                      alt="Image Preview"
+                    />
+                  )}
+                </div>
                 <div className="text-xs mt-3">
                   <p className="text-center text-[10px]">
                     Drag and drop your image file here or
@@ -286,7 +292,15 @@ const EditProfile = () => {
                 <div>
                   <p className="text-[10px] pb-2">Change School Badge</p>
                 </div>
-                <div className="border-[1px] border-grey w-[100px] h-[100px]"></div>
+                <div className="border-[1px] border-grey w-[100px] h-[100px] flex justify-center items-center">
+                  {imagePreview2 && (
+                    <img
+                      src={imagePreview2}
+                      className="w-[100] h-[100] object-contain"
+                      alt="Image Preview"
+                    />
+                  )}
+                </div>
                 <div className="text-xs mt-3">
                   <p className="text-center text-[10px]">
                     Drag and drop your image file here or
@@ -318,7 +332,11 @@ const EditProfile = () => {
                   Change School Proprietor’s Signature
                 </p>
               </div>
-              <div className="border-[1px] border-grey w-[100px] h-[100px]"></div>
+              <div className="border-[1px] border-grey w-[100px] h-[100px] flex justify-center items-center">
+              {imagePreview3 && (
+                    <img src={imagePreview3}  className="w-[100] h-[100] object-contain" alt="Image Preview" />
+                  )}
+              </div>
               <div className="text-xs mt-3">
                 <p className="text-center text-[10px]">
                   Drag and drop your image file here or
