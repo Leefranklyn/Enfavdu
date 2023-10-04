@@ -16,6 +16,8 @@ const CompleteSignUp = ({ formData, id }) => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview2, setImagePreview2] = useState(null);
   const options = useMemo(() => countryList().getData(), []);
   const ref = useRef(null);
   const file = useRef(null);
@@ -51,6 +53,7 @@ const CompleteSignUp = ({ formData, id }) => {
   const handleFile = (e) => {
     setForm({...form, schoolLogo: e.target.files[0]});
     const file = e.target.files[0];
+    setImagePreview(URL.createObjectURL(file));
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
     formData.append("api_key", "148857165459491");
@@ -78,6 +81,7 @@ const CompleteSignUp = ({ formData, id }) => {
   const handleFile2 = (e) => {
     setForm({...form, schoolLogo: e.target.files[0]});
     const file = e.target.files[0];
+    setImagePreview2(URL.createObjectURL(file));
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
     formData.append("api_key", "148857165459491");
@@ -323,7 +327,9 @@ const CompleteSignUp = ({ formData, id }) => {
           <div className="flex flex-col  gap-3 justify-center items-center">
             <div className="bg-white px-3 py-3">
               <div className="bg-lightGrey h-20 w-20 rounded-full flex justify-center items-center">
-                <img src={adminPicture} alt="" />
+                {imagePreview ? (
+                  <img src={imagePreview}  className="w-[100] h-[100] object-contain" alt="Image Preview" />
+                  ) : (<img src={adminPicture} alt="" />)}    
               </div>
             </div>
             <div>
