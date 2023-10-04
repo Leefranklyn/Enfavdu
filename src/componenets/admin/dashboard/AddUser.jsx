@@ -11,6 +11,7 @@ const AddUser = () => {
   const navigate = useNavigate();
   const { userId } = useContext(LoginContext);
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
   const [cover, setCover] = useState("");
@@ -49,6 +50,7 @@ const AddUser = () => {
   const handleFileInput = (e) => {
     setForm({ ...form, schoolLogo: e.target.files[0] });
     const file = e.target.files[0];
+    setImagePreview(URL.createObjectURL(file));
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
     formData.append("api_key", "148857165459491");
@@ -206,7 +208,17 @@ const AddUser = () => {
         <p className="text-red">{message}</p>
         <div className="">
           <div onClick={handleCoverInput} className="flex justify-center">
-            <img src={solid} alt="" />
+          <div className="bg-lightGrey h-24 w-24 rounded-full mt-6 flex justify-center items-center">
+                {imagePreview ? (
+                  <img
+                    src={imagePreview}
+                    className="w-[100] h-[100] object-contain"
+                    alt="Image Preview"
+                  />
+                ) : (
+                  <img src={solid} alt="" />
+                )}
+              </div>
           </div>
           <input
             type="file"
