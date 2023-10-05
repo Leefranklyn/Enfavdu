@@ -23,7 +23,7 @@ const Test = () => {
     const updatedUserAnswers = [
       ...userAnswers,
       {
-        questionId: currentQuestionId,
+        question: currentQuestionId,
         selectedOption: selectedOptionId,
       },
     ];
