@@ -84,7 +84,7 @@ const AddUser = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://testmanagement.onrender.com/api/user/signup/${userId}`,
+        `https://testmanagement2.onrender.com/api/user/signup/${userId}`,
         {
           method: "POST",
           headers: {
