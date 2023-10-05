@@ -24,7 +24,7 @@ const Edit = () => {
 
       try {
         const response = await fetch(
-          `https://testmanagement.onrender.com/api/admin/institution/test/${userId}`,
+          `https://testmanagement2.onrender.com/api/admin/institution/test/${userId}`,
           options
         );
         if (!response.ok) {
