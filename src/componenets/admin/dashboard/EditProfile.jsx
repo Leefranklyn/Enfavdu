@@ -182,6 +182,7 @@ const EditProfile = () => {
         `https://testmanagement2.onrender.com/api/admin/update/${userId}`,
         {
           method: "PATCH",
+          credentials: "include",
           headers: {
             Authorization: `Bearer ${jwt}`,
             "Content-Type": "application/json",

@@ -47,9 +47,10 @@ const SignUp = ({ path, setPath }) => {
     try {
       setMessage(false)
       const response = await fetch(
-        "https://testmanagement.onrender.com/api/institution/signup",
+        "https://testmanagement2.onrender.com/api/institution/signup",
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-type": "application/json",
           },

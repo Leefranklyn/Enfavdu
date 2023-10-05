@@ -19,6 +19,7 @@ const Edit = () => {
       };
 
       const options = {
+        credentials: "include",
         headers: headers,
       };
 

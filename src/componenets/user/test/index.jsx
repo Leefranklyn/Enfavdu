@@ -40,12 +40,13 @@ const Test = () => {
       };
 
       const options = {
+        credentials: "include",
         headers: headers,
       };
 
       try {
         const response = await fetch(
-          `https://testmanagement.onrender.com/api/user/test/${id}`,
+          `https://testmanagement2.onrender.com/api/user/test/${id}`,
           options
         );
         if (!response.ok) {
@@ -73,9 +74,10 @@ const Test = () => {
     console.log(JSON.stringify({userAnswers}));
     try {
       const response = await fetch(
-        `https://testmanagement.onrender.com/api/user/submit/${id}`,
+        `https://testmanagement2.onrender.com/api/user/submit/${id}`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             Authorization: `Bearer ${jwt}`,
             "Content-Type": "application/json",

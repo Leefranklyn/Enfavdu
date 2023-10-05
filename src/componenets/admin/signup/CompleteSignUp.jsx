@@ -121,7 +121,7 @@ const CompleteSignUp = ({ formData, id }) => {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch(`https://testmanagement.onrender.com/api/institution/${id}`)
+      await fetch(`https://testmanagement2.onrender.com/api/institution/${id}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Failed to fetch ID");
@@ -150,9 +150,10 @@ const CompleteSignUp = ({ formData, id }) => {
       setLoading(true);
       setMessage(false);
       const response = await fetch(
-        `https://testmanagement.onrender.com/api/institution/completeregistration/${id}`,
+        `https://testmanagement2.onrender.com/api/institution/completeregistration/${id}`,
         {
           method: "PATCH",
+          credentials: "include",
           headers: {
             "Content-type": "application/json",
           },

@@ -22,9 +22,10 @@ const Otp = ({id, page, setPage}) => {
     console.log(JSON.stringify({ otp: enteredOTP }))
     try {
       const response = await fetch(
-        `https://testmanagement.onrender.com/api/admin/verifyotp/${id}`,
+        `https://testmanagement2.onrender.com/api/admin/verifyotp/${id}`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },

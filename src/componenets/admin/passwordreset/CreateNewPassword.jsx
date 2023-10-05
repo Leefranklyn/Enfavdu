@@ -17,9 +17,10 @@ const CreateNewPassword = ({ id, page, setPage }) => {
 
     try {
       const response = await fetch(
-        `https://testmanagement.onrender.com/api/admin/resetpassword/${id}`,
+        `https://testmanagement2.onrender.com/api/admin/resetpassword/${id}`,
         {
           method: "PATCH",
+          credentials: "include",
           headers: {
             "Content-type": "application/json",
           },

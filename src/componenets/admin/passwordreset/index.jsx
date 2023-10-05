@@ -19,9 +19,10 @@ const ResetPassword = () => {
   console.log(form)
   try {
     const response = await fetch(
-      "https://testmanagement.onrender.com/api/admin/requestotp",
+      "https://testmanagement2.onrender.com/api/admin/requestotp",
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

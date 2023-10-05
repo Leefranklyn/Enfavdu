@@ -87,6 +87,7 @@ const AddUser = () => {
         `https://testmanagement2.onrender.com/api/user/signup/${userId}`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             Authorization: `Bearer ${jwt}`, // Include the JWT token in the Authorization header
             "Content-type": "application/json",

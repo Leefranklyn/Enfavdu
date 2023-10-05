@@ -35,12 +35,13 @@ const Scores = () => {
       };
 
       const options = {
+        credentials: "include",
         headers: headers,
       };
 
       try {
         const response = await fetch(
-          `https://testmanagement.onrender.com/api/admin/institution/userswithresults/${userId}`,
+          `https://testmanagement2.onrender.com/api/admin/institution/userswithresults/${userId}`,
           options
         );
         if (!response.ok) {

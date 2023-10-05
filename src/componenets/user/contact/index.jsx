@@ -18,9 +18,10 @@ const Contact = () => {
     console.log(contact)
     try {
       const response = await fetch(
-        "https://testmanagement.onrender.com/api/contact",
+        "https://testmanagement2.onrender.com/api/contact",
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
