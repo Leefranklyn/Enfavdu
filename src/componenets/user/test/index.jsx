@@ -17,9 +17,19 @@ const Test = () => {
   const [userAnswers, setUserAnswers] = useState([]);
 
   console.log(questions);
-  const handleAnswerChange = (selectedOptionId) => {
-    // Update the userAnswers state for the current question, including the question text
-    const currentQuestion = questions[currentQuestionIndex];
+const handleAnswerChange = (selectedOptionId) => {
+  // Check if an answer for the current question already exists
+  const existingAnswerIndex = userAnswers.findIndex(
+    (ua) => ua.question === currentQuestionId
+  );
+
+  if (existingAnswerIndex !== -1) {
+    // Update the existing answer
+    const updatedUserAnswers = [...userAnswers];
+    updatedUserAnswers[existingAnswerIndex].selectedOption = selectedOptionId;
+    setUserAnswers(updatedUserAnswers);
+  } else {
+    // Add a new answer for the current question
     const updatedUserAnswers = [
       ...userAnswers,
       {
@@ -28,7 +38,9 @@ const Test = () => {
       },
     ];
     setUserAnswers(updatedUserAnswers);
-  };
+  }
+};
+
 
   const jwt = localStorage.getItem("userJwt");
 
