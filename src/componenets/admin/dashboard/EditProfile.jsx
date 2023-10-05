@@ -179,7 +179,7 @@ const EditProfile = () => {
       setMessage(false);
       setLoading(true);
       const response = await fetch(
-        `https://testmanagement.onrender.com/api/admin/update/${userId}`,
+        `https://testmanagement2.onrender.com/api/admin/update/${userId}`,
         {
           method: "PATCH",
           headers: {
