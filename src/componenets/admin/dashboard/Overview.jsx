@@ -41,7 +41,7 @@ const Overview = ({}) => {
 
       try {
         const response = await fetch(
-          `https://testmanagement.onrender.com/api/institution/${userId}`,
+          `https://testmanagement2.onrender.com/api/institution/${userId}`,
           options
         );
         if (!response.ok) {
