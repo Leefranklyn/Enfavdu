@@ -7,6 +7,7 @@ const Schoolinfo = ({ path, setPath }) => {
   const { formData, setFormData } = useContext(FormContext);
   const [value, setValue] = useState("");
   const options = useMemo(() => countryList().getData(), []);
+  const currentURL = window.location.href;
 
   const changeHandler = (value) => {
     setValue(value);
@@ -18,10 +19,14 @@ const Schoolinfo = ({ path, setPath }) => {
     const countryCode = value.label.toUpperCase();
     setFormData({ ...formData, country: countryCode });
   };
-  const handleMirrorInput = () => {
-   
-  //  console.log(path)
-  }
+  const handleInput1Change = (e) => {
+    const newValue = e.target.value;
+    setFormData({
+      ...formData,  // Spread the existing state
+      schoolShortName: newValue, // Update input1 value
+      schoolUrl: currentURL + newValue, // Update input2 value based on input1
+    });
+  };
 
 
   return (
@@ -53,9 +58,10 @@ const Schoolinfo = ({ path, setPath }) => {
             placeholder="e.g KadBiz "
             className="w-full  outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
             value={formData.schoolShortName}
-            onChange={(e) =>
-              setFormData({ ...formData, schoolShortName: e.target.value })
-            }
+            onChange={handleInput1Change}
+            // onChange={(e) =>
+            //   setFormData({ ...formData, schoolShortName: e.target.value })
+            // }
           />
         </div>
         <div>
@@ -74,8 +80,9 @@ const Schoolinfo = ({ path, setPath }) => {
         <input
           type="text"
           className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3"
-          value={formData.website}
-          onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+          value={formData.schoolUrl}
+          readOnly
+          // onChange={(e) => setFormData({ ...formData, schoolUrl: e.target.value })}
         />
         <p className="text-[13px]">
           This will be the main url link to your portal
@@ -89,9 +96,9 @@ const Schoolinfo = ({ path, setPath }) => {
           type="text"
           placeholder="e.g www.kadbizinstitute.com "
           className="w-full outline-0 border-[1px] border-gray rounded-md py-2 px-3 mb-3"
-          value={formData.schoolUrl}
+          value={formData.website}
           onChange={(e) =>
-            setFormData({ ...formData, schoolUrl: e.target.value })
+            setFormData({ ...formData, website: e.target.value })
           }
         />
       </div>

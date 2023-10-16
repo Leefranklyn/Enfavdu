@@ -24,7 +24,7 @@ function App() {
   const [path, setPath] = useState("run");
   const [userId, setUserId] = useState("");
   const [id, setId] = useState("")
-  console.log(path);
+  // console.log(path);
   const [formData, setFormData] = useState({
     schoolName: "",
     shortName: "",
@@ -64,7 +64,6 @@ function App() {
                 <Route path="/dashboard/editquestion" element={<Edit/>}/>
               </Route>
               <Route path="/user/:path" element={<HomePage />} />
-              {console.log(path)}
               <Route path="/user/contact" element={<Contact />} />
               <Route path="/user/login" element={<UserLogin />} />
               <Route path="/user/test" element={<Test/>}/>

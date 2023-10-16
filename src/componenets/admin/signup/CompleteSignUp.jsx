@@ -134,7 +134,7 @@ const CompleteSignUp = ({ formData, id }) => {
             ...form,
             schoolName: data.data.schoolName,
             schoolShortName: data.data.schoolShortName,
-            schoolUrl: data.data.schoolUrl,
+            website: data.data.website,
             adminPhone: data.data.adminPhone,
           });
         });
