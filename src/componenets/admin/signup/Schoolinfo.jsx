@@ -8,6 +8,13 @@ const Schoolinfo = ({ path, setPath }) => {
   const [value, setValue] = useState("");
   const options = useMemo(() => countryList().getData(), []);
   const currentURL = window.location.href;
+  const parts = currentURL.split("/"); // Split the URL by '/'
+  const filteredParts = parts.filter((part) => part !== "signup"); // Remove the 'signup' part
+
+  // Reconstruct the URL without the 'signup' part
+  const newURL = parts[0] + "//" + parts[2] + "/";
+
+  console.log(newURL);
 
   const changeHandler = (value) => {
     setValue(value);
@@ -22,12 +29,11 @@ const Schoolinfo = ({ path, setPath }) => {
   const handleInput1Change = (e) => {
     const newValue = e.target.value;
     setFormData({
-      ...formData,  // Spread the existing state
+      ...formData, // Spread the existing state
       schoolShortName: newValue, // Update input1 value
-      schoolUrl: currentURL + newValue, // Update input2 value based on input1
+      schoolUrl: newURL + newValue, // Update input2 value based on input1
     });
   };
-
 
   return (
     <div>
@@ -69,10 +75,7 @@ const Schoolinfo = ({ path, setPath }) => {
             COUNTRY<span className="text-red">*</span>
           </label>
           <div className="lg:w-[20rem] md:w-[17rem]">
-            <Select
-              options={options}
-              onChange={handleCountryChange}
-            />
+            <Select options={options} onChange={handleCountryChange} />
           </div>
         </div>
       </div>
