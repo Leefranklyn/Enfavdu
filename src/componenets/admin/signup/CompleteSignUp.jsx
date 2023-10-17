@@ -170,6 +170,9 @@ const CompleteSignUp = ({ formData, id }) => {
         setMessage(false);
         console.log(window.location.href);
         // setLoading(false)
+        const schoolId = data.data._id;
+        console.log(schoolId)
+        localStorage.setItem("schoolId", schoolId);
         navigate("/login");
       } else {
         // setLoading(false);

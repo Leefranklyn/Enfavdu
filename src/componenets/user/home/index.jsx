@@ -7,13 +7,14 @@ import { Link, useParams } from "react-router-dom";
 
 const HomePage = () => {
   const { path } = useParams();
-
+  const schoolId = localStorage.getItem("schoolId");
+  console.log(schoolId)
 
   useEffect(() => {
     async function fetchData() {
       try {
         // Replace 'your_api_url' with the actual URL for your data.
-        const response = await fetch(`https://testmanagement2.onrender.com/api/institution/${path}`);
+        const response = await fetch(`https://testmanagement2.onrender.com/api/institution/get/${schoolId}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
