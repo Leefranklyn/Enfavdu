@@ -7,7 +7,7 @@ const Edit = () => {
   // const [questions, setQuestions] = useState([]);
   const [questionText, setQuestionText] = useState([]);
   const [questionIds, setQuestionIds] = useState([]);
-  // const [options, setOptions] = useState([]);
+  const [answers, setAnswers] = useState([]);
   const { userId } = useContext(LoginContext);
   const jwt = localStorage.getItem("jwt");
 
@@ -32,13 +32,14 @@ const Edit = () => {
           throw new Error("Failed to fetch TEST");
         }
         const data = await response.json();
+        console.log(data)
         // setQuestions(questions);
         // console.log(questions)
         const arr = data.data.questions;
         setQuestionText(data.data.questions);
         console.log(questionText);
         const fetchedQuestionIds = arr.map((question) => question._id);
-        console.log(fetchedQuestionIds)
+        console.log(fetchedQuestionIds);
         setQuestionIds(fetchedQuestionIds);
       } catch (error) {
         // Handle the error
@@ -64,7 +65,6 @@ const Edit = () => {
     });
     setQuestionText(updatedQuestionTexts);
   };
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -96,15 +96,31 @@ const Edit = () => {
     <div>
       <Header />
       <form onSubmit={handleSubmit}>
-      {questionText.map((text) => (
-        <div key={text._id}>
-          <input
-            type="text"
-            value={text.questionText}
-            onChange={(event) => handleQuestionTextChange(text._id, event)}
-          />
-        </div>
-      ))}
+        {questionText.map((text) => (
+          <div key={text._id}>
+            <input
+              type="text"
+              value={text.questionText}
+              onChange={(event) => handleQuestionTextChange(text._id, event)}
+            />
+          </div>
+        ))}
+        {questionText.answers.map((answer) => (
+          <label key={answer.id}>
+            <input
+              type="radio"
+              name={`question_${currentQuestion.id}`}
+              value={answer.id}
+              onChange={() => handleAnswerChange(answer.id)}
+              checked={userAnswers.some(
+                (ua) =>
+                  ua.question === currentQuestion.text &&
+                  ua.selectedOption === answer.id
+              )}
+            />
+            {answer.text}
+          </label>
+        ))}
 
         <button type="submit">Submit</button>
       </form>

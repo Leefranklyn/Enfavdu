@@ -86,13 +86,13 @@ const HomePage = () => {
               </li>
               <li>
                 <span className="font-semibold">No Collaboration</span>:
-                Students are strictly prohibited from collaborating with each
+                Candidates are strictly prohibited from collaborating with each
                 other during the test. Any form of communication will result in
                 immediate disqualification.
               </li>
               <li>
                 <span className="font-semibold">Closed-Book Policy</span>: This
-                test is closed-book. Students are not allowed to refer to any
+                test is closed-book. Candidates are not allowed to refer to any
                 notes, textbooks, or online resources while taking the test.
               </li>
               <li>

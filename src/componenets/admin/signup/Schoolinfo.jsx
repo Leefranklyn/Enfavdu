@@ -3,8 +3,9 @@ import Select from "react-select";
 import countryList from "react-select-country-list";
 import FormContext from "../../../context/FormContext";
 
-const Schoolinfo = ({ path, setPath }) => {
+const Schoolinfo = ({ path, setPath, setRoutePath, routePath }) => {
   const { formData, setFormData } = useContext(FormContext);
+  const [inputValue, setInputValue] = useState("")
   const [value, setValue] = useState("");
   const options = useMemo(() => countryList().getData(), []);
   const currentURL = window.location.href;
@@ -34,7 +35,8 @@ const Schoolinfo = ({ path, setPath }) => {
       schoolUrl: newURL + newValue, // Update input2 value based on input1
     });
     setPath(newValue);
-    console.log(path)
+    setInputValue(newValue)
+    console.log(inputValue)
   };
 
   return (

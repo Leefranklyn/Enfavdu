@@ -53,7 +53,7 @@ const Dashboard = () => {
                     Exams
                   </li>
                 </Link>
-                <Link to="/dashboard/editquestion">
+                <Link to="">
                   <li className="flex gap-2"  onClick={handleToggle}>
                     <img src={up} alt="" />
                     Edit Questions

@@ -39,7 +39,7 @@ const Home = ({path}) => {
               fairness and to curb the challenges facing recruitment of staff
             </p>
             <div className="flex justify-center">
-              <Link to={`/user/${path}`}>
+              <Link to="/signup">
                 <button className="bg-blue flex justify-center py-2 px-5 rounded-3xl text-white outline-none border-none">
                   Get Started for free
                 </button>

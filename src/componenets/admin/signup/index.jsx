@@ -11,6 +11,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const SignUp = ({ path, setPath }) => {
   const navigate = useNavigate();
+  const [routePath,setRoutePath] = useState("")
   const [id, setId] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -32,7 +33,7 @@ const SignUp = ({ path, setPath }) => {
   const formTitles = ["About School", "About You"];
   const pageDisplay = () => {
     if (page === 0) {
-      return <Schoolinfo path={path} setPath={setPath} />;
+      return <Schoolinfo path={path} setPath={setPath} routePath={routePath} setRoutePath={setRoutePath} />;
     } else if (page === 1) {
       return <Personalinfo />;
     }
