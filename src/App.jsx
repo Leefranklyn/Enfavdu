@@ -21,7 +21,7 @@ import EditProfile from "./componenets/admin/dashboard/EditProfile"
 import Edit from "./componenets/admin/dashboard/Edit";
 
 function App() {
-  const [path, setPath] = useState("run");
+  const [path, setPath] = useState("school");
   const [userId, setUserId] = useState("");
   const [id, setId] = useState("")
   // console.log(path);
@@ -29,7 +29,7 @@ function App() {
     schoolName: "",
     shortName: "",
     country: "",
-    url: "",
+    schoolUrl: "",
     schoolWebsite: "",
     firstName: "",
     department: "",
@@ -44,7 +44,6 @@ function App() {
       <FormContext.Provider value={{ formData, setFormData }}>
         <LoginContext.Provider value={{userId, setUserId}}>
           <UserLoginContext.Provider value={{id, setId}}>
-          {console.log(formData.url)}
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home path={path} />} />
@@ -63,7 +62,7 @@ function App() {
                 <Route path="/dashboard/editprofile" element={<EditProfile />} />
                 <Route path="/dashboard/editquestion" element={<Edit/>}/>
               </Route>
-              <Route path="/user/:path" element={<HomePage />} />
+              <Route path="/user/:path" element={<HomePage path={path}  setPath={setPath} />} />
               <Route path="/user/contact" element={<Contact />} />
               <Route path="/user/login" element={<UserLogin />} />
               <Route path="/user/test" element={<Test/>}/>

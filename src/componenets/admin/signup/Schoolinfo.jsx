@@ -14,7 +14,6 @@ const Schoolinfo = ({ path, setPath }) => {
   // Reconstruct the URL without the 'signup' part
   const newURL = parts[0] + "//" + parts[2] + "/";
 
-  console.log(newURL);
 
   const changeHandler = (value) => {
     setValue(value);
@@ -28,11 +27,14 @@ const Schoolinfo = ({ path, setPath }) => {
   };
   const handleInput1Change = (e) => {
     const newValue = e.target.value;
+    // setPath(newURL);
     setFormData({
       ...formData, // Spread the existing state
       schoolShortName: newValue, // Update input1 value
       schoolUrl: newURL + newValue, // Update input2 value based on input1
     });
+    setPath(newValue);
+    console.log(path)
   };
 
   return (

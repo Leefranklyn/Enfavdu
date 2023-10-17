@@ -32,7 +32,7 @@ const SignUp = ({ path, setPath }) => {
   const formTitles = ["About School", "About You"];
   const pageDisplay = () => {
     if (page === 0) {
-      return <Schoolinfo />;
+      return <Schoolinfo path={path} setPath={setPath} />;
     } else if (page === 1) {
       return <Personalinfo />;
     }

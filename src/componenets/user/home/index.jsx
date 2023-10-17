@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UserNav from "../../../layout/UserNav";
 import person from "../../../assets/person.png";
 import UserFooter from "../../../layout/UserFooter";
 import user from "../../../assets/user.png";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const HomePage = () => {
+  const { path } = useParams();
+
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // Replace 'your_api_url' with the actual URL for your data.
+        const response = await fetch(`https://testmanagement2.onrender.com/api/institution/${path}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        // setItemData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData();
+  }, [path]);
+
+
+
+
   return (
     <>
       <UserNav />
