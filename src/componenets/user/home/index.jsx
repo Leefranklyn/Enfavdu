@@ -10,11 +10,13 @@ const HomePage = () => {
   const schoolId = localStorage.getItem("schoolId");
   console.log(schoolId)
 
+  console.log(path)
+
   useEffect(() => {
     async function fetchData() {
       try {
         // Replace 'your_api_url' with the actual URL for your data.
-        const response = await fetch(`https://testmanagement2.onrender.com/api/institution/get/${schoolId}`);
+        const response = await fetch(`https://testmanagement2.onrender.com/api/institution/get/${path}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

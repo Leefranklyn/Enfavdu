@@ -171,9 +171,26 @@ const CompleteSignUp = ({ formData, id }) => {
         console.log(window.location.href);
         // setLoading(false)
         const schoolId = data.data._id;
-        console.log(schoolId)
+        // console.log(schoolId)
         localStorage.setItem("schoolId", schoolId);
+        console.log(data.data.schoolUrl, data.data._id)
+        const schoolInfo={
+          "schoolUrl": data.data.schoolUrl,
+          "schoolId": data.data._id
+        }
+        const res = await fetch('https://testmanagement2.onrender.com/api/institution/postschoolinfo',
+          {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(schoolInfo),
+        }
+      );
+      if (res.ok){
+        console.log('school info posted')
         navigate("/login");
+      }
       } else {
         // setLoading(false);
         setLoading(false);
