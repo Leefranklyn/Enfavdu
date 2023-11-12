@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserNav from "../../../layout/UserNav";
 // import person from "../../../assets/person.png";
 import UserFooter from "../../../layout/UserFooter";
@@ -9,13 +9,18 @@ import { SchoolContext } from "../../../context/SchoolContext";
 const HomePage = () => {
   const { info, setInfo } = useContext(SchoolContext)
   const { path } = useParams();
+  localStorage.setItem("path", path)
+  const jwt = localStorage.getItem("userJwt");
+  const id = localStorage.getItem("userId");
+  const [time, setTime] = useState('')
 
+  const item = localStorage.getItem('path')
 
   useEffect(() => {
     async function fetchData() {
       try {
         // Replace 'your_api_url' with the actual URL for your data.
-        const response = await fetch(`https://testmanagement2.onrender.com/api/institution/schoolinfo/${path}`);
+        const response = await fetch(`https://testmanagement2.onrender.com/api/institution/schoolinfo/${item}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -24,7 +29,6 @@ const HomePage = () => {
           const res = await fetch(`https://testmanagement2.onrender.com/api/institution/${data.data.schoolId}`)
           if (res.ok) {
             const data = await res.json();
-            console.log(data)
             setInfo(data.data)
           }
         }
@@ -34,9 +38,39 @@ const HomePage = () => {
     }
 
     fetchData();
-  }, [path, setInfo]);
+  }, [path, setInfo, item]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const headers = {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Add any other headers you need
+      };
 
+      const options = {
+        credentials: "include",
+        headers: headers,
+      };
+
+      try {
+        const response = await fetch(
+          `https://testmanagement2.onrender.com/api/user/test/${id}`,
+          options
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch ID");
+        }
+        const data = await response.json();
+        const test = await data.data.timer;
+        setTime(test);
+
+      } catch (error) {
+        // Handle the error
+      }
+    };
+
+    fetchData();
+  }, [jwt, id]);
 
 
   return (
@@ -90,7 +124,7 @@ const HomePage = () => {
             </h3>
             <ol className="list-decimal list-outside px-1 flex flex-col gap-2">
               <li>
-                <span className="font-semibold">Time Limit</span>: The test has a duration of 15 minutes. It is important to manage your time effectively to complete all the tasks within the given timeframe.
+                <span className="font-semibold">Time Limit</span>: The test has a duration of {time && time} minutes. It is important to manage your time effectively to complete all the tasks within the given timeframe.
               </li>
               <li>
                 <span className="font-semibold">Task Instruction</span>:

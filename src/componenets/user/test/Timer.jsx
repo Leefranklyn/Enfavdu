@@ -1,8 +1,48 @@
-import React, { useState, useEffect, useContext } from 'react';
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from 'react';
 
 
 const Timer = ({handleSubmit}) => {
   const [remainingTime, setRemainingTime] = useState(900);
+  const jwt = localStorage.getItem("userJwt");
+  const id = localStorage.getItem("userId");
+  const [time, setTime] = useState(900)
+
+  useEffect(()=> {
+    setRemainingTime(time * 60)
+  },[time])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const headers = {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Add any other headers you need
+      };
+
+      const options = {
+        credentials: "include",
+        headers: headers,
+      };
+
+      try {
+        const response = await fetch(
+          `https://testmanagement2.onrender.com/api/user/test/${id}`,
+          options
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch ID");
+        }
+        const data = await response.json();
+        const test = await data.data.timer;
+        setTime(test);
+
+      } catch (error) {
+        // Handle the error
+      }
+    };
+
+    fetchData();
+  }, [jwt, id]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,7 +63,8 @@ const Timer = ({handleSubmit}) => {
     return () => {
       clearInterval(interval);
     };
-  }, [remainingTime]);
+  }, [remainingTime, handleSubmit]);
+
 
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;

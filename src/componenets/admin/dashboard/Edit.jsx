@@ -13,7 +13,12 @@ const Edit = () => {
   const jwt = localStorage.getItem("jwt");
   const id = localStorage.getItem("id");
   const [cover, setCover] = useState("");
+  const [timer, setTimer] = useState('')
   const ref = useRef(null);
+
+  useEffect(() => {
+    setTimer(test.timer)
+  },[test.timer])
 
   const handleCoverInput = (e) => {
     e.preventDefault();
@@ -92,7 +97,8 @@ const Edit = () => {
         }
         const data = await response.json();
         const arr = data.data.questions;
-        setTest(data.data.testName)
+        console.log(data.data)
+        setTest(data.data)
         setQuestionText(data.data.questions);
         const fetchedQuestionIds = arr.map((question) => question._id);
         setQuestionIds(fetchedQuestionIds);
@@ -173,13 +179,18 @@ const Edit = () => {
     setQuestionText([...questionText]);
   };
 
+  const handleTimerChange =(e)=> {
+  setTimer(e.target.value)
+  }
+
 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const editData = {
-      "testName": test,
+      "testName": test.testName,
+      "timer": timer,
       "questions": questionText
     }
 
@@ -217,7 +228,17 @@ const Edit = () => {
         </div>
         <div className='flex items-center gap-3 pb-[30px]'>
           <h1 className="text-[22px] font-bold font-poppins text-grey">Quiz Time</h1>
-          <img src={pencil} alt="" />
+          <div className='flex items-center gap-3'>
+            <input
+              className="border-none w-[40px] text-[25px] font-500 font-poppins text-grey px-1"
+              type="text"
+              id={test._id}
+              value={timer}
+              onChange={(event) => handleTimerChange(event)}
+            />
+            <label htmlFor={test._id} className="flex justify-center items-center gap-3"><p>Mins</p><img src={pencil} alt="" className='cursor-pointer' /></label>
+          </div>
+          {/* <img src={pencil} alt="" /> */}
         </div>
         <div>
           <form onSubmit={handleSubmit}>

@@ -1,15 +1,14 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import Header from "./Header";
 import { css } from "@emotion/react";
 import { BeatLoader} from "react-spinners";
 import solid from "../../../assets/solid.svg";
-import LoginContext from "../../../context/LoginContext";
 import { Form, useNavigate } from "react-router-dom";
 
 const AddUser = () => {
   const ref = useRef(null);
   const navigate = useNavigate();
-  const { userId } = useContext(LoginContext);
+  const id = localStorage.getItem("id");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -84,7 +83,7 @@ const AddUser = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://testmanagement2.onrender.com/api/user/signup/${userId}`,
+        `https://testmanagement2.onrender.com/api/user/signup/${id}`,
         {
           method: "POST",
           credentials: "include",

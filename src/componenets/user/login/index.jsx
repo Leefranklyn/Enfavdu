@@ -37,9 +37,8 @@ const UserLogin = () => {
         const token = data.token;
         const userId = data.data.id;
         localStorage.setItem('userJwt', token);
-        console.log(token)
+        localStorage.setItem('userId', data.data.id);
         setId(userId)
-        console.log(data)
         setMessage(false);
 
         navigate("/user/test")

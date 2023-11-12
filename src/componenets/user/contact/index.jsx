@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import UserNav from "../../../layout/UserNav";
 import UserFooter from "../../../layout/UserFooter";
 import Message from "./Message";

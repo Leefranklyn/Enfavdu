@@ -61,7 +61,7 @@ const Overview = ({}) => {
     };
 
     fetchData();
-  }, [jwt, userId]);
+  }, [jwt, id]);
 
   return (
     <div className="bg-lightGrey min-h-[100%]">
