@@ -22,6 +22,10 @@ const Dashboard = () => {
     // : (document.body.style.overflow = "unset");
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem("id");
+  }
+
 
   return (
     <>
@@ -53,7 +57,7 @@ const Dashboard = () => {
                     Exams
                   </li>
                 </Link>
-                <Link to="">
+                  <Link to="/dashboard/editquestion">
                   <li className="flex gap-2"  onClick={handleToggle}>
                     <img src={up} alt="" />
                     Edit Questions
@@ -75,10 +79,12 @@ const Dashboard = () => {
                   <img src={Settings} alt="" />
                   Settings
                 </li>
+                  <Link to="/login" onClick={handleLogout}>
                 <li className="flex gap-2"  onClick={handleToggle}>
                   <img src={out} alt="" />
                   Sign out
                 </li>
+                </Link>
               </ul>
             </div>
           </div>

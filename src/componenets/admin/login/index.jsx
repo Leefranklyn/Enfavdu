@@ -31,7 +31,7 @@ const Login = () => {
         "https://testmanagement2.onrender.com/api/admin/login",
         {
           method: "POST",
-          credentials: "include",
+          // credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -39,11 +39,13 @@ const Login = () => {
         }
       );
       const data = await response.json();
+      console.log(data, response)
       if (response.ok) {
         console.log(data);
         const adminId = data.data.id;
         const token = data.token;
         localStorage.setItem("jwt", token);
+        localStorage.setItem("id", adminId);
         console.log(token);
         setUserId(adminId);
         console.log(adminId);
@@ -106,7 +108,7 @@ const Login = () => {
           {message && (
             <div>
               <p className="text-center text-red">
-                An error occurred.Check the user name or password and Try again
+                An error occurred. Check the user name or password and try again
               </p>
             </div>
           )}

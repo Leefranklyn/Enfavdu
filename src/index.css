@@ -2,21 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-.my-container{
-    width: 90%;
-    margin: auto;
-    max-width: 1024px;
+.my-container {
+  width: 90%;
+  margin: auto;
+  max-width: 1024px;
 }
-.m-container{
-    width: 90%;
-    margin: auto;
-    max-width: 1050px;
+.m-container {
+  width: 90%;
+  margin: auto;
+  max-width: 1050px;
 }
-.css-b62m3t-container{
-   max-width: 900px;
+.css-b62m3t-container {
+  max-width: 900px;
 }
 @layer base {
-    html {
-        font-family: 'Poppins', sans-serif;
+  html {
+    font-family: "Poppins", sans-serif;
   }
+}
+
+.test {
+  border-radius: 22.029px;
+  background: #fff;
+  box-shadow: 0px 11.01429px 29.37143px 3.67143px #ededed;
 }

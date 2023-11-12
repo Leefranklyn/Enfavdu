@@ -1,20 +1,79 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import star from "../../../assets/Star.svg"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import LoginContext from "../../../context/LoginContext";
+
 
 const Profile = () => {
     const [form, setForm] = useState({
 
     })
+    const navigate = useNavigate()
+  const { userId } = useContext(LoginContext);
+  const [admin, setAdmin] = useState("");
+
+  const jwt = localStorage.getItem("jwt");
+  const id = localStorage.getItem("id");
+
+  const checkTokenExpiration = async () => {
+    const jwt = localStorage.getItem("jwt");
+    const expirationTime = localStorage.getItem("expirationTime");
+
+    if (jwt && expirationTime) {
+      const currentTime = new Date().getTime();
+      if (currentTime > parseInt(expirationTime)) {
+        // Token has expired, navigate the user to the login page
+        navigate("/login");
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkTokenExpiration();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const headers = {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Add any other headers you need
+      };
+
+      const options = {
+        credentials: "include",
+        headers: headers,
+      };
+
+      try {
+        const response = await fetch(
+          `https://testmanagement2.onrender.com/api/institution/${id}`,
+          options
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch ID");
+        }
+        const data = await response.json();
+        console.log(data);
+        const adminName = data.data;
+        console.log(adminName);
+        setAdmin(adminName);
+      } catch (error) {
+        // Handle the error
+      }
+    };
+
+    fetchData();
+  }, [jwt, id]);
+  
   return (
     <div className='my-container py-16'>
       <div className="md:flex md:justify-between items-end">
           <div className="flex flex-col md:flex-row justify-center items-center gap-5">
               <div className='w-[200px] h-[200px] border-[1px] border-grey'>
-                <img src="" alt="" />
+                <img src={admin && admin.adminProfilePhoto} alt="" className='w-full h-full object-contain' />
               </div>
               <div>
-                  <h3 className='font-bold text-3xl'>Umu Kuru</h3>
+                  <h3 className='font-bold text-3xl'>{admin && admin.adminFirstName} {admin && admin.adminLastName}</h3>
                   <div className='bg-green py-2 px-2 rounded-lg mt-2'>
                     <p className='text-center'>Active</p>
                   </div>
@@ -38,9 +97,10 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
                 name="schoolName"
-              //   value={form.schoolName}
+                value={admin && admin.adminFirstName}
+                readOnly
               //   onChange={handleInputChange}
               />
             </div>
@@ -50,8 +110,10 @@ const Profile = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                  className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
                   name="schoolShortName"
+                value={admin && admin.adminLastName}
+                readOnly
                   // value={form.schoolOwner}
                   // onChange={(e) =>
                   //   setForm({ ...form, schoolOwner: e.target.value })
@@ -64,7 +126,7 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
                 name="schoolShortName"
                 // value={form.schoolShortName}
                 // onChange={handleInputChange}
@@ -79,8 +141,10 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
               //   value={form.schoolType}
+                value={admin && admin.adminEmail}
+                readOnly
               //   onChange={(e) =>
               //     setForm({ ...form, schoolType: e.target.value })
               //   }
@@ -92,8 +156,10 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
               //   value={form.schoolMotto}
+                value={admin && admin.adminPhone}
+                readOnly
               //   onChange={(e) =>
               //     setForm({ ...form, schoolMotto: e.target.value })
               //   }
@@ -105,8 +171,10 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
               //   value={form.schoolAddress}
+                value={admin && admin.adminDateOfBirth}
+                readOnly
               //   onChange={(e) =>
               //     setForm({ ...form, schoolAddress: e.target.value })
               //   }
@@ -120,8 +188,10 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
               //   value={form.website}
+                value={admin && admin.country}
+                readOnly
               //   onChange={(e) =>
               //     setForm({ ...form, website: e.target.value })
               //   }
@@ -133,8 +203,10 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
                 name="schoolUrl"
+                value={admin && admin.schoolName}
+                readOnly
                   // value={form.schoolUrl}
                   // onChange={handleInputChange}
               />
@@ -145,8 +217,10 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
                 name="schoolUrl"
+                value={admin && admin.schoolAddress}
+                readOnly
                   // value={form.schoolUrl}
                   // onChange={handleInputChange}
               />
@@ -159,8 +233,10 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
                 name="schoolUrl"
+                value={admin && admin.schoolContactEmail}
+                readOnly
                   // value={form.schoolUrl}
                   // onChange={handleInputChange}
               />
@@ -171,8 +247,10 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                className="w-full outline-0 border-[1px] bg-lightGrey border-black border-dashed rounded-sm py-2 px-3 mb-3"
+                className="w-full outline-0 border-b-[1px] bg-lightGrey border-b-black border-dashed rounded-sm py-2 px-3 mb-3"
                 name="schoolUrl"
+                value={admin && admin.website}
+                readOnly
                   // value={form.schoolUrl}
                   // onChange={handleInputChange}
               />

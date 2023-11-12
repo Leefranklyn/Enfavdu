@@ -62,7 +62,7 @@ const CreateNewPassword = ({ id, page, setPage }) => {
             />
             <input
               type="Confirm password"
-              placeholder="Email ,phone & username"
+              placeholder="Confirm Password"
               className="w-[90%] mx-auto py-2 px-4 rounded-md border-gray border-[1px]"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}

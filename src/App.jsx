@@ -19,6 +19,7 @@ import Test from "./componenets/user/test";
 import Profile from "./componenets/admin/dashboard/Profile";
 import EditProfile from "./componenets/admin/dashboard/EditProfile"
 import Edit from "./componenets/admin/dashboard/Edit";
+import { SchoolProvider } from "./context/SchoolContext";
 
 function App() {
   const [path, setPath] = useState("school");
@@ -41,6 +42,7 @@ function App() {
 
   return (
     <>
+    <SchoolProvider>
       <FormContext.Provider value={{ formData, setFormData }}>
         <LoginContext.Provider value={{userId, setUserId}}>
           <UserLoginContext.Provider value={{id, setId}}>
@@ -71,6 +73,7 @@ function App() {
           </UserLoginContext.Provider>
         </LoginContext.Provider>
       </FormContext.Provider>
+      </SchoolProvider>
     </>
   );
 }

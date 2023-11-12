@@ -7,7 +7,7 @@ export default {
         blue: "#4A3AFF",
         buttonGrey : "#D4D2E3",
         linkGrey : "#CCCCCC",
-        lightGrey : "#D9D9D9",
+        // lightGrey : "#D9D9D9",
         veryLightGrey :'#E5E5E5',
         gray: "#D8D8E3",
         grey: "#7E7E7E",

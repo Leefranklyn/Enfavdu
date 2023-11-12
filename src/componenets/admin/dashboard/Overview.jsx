@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginContext from "../../../context/LoginContext";
 import Header from "./Header";
 import box from "../../../assets/Shadow 05.svg";
@@ -9,7 +9,9 @@ const Overview = ({}) => {
   const { userId } = useContext(LoginContext);
   const [adminName, setAdminName] = useState("");
 
+  const navigate = useNavigate()
   const jwt = localStorage.getItem("jwt");
+  const id = localStorage.getItem("id");
 
   const checkTokenExpiration = async () => {
     const jwt = localStorage.getItem("jwt");
@@ -42,7 +44,7 @@ const Overview = ({}) => {
 
       try {
         const response = await fetch(
-          `https://testmanagement2.onrender.com/api/institution/${userId}`,
+          `https://testmanagement2.onrender.com/api/institution/${id}`,
           options
         );
         if (!response.ok) {

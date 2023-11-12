@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import LoginContext from "../../../context/LoginContext";
 import Header from "./Header";
 import { css } from "@emotion/react";
@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
   const navigate = useNavigate();
+  const [admin, setAdmin] = useState([])
   const jwt = localStorage.getItem("jwt");
+  const id = localStorage.getItem("id");
   const { userId } = useContext(LoginContext);
   const ref = useRef(null);
   const ref2 = useRef(null);
@@ -20,10 +22,44 @@ const EditProfile = () => {
   const [imagePreview3, setImagePreview3] = useState(null);
   const [loading, setLoading] = useState("");
   const [message, setMessage] = useState(false);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const headers = {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Add any other headers you need
+      };
+
+      const options = {
+        credentials: "include",
+        headers: headers,
+      };
+
+      try {
+        const response = await fetch(
+          `https://testmanagement2.onrender.com/api/institution/${id}`,
+          options
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch ID");
+        }
+        const data = await response.json();
+        const adminName = data.data;
+        setAdmin(adminName);
+      } catch (error) {
+        // Handle the error
+      }
+    };
+
+    fetchData();
+  }, [jwt, id]);
+
+
   const [form, setForm] = useState({
     adminGender: "",
-    adminFirstName: "",
-    adminLastName: "",
+    adminFirstName: '',
+    adminLastName: '',
     adminPhone: "",
     adminEmail: "",
     schoolName: "",
@@ -36,6 +72,26 @@ const EditProfile = () => {
     schoolLogo: "",
     proprietorSignature: "",
   });
+
+
+  useEffect(() => {
+    setForm({
+      adminGender: admin.adminGender,
+      adminFirstName: admin.adminFirstName,
+      adminLastName: admin.adminLastName,
+      adminPhone: admin.adminPhone,
+      adminEmail: admin.adminEmail,
+      schoolName: admin.schoolName,
+      schoolContactEmail: admin.schoolContactEmail,
+      website: admin.website,
+      schoolContactPhone: admin.schoolContactPhone,
+      schoolAddress: admin.schoolAddress,
+      adminDateOfBirth: admin.adminDateOfBirth,
+      adminProfilePhoto: admin.adminProfilePicture,
+      schoolLogo: admin.schoolLogo,
+      proprietorSignature: admin.proprietorSignature
+    });
+  }, [admin]);
 
   const handleDate = (e) => {
     const inputDate = e.target.value;
@@ -136,7 +192,6 @@ const EditProfile = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         const url = data.url;
         setForm({ ...form, schoolLogo: url });
         // Handle the response data
@@ -173,13 +228,14 @@ const EditProfile = () => {
       });
   };
 
+
   const handleForm = async () => {
     console.log(form);
     try {
       setMessage(false);
       setLoading(true);
       const response = await fetch(
-        `https://testmanagement2.onrender.com/api/admin/update/${userId}`,
+        `https://testmanagement2.onrender.com/api/admin/update/${id}`,
         {
           method: "PATCH",
           credentials: "include",
@@ -192,7 +248,6 @@ const EditProfile = () => {
       );
       const data = await response.json();
       if (response.ok) {
-        console.log(data);
         setLoading(false);
         setMessage(false);
         navigate("/dashboard")

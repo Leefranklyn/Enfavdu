@@ -94,7 +94,7 @@ const UserLogin = () => {
         {message && (
             <div>
               <p className="text-center text-red">
-                An error occurred.Check the user name or password and Try again
+                An error occurred. Check the user name or password and try again
               </p>
             </div>
           )}

@@ -13,7 +13,7 @@ const Schoolinfo = ({ path, setPath, setRoutePath, routePath }) => {
   const filteredParts = parts.filter((part) => part !== "signup"); // Remove the 'signup' part
 
   // Reconstruct the URL without the 'signup' part
-  const newURL = parts[0] + "//" + parts[2] + "/";
+  const newURL = parts[0] + "//" + parts[2] + "/user/";
 
 
   const changeHandler = (value) => {

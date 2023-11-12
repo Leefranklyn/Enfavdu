@@ -1,34 +1,40 @@
-import React, { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import UserNav from "../../../layout/UserNav";
-import person from "../../../assets/person.png";
+// import person from "../../../assets/person.png";
 import UserFooter from "../../../layout/UserFooter";
 import user from "../../../assets/user.png";
 import { Link, useParams } from "react-router-dom";
+import { SchoolContext } from "../../../context/SchoolContext";
 
 const HomePage = () => {
+  const { info, setInfo } = useContext(SchoolContext)
   const { path } = useParams();
-  const schoolId = localStorage.getItem("schoolId");
-  console.log(schoolId)
 
-  console.log(path)
 
   useEffect(() => {
     async function fetchData() {
       try {
         // Replace 'your_api_url' with the actual URL for your data.
-        const response = await fetch(`https://testmanagement2.onrender.com/api/institution/get/${path}`);
+        const response = await fetch(`https://testmanagement2.onrender.com/api/institution/schoolinfo/${path}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        // setItemData(data);
+        else {
+          const data = await response.json();
+          const res = await fetch(`https://testmanagement2.onrender.com/api/institution/${data.data.schoolId}`)
+          if (res.ok) {
+            const data = await res.json();
+            console.log(data)
+            setInfo(data.data)
+          }
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     }
 
     fetchData();
-  }, [path]);
+  }, [path, setInfo]);
 
 
 
@@ -42,7 +48,7 @@ const HomePage = () => {
             <div className="md:w-[45%]">
               <div className=" py-16 md:pt-0 md:pb-5 bg-contain bg-center bg-no-repeat">
                 <h2 className="text-[30px] md:text-[40px]  text-center  md:text-left font-extrabold">
-                  Welcome to the AFIT Online Recruitment Service
+                  Welcome to the {info && info.schoolShortName.toUpperCase()} Online Recruitment Service
                 </h2>
               </div>
               <div className="hidden md:block">
@@ -55,7 +61,7 @@ const HomePage = () => {
               </div>
               <div className="w-[80%] md:w-full mx-auto md:hidden">
                 <p className="text-center md:text-left">
-                  The AFIT online recruitment service is a service set up by the
+                  The {info && info.schoolShortName.toUpperCase()} online recruitment service is a service set up by the
                   Institution to enhance recruitment of staff into the
                   Institution in fairness and an organized manner, to curb the
                   challenges faced in the recruitment of staff in the
@@ -72,7 +78,7 @@ const HomePage = () => {
               ABOUT
             </h4>
             <p className="text-center md:text-left">
-              The AFIT online recruitment service is a service set up by the
+              The {info && info.schoolShortName.toUpperCase()} online recruitment service is a service set up by the
               Institution to enhance recruitment of staff into the Institution
               in fairness and an organized manner, to curb the challenges faced
               in the recruitment of staff in the Institution.
@@ -84,31 +90,29 @@ const HomePage = () => {
             </h3>
             <ol className="list-decimal list-outside px-1 flex flex-col gap-2">
               <li>
-                <span className="font-semibold">Time Limit</span>: Each question
-                must be completed within the specified time limit of 10 minutes.
+                <span className="font-semibold">Time Limit</span>: The test has a duration of 15 minutes. It is important to manage your time effectively to complete all the tasks within the given timeframe.
               </li>
               <li>
-                <span className="font-semibold">No Collaboration</span>:
-                Candidates are strictly prohibited from collaborating with each
-                other during the test. Any form of communication will result in
-                immediate disqualification.
+                <span className="font-semibold">Task Instruction</span>:
+                You will be presented with a series of multiple-choice questions. Read each question carefully and select the most appropriate answer.
+                Answer all the questions to the best of your ability
               </li>
               <li>
-                <span className="font-semibold">Closed-Book Policy</span>: This
-                test is closed-book. Candidates are not allowed to refer to any
-                notes, textbooks, or online resources while taking the test.
+                <span className="font-semibold">Submission Deadline</span>: The test must be submitted within the given time limit.
+                The system will automatically close the test at the end of the 15-minute duration.
               </li>
               <li>
-                <span className="font-semibold">Answer Format</span>: All
-                answers must be written legibly in blue or black ink. Pencil or
-                other colored inks will not be accepted.
+                <span className="font-semibold">Technical Requirements</span>: Use a desktop or laptop computer for the best experience.
+                Ensure a stable internet connection throughout the test.
+                Use a compatible web browser (Chrome, Firefox, Safari, or Edge) with JavaScript enabled.
+                Disable any browser extensions that may interfere with the test.
               </li>
-              <li>
+              {/* <li>
                 <span className="font-semibold">Cell Phones</span>: Cell phones
                 and electronic devices are not permitted during the test. All
                 electronic devices must be turned off and stored in backpacks or
                 designated areas.
-              </li>
+              </li> */}
             </ol>
             <div className="flex justify-center">
               <Link to="/user/login">
@@ -123,7 +127,7 @@ const HomePage = () => {
               You are in good company
             </h3>
           </div>
-          <div className="flex flex-col justify-between md:flex-row pb-10">
+          <div className="flex flex-col items-center justify-between md:flex-row pb-10">
             <div className="hidden md:block w-[45%]">
               <div>
                 <h3 className="text-[25px] font-semibold text-left my-5 ">
@@ -131,17 +135,15 @@ const HomePage = () => {
                 </h3>
               </div>
               <p className="text-center md:text-left ">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                Good Luck!
               </p>
             </div>
             <div className="flex justify-center md:w-[40%]">
-              <img src={person} className="md:w-[100%] "alt="" />
+              <img src={info && info.proprietorSignature} className="md:w-[100%] " alt="" />
             </div>
             <div className=" md:hidden">
               <p className="text-center md:text-left pt-8">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                Good Luck!
               </p>
             </div>
           </div>
