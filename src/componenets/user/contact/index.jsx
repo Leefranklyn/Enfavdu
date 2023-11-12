@@ -6,6 +6,7 @@ import Sent from "./Sent"
 
 const Contact = () => {
   const [page, setPage] = useState("message")
+  const id = localStorage.getItem('id')
   const [contact, setContact] = useState({
     name: "",
     email: "",
@@ -18,7 +19,7 @@ const Contact = () => {
     console.log(contact)
     try {
       const response = await fetch(
-        "https://testmanagement2.onrender.com/api/contact",
+        `https://testmanagement2.onrender.com/api/contact/${id}`,
         {
           method: "POST",
           credentials: "include",
@@ -32,8 +33,6 @@ const Contact = () => {
       if (response.ok) {
         setPage("success")
         console.log("yesss");
-        console.log(data);
-
         
         // Successful login, perform necessary actions (e.g., redirect)
       } else {
