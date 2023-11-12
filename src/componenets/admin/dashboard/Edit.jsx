@@ -8,6 +8,7 @@ import photo from '../../../assets/photo.png'
 const Edit = () => {
   const [questionText, setQuestionText] = useState([]);
   const [questionIds, setQuestionIds] = useState([]);
+  const [test, setTest] = useState([])
   const [questId, setQuestId] = useState('');
   const jwt = localStorage.getItem("jwt");
   const id = localStorage.getItem("id");
@@ -32,9 +33,7 @@ const Edit = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         const url = data.url;
-        console.log(url);
         setCover(url);
       })
       .catch((error) => {
@@ -64,7 +63,6 @@ const Edit = () => {
         throw new Error("Failed to fetch TEST");
       }
       const data = await response.json();
-      console.log(data.data.questions)
       window.location.reload(false)
     } catch (error) {
       // Handle the error
@@ -93,8 +91,8 @@ const Edit = () => {
           throw new Error("Failed to fetch TEST");
         }
         const data = await response.json();
-        console.log(data.data.questions)
         const arr = data.data.questions;
+        setTest(data.data.testName)
         setQuestionText(data.data.questions);
         const fetchedQuestionIds = arr.map((question) => question._id);
         setQuestionIds(fetchedQuestionIds);
@@ -137,11 +135,8 @@ const Edit = () => {
   };
 
   const editQuestionTextOptions = (optionObject, e) => {
-    console.log(questId)
-    // Find the question text object with the given ID
     const questionTextObject = questionText.find((text) => text._id === questId);
 
-    // Update the option object in the question text object
     questionTextObject.options = questionTextObject.options.map((option) => {
       if (option._id === optionObject._id) {
         return {
@@ -152,16 +147,12 @@ const Edit = () => {
       return option;
     });
 
-    // Set the question text object back to the state
     setQuestionText([...questionText]);
   };
 
-  const editQuestionStatusOptions = (optionObject, e) => {
-    console.log(questId, optionObject._id)
-    // Find the question text object with the given ID
+  const editQuestionStatusOptions = (optionObject) => {
     const questionTextObject = questionText.find((text) => text._id === questId);
 
-    // Update the option object in the question text object
     questionTextObject.options = questionTextObject.options.map((option) => {
       console.log(option._id, optionObject._id)
       if (option._id === optionObject._id) {
@@ -179,7 +170,6 @@ const Edit = () => {
       return option;
     });
 
-    // Set the question text object back to the state
     setQuestionText([...questionText]);
   };
 
@@ -188,25 +178,10 @@ const Edit = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(questionText)
-    // const updatedTest = { ...test, questions };
-
-    // Send the updated test data to the server
-    // fetch(`https://testmanagement2.onrender.com/api/admin/test/update/${id}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     Authorization: `Bearer ${jwt}`,
-    //     "Content-Type": "application/json", // Add any other headers you need
-    //   },
-    //   body: JSON.stringify(questionText),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log("Test updated successfully:", data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error updating test:", error);
-    //   });
+    const editData = {
+      "testName": test,
+      "questions": questionText
+    }
 
     try {
       const response = await fetch(
@@ -217,23 +192,20 @@ const Edit = () => {
             Authorization: `Bearer ${jwt}`,
             "Content-Type": "application/json", // Add any other headers you need
           },
-          body: JSON.stringify(questionText),
+          body: JSON.stringify(editData),
         }
       );
       if (!response.ok) {
         throw new Error("Failed to fetch TEST");
       }
       const data = await response.json();
-      console.log(data)
-      // window.location.reload(false)
+      window.location.reload(false)
     } catch (error) {
       // Handle the error
     }
   };
 
-  // if (!test) {
-  //   return <div>Loading...</div>;
-  // }
+
 
   return (
     <div>
@@ -249,14 +221,14 @@ const Edit = () => {
         </div>
         <div>
           <form onSubmit={handleSubmit}>
-            {questionText && questionText?.map((text) => (
+            {questionText ? questionText?.map((text) => (
               <div key={text._id} className="flex flex-col gap-1 mt-5 bg-white p-[20px]">
                 <div className="flex justify-end items-center gap-3 text-grey w-full">
                   <img src={userr} alt="" />
                   <p>user</p>
                 </div>
                 <div className='test m-10 px-[20px] py-[16px]'>
-                  <div className='flex justify-between items-center'>
+                  <div className='flex justify-between items-center flex-wrap'>
                     <div className='flex items-center gap-3'>
                       <input
                         className="border-none text-[25px] font-500 font-poppins text-grey px-1"
@@ -293,10 +265,10 @@ const Edit = () => {
                       </div>
                       <button className='text-black bg-white my-2 px-2 rounded-md border-[1px] text-[11px] absolute top-[50%] left-[42%] disabled:opacity-[0.6]  curor-pointer' onClick={() => updateImage(text._id)} disabled={cover == ''} >Update</button>
                     </div>
-                    <div className="w-[50%]">
+                    <div className="w-[50%] h-[100px]">
                       <label htmlFor={text.questionText} className="flex items-center text-[#696F79] text-[16px] font-semibold gap-3 pb-[20px]">Question <img src={pencil} alt="" className='cursor-pointer' /></label>
                       <input
-                        className=" w-full text-[13px] text-[#696F79]"
+                        className=" w-full text-[13px] h-full text-[#696F79]"
                         type="text"
                         id={text.questionText}
                         value={text.questionText}
@@ -309,23 +281,8 @@ const Edit = () => {
                   </div>
                 </div>
               </div>
-            ))}
-            {/* {questionText && questionText?.options.map((answer) => (
-            <label key={answer.id}>
-              <input
-                type="radio"
-                name={`question_${currentQuestion.id}`}
-                value={answer.id}
-                onChange={() => handleAnswerChange(answer.id)}
-                checked={userAnswers.some(
-                  (ua) =>
-                    ua.question === currentQuestion.text &&
-                    ua.selectedOption === answer.id
-                )}
-              />
-              {answer.text}
-            </label>
-          ))} */}
+            )) : <p className="flex items-center text-[#696F79] text-[16px] font-semibold gap-3 pb-[20px] text-center">No Questions to edit</p>}
+            
             <div className="flex justify-end items-center w-full py-[30px]"><button type="submit" className="bg-[#4A3AFF] rounded-[10px] text-white text-[20px] px-[20px] py-[5px]">Save Changes</button></div>
           </form>
         </div>
@@ -341,13 +298,11 @@ export const QuestionOptions = ({ text, editQuestionStatusOptions, editQuestionT
     <div>
       <label className="flex items-center text-[#696F79] text-[16px] font-semibold gap-3 pb-[20px]">Choose Answer <img src={pencil} alt="" className='cursor-pointer' /></label>
       {text?.options.map((answer) => (
-        // <label key={answer._id} className="px-5">
          <div key={answer._id}>
            
           <div className="flex flex-wrap justify-center items-center py-3 text-[13px] text-[#696F79]">
               <input
                 type="radio"
-                // name={questId}
                 value={answer.isCorrect}
                 checked={answer.isCorrect}
                 onChange={(e) => editQuestionStatusOptions(answer, e)}
