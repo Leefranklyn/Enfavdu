@@ -4,11 +4,13 @@ import edit from "../../../assets/edit.svg";
 import trash from "../../../assets/trash.svg";
 import plus from "../../../assets/plus.svg";
 import LoginContext from "../../../context/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 const Scores = () => {
   const { userId } = useContext(LoginContext);
   const [scores, setScores] = useState([]);
-
+  const id = localStorage.getItem("id");
+  const navigate = useNavigate()
   const jwt = localStorage.getItem("jwt");
   const checkTokenExpiration = async () => {
     const jwt = localStorage.getItem("jwt");
@@ -41,7 +43,7 @@ const Scores = () => {
 
       try {
         const response = await fetch(
-          `https://testmanagement2.onrender.com/api/admin/institution/userswithresults/${userId}`,
+          `https://testmanagement2.onrender.com/api/admin/institution/userswithresults/${id}`,
           options
         );
         if (!response.ok) {
@@ -57,7 +59,7 @@ const Scores = () => {
     }
 
     fetchData();
-  }, []);
+  }, [jwt, id]);
 
   return (
     <div className="bg-lightGrey min-h-[100vh]">
@@ -68,11 +70,11 @@ const Scores = () => {
         </div>
         <div>
           <div className="">
-            <table class="table-auto mx-auto lg:mx-20 mt-10 w-full md:w-[90%] lg:w-[80%] overflow-auto bg-white rounded-xl shadow-lg">
+            <table className="table-auto mx-auto lg:mx-20 mt-10 w-full md:w-[90%] lg:w-[80%] overflow-auto bg-white rounded-xl shadow-lg">
               <thead>
                 <tr>
                   <th className="py-3 text-center">Name</th>
-                  <th className="py-3 text-center">Title</th>
+                  {/* <th className="py-3 text-center">Title</th> */}
                   <th className="py-3 text-center">score</th>
                 </tr>
               </thead>
@@ -82,12 +84,12 @@ const Scores = () => {
                     <td className="py-3 text-center ">{score.firstName} {score.lastName}</td>
                     {/* <td className="py-3 text-center">Mr.</td> */}
                     <td className="py-3 text-center">{score.score}</td>
-                    <td>
+                    {/* <td>
                       <div className="flex  items-center justify-end gap-6 md:gap-12 px-3">
                         <img src={edit} alt="" />
                         <img src={trash} alt="" />
                       </div>
-                    </td>
+                    </td> */}
                   </tr>
                 ))}
                 {/* <tr>

@@ -261,9 +261,9 @@ const Edit = () => {
                       <label htmlFor={text._id}><img src={pencil} alt="" className='cursor-pointer' /></label>
                     </div>
 
-                    <div className='flex items-center gap-3'>
+                    {/* <div className='flex items-center gap-3'>
                       <h1 className="text-[22px] font-bold font-poppins text-grey">Timer: 14:09Mins</h1>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="flex justify-between items-start gap-5 mt-8 ">
                     <div className="w-[50%] h-[200px] bg-gray rounded-[22px] relative">

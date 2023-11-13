@@ -57,6 +57,12 @@ const Dashboard = () => {
                     Exams
                   </li>
                 </Link>
+                  <Link to="/dashboard/registered">
+                    <li className="flex gap-2" onClick={handleToggle}>
+                      <img src={people} alt="" />
+                      Registered
+                    </li>
+                  </Link>
                   <Link to="/dashboard/editquestion">
                   <li className="flex gap-2"  onClick={handleToggle}>
                     <img src={up} alt="" />

@@ -8,6 +8,8 @@ import box2 from "../../../assets/Shadow 6.svg";
 const Overview = ({}) => {
   const { userId } = useContext(LoginContext);
   const [adminName, setAdminName] = useState("");
+  const [registered, setRegistered] = useState("")
+  const [taken, setTaken] = useState("")
 
   const navigate = useNavigate()
   const jwt = localStorage.getItem("jwt");
@@ -44,6 +46,66 @@ const Overview = ({}) => {
 
       try {
         const response = await fetch(
+          `https://testmanagement2.onrender.com/api/admin/institution/users/${id}`,
+          options
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch ID");
+        }
+        const data = await response.json();
+        setRegistered(data.totalUsers)
+      } catch (error) {
+        // Handle the error
+      }
+    };
+
+    fetchData();
+  },[id, jwt])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const headers = {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Add any other headers you need
+      };
+
+      const options = {
+        credentials: "include",
+        headers: headers,
+      };
+
+      try {
+        const response = await fetch(
+          `https://testmanagement2.onrender.com/api/admin/institution/userswithresults/${id}`,
+          options
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch ID");
+        }
+        const data = await response.json();
+        setTaken(data.totalUsersWithResults)
+      } catch (error) {
+        // Handle the error
+      }
+    };
+
+    fetchData();
+  }, [id, jwt])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const headers = {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Add any other headers you need
+      };
+
+      const options = {
+        credentials: "include",
+        headers: headers,
+      };
+
+      try {
+        const response = await fetch(
           `https://testmanagement2.onrender.com/api/institution/${id}`,
           options
         );
@@ -51,9 +113,7 @@ const Overview = ({}) => {
           throw new Error("Failed to fetch ID");
         }
         const data = await response.json();
-        console.log(data);
         const adminName = data.data.adminFirstName;
-        console.log(adminName);
         setAdminName(adminName);
       } catch (error) {
         // Handle the error
@@ -79,9 +139,11 @@ const Overview = ({}) => {
               <img src={box} className="" alt="" />
             </div>
           </Link>
-          <div>
-            <img src={box2} className="" alt="" />
-          </div>
+          <Link to='/dashboard/registered'>
+            <div>
+              <img src={box2} className="" alt="" />
+            </div>
+          </Link>
         </div>
       </div>
     </div>

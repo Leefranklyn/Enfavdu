@@ -13,6 +13,7 @@ const AddUser = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [cover, setCover] = useState("");
   const jwt = localStorage.getItem("jwt");
   const [form, setForm] = useState({
@@ -100,7 +101,10 @@ const AddUser = () => {
       if (response.ok && data.success) {
         console.log(data);
         setLoading(false);
-        navigate("/user/login");
+        setSuccess(true)
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
       } else {
         const errorData = data || {};
         setMessage(true);
@@ -108,6 +112,7 @@ const AddUser = () => {
         // Handle the error
       }
     } catch (error) {
+      setSuccess(false)
       setMessage(true);
       setLoading(false);
       console.error(error);
@@ -233,6 +238,9 @@ const AddUser = () => {
         <div>
           <p className="text-center text-red">{message}</p>
         </div>
+          {success && <div>
+            <p className="text-center text-green">User Added Successfully</p>
+          </div>}
         <div className="flex justify-center items-center my-5">
           <button
             onClick={handleUpload}

@@ -20,6 +20,7 @@ import Profile from "./componenets/admin/dashboard/Profile";
 import EditProfile from "./componenets/admin/dashboard/EditProfile"
 import Edit from "./componenets/admin/dashboard/Edit";
 import { SchoolProvider } from "./context/SchoolContext";
+import Registered from "./componenets/admin/dashboard/Registered";
 
 function App() {
   const [path, setPath] = useState("school");
@@ -59,7 +60,8 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />}>
                 <Route path="/dashboard" element={<Overview />} />
                 <Route path="/dashboard/adduser" element={<AddUser/>}/>
-                <Route path="/dashboard/scores/" element={<Scores />} />
+                <Route path="/dashboard/scores" element={<Scores />} />
+                <Route path="/dashboard/registered" element={<Registered />} />
                 <Route path="/dashboard/profile" element={<Profile />} />
                 <Route path="/dashboard/editprofile" element={<EditProfile />} />
                 <Route path="/dashboard/editquestion" element={<Edit/>}/>
