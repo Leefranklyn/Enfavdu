@@ -1,20 +1,23 @@
 import { Link } from "react-router-dom"
+import success from '../../../assets/success.svg'
 
-const Modal = ({path}) => {
+const Modal = ({ path }) => {
 
 
     return (
-        <div>
-            <div className="bg-overlay h-[100vh]  w-[100%] top-0 left-0 fixed z-50 flex items-center md:justify-end justify-center ">
-                <div className="bg-white  mx-auto rounded-lg h-[35%] md:h-[45%]  w-[75%] md:w-[40%] flex flex-col gap-y-10 justify-center  text-center text-[20px] p-[20px] font-medium">
-                    Test submitted successfully! We&apos;ll get in touch with you soon.
-                    <div className="flex justify-center text-white gap-5">
-                        <Link to={`/user/${path}`}><button className="bg-green py-2 px-10 rounded-lg">Go to Home</button></Link>
-                    
-                    </div>
+        <div className="fixed top-0 left-0 w-full h-full bg-overlay flex justify-center">
+            <div className="bg-white h-[50%]  w-[90%] max-w-[350px] flex flex-col  md:gap-y-5 my-auto text-center py-7 px-3 rounded-lg shadow-xl">
+                <div className=" w-20 mx-auto">
+                    <img src={success} alt="" />
                 </div>
+                <h4 className="font-semibold text-[23px]">Submitted Successfully!</h4>
+                <p className="text-[14px] px-3">your quiz has been successfully submitted, you will be contacted via email with further instructions.</p>
+                <p className="text-[14px] px-3 pb-0">go back to</p>
+                <Link to={`/user/${path}`}><button className="bg-blue m-0 text-white py-2 px-8 rounded-md">Home</button></Link>
             </div>
+
         </div>
+
     )
 }
 
