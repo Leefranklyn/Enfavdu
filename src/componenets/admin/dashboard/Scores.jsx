@@ -92,70 +92,19 @@ const Scores = () => {
                     </td> */}
                   </tr>
                 ))}
-                {/* <tr>
-                    <td className="py-3 text-center ">
-                    John Girma
-                    </td>
-                    <td className="py-3 text-center">Mr.</td>
-                    <td className="py-3 text-center">26/30</td>
-                    <td >
-                     <div className='flex  items-center justify-end gap-12 px-3' >
-                         <img src={edit} alt="" />
-                         <img src={trash} alt="" />
-                     </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 text-center ">
-                    John Girma
-                    </td>
-                    <td className="py-3 text-center">Mr.</td>
-                    <td className="py-3 text-center">26/30</td>
-                    <td >
-                     <div className='flex  items-center justify-end gap-12 px-3' >
-                         <img src={edit} alt="" />
-                         <img src={trash} alt="" />
-                     </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 text-center ">
-                    John Girma
-                    </td>
-                    <td className="py-3 text-center">Mr.</td>
-                    <td className="py-3 text-center">26/30</td>
-                    <td >
-                     <div className='flex  items-center justify-end gap-12 px-3' >
-                         <img src={edit} alt="" />
-                         <img src={trash} alt="" />
-                     </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 text-center ">
-                    John Girma
-                    </td>
-                    <td className="py-3 text-center">Mr.</td>
-                    <td className="py-3 text-center">26/30</td>
-                    <td >
-                     <div className='flex  items-center justify-end gap-12 px-3' >
-                         <img src={edit} alt="" />
-                         <img src={trash} alt="" />
-                     </div>
-                    </td>
-                  </tr> */}
+                
               </tbody>
             </table>
           </div>
         </div>
-        <div className="w-[90%] md:w-[85%] mt-12 mx-auto">
+        {/* <div className="w-[90%] md:w-[85%] mt-12 mx-auto">
           <button className="flex gap-2 border-blue text-blue border-[1px] py-2 px-3 rounded-lg">
             <div className="bg-blue p-[4px] rounded-full ">
               <img src={plus} alt="" />
             </div>
             <p>Add Examinees</p>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
