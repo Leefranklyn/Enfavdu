@@ -48,7 +48,7 @@ const Dashboard = () => {
                 <Link to="/dashboard/adduser">
                   <li className="flex gap-2"  onClick={handleToggle}>
                     <img src={view} alt="" />
-                    Add User
+                    Add Applicant
                   </li>
                 </Link>
                 <Link to="/dashboard/scores">

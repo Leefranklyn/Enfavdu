@@ -42,7 +42,6 @@ const Schoolinfo = ({ path, setPath, setRoutePath, routePath }) => {
   return (
     <div>
       <div className="my-4">
-        <p>A bit of information about the school you work and represent</p>
       </div>
       <div>
         <label className="font-bold text-[13px]">
@@ -76,7 +75,7 @@ const Schoolinfo = ({ path, setPath, setRoutePath, routePath }) => {
         </div>
         <div>
           <label className="font-bold text-[13px]">
-            COUNTRY<span className="text-red">*</span>
+            COUNTRY / REGION<span className="text-red">*</span>
           </label>
           <div className="lg:w-[20rem] md:w-[17rem]">
             <Select options={options} onChange={handleCountryChange} />

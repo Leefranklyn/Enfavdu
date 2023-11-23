@@ -30,7 +30,7 @@ const SignUp = ({ path, setPath }) => {
   });
 
   const [page, setPage] = useState(0);
-  const formTitles = ["About School", "About You"];
+  const formTitles = ["About School (All fields must be filled)", "Admin Information (All fields must be filled)"];
   const pageDisplay = () => {
     if (page === 0) {
       return <Schoolinfo path={path} setPath={setPath} routePath={routePath} setRoutePath={setRoutePath} />;
@@ -112,15 +112,15 @@ const SignUp = ({ path, setPath }) => {
         >
           <div className="my-container md:flex md:justify-between">
             <div>
-              <div className="flex relative">
+              {/* <div className="flex relative">
                 <div className="border-gray border-[1px] w-[50px] h-[50px] rounded-full bg-white absolute flex justify-center items-center">
                   <div className="bg-gray w-[20px] h-[20px] rounded-full"></div>
                 </div>
                 <div className="border-gray border-[1px] rounded-3xl py-3 px-8 bg-white text-blue flex  items-center shadow-md">
                   <h2 className="relative ml-7">School SignUp</h2>
                 </div>
-              </div>
-              <div className="flex items-center gap-4">
+              </div> */}
+              {/* <div className="flex items-center gap-4">
                 <div
                   className="border-gray border-[1px] w-[150px] h-[40px] md:w-[40px] md:h-[150px] rounded-3xl  px-4 my-3 bg-white text-blue  shadow-md flex md:flex-col  md:justify-center
                  items-center"
@@ -151,7 +151,7 @@ const SignUp = ({ path, setPath }) => {
                   </h3>
                   <h3>{page === 0 ? "About You" : "About School"}</h3>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="md:w-[70%]">
               <div>

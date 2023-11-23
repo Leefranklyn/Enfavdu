@@ -1,4 +1,3 @@
-import React from "react";
 import success from "../../../assets/success.svg";
 import { Link } from "react-router-dom";
 

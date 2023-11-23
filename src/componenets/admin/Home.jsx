@@ -22,14 +22,16 @@ import Profile from "../../assets/Profile.svg";
 import Navbar from "../../layout/Navbar";
 import Footer from "../../layout/Footer";
 
-const Home = ({path}) => {
-  console.log(path)
+const Home = () => {
   return (
     <>
       <Navbar />
       <div className=" ">
         <div className="md:bg-skyBlue md:py-16">
           <div className="my-container">
+          <h1 className="text-4xl font-extrabold text-center px-[10%] pb-[50px]">
+            WELCOME TO ENFAVEDU RECRUITMENT PLATFORM
+          </h1>
             <h1 className="text-3xl font-extrabold text-center ">
               Online School Recruitment System
             </h1>
@@ -47,7 +49,7 @@ const Home = ({path}) => {
             </div>
           </div>
         </div>
-        <div className="md:bg-skyBlue">
+        {/* <div className="md:bg-skyBlue">
           <div className="flex flex-col md:flex-row justify-center items-center my-auto gap-8 pt-14 md:h-[550px] my-container">
             <div className="bg-grey w-[85%] h-[320px] flex flex-col items-center justify-center rounded-md">
               <img className="ml-12 mb-10 w-[160px]" src={adminImage} alt="" />
@@ -68,8 +70,8 @@ const Home = ({path}) => {
               </h4>
             </div>
           </div>
-        </div>
-        <div className="md:bg-skyBlue py-8">
+        </div> */}
+        <div className="md:bg-skyBlue">
           <p className="text-center max-w-[35ch] mx-auto md:py-36 ">
             Over 200+ Institutions Trust & Use ENFAVEDU for Online recruitment
             exercises

@@ -66,7 +66,7 @@ const Login = () => {
   };
 
   return (
-    <div className="md:flex">
+    <div className="md:flex bg-lightGrey">
       <div className="bg-blue flex justify-center items-center py-16 md:w-[35%] h-[100vh]">
         <img src={man} alt="" />
       </div>

@@ -5,7 +5,7 @@ import Header from "./Header";
 import box from "../../../assets/Shadow 05.svg";
 import box2 from "../../../assets/Shadow 6.svg";
 
-const Overview = ({}) => {
+const Overview = ({ }) => {
   const { userId } = useContext(LoginContext);
   const [adminName, setAdminName] = useState("");
   const [registered, setRegistered] = useState("")
@@ -60,7 +60,7 @@ const Overview = ({}) => {
     };
 
     fetchData();
-  },[id, jwt])
+  }, [id, jwt])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -127,21 +127,24 @@ const Overview = ({}) => {
     <div className="bg-lightGrey min-h-[100%]">
       <Header />
 
-      <div className="flex flex-col items-center justify-center  ">
+      <div className="flex flex-col items-center justify-center ">
         <div className=" flex flex-col items-start justify-start w-[80%]  pt-4 md:pt-10 mx-auto">
           <h1 className="text-[20px] font-bold ">Admin Dashboard</h1>
           <h3 className="text-lg font-semibold">{`Welcome back,${adminName}`}</h3>
         </div>
 
-        <div className="flex flex-col md:flex-row pt-10">
+        <h2 className="text-black w-full text-3xl font-bold text-center pt-5">Statistics</h2>
+        <div className="flex flex-col pt-10 gap-5">
           <Link to="/dashboard/scores">
             <div>
-              <img src={box} className="" alt="" />
+              {/* <img src={box} className="" alt="" /> */}
+              <h1 className="text-[20px] font-bold ">Number of Applicants who have taken Exams : {taken && taken}</h1>
             </div>
           </Link>
           <Link to='/dashboard/registered'>
             <div>
-              <img src={box2} className="" alt="" />
+              {/* <img src={box2} className="" alt="" /> */}
+              <h1 className="text-[20px] font-bold ">Number of registered Applicant : {registered && registered}</h1>
             </div>
           </Link>
         </div>
