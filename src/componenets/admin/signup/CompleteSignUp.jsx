@@ -1,4 +1,3 @@
-import React from "react";
 import { css } from "@emotion/react";
 import { BeatLoader } from "react-spinners";
 import PhoneInput from "react-phone-input-2";
@@ -463,7 +462,7 @@ const CompleteSignUp = ({ formData, id }) => {
             </div>
           </div>
           <div className="mt-10">
-            <h3 className="py-2">Proprietor’s Signature</h3>
+            <h3 className="py-2">Proprietor&apos;s Signature</h3>
             <div className="border-[1px] border-black border-dashed py-4 px-3 ">
               <h3>Select Signature Image</h3>
               <div className="flex flex-col justify-center items-center gap-3 my-3">
@@ -500,7 +499,8 @@ const CompleteSignUp = ({ formData, id }) => {
           <div className="flex justify-end items-center py-5">
             <button
               onClick={handleSubmit}
-              className="bg-blue text-white px-8 py-3 rounded-2xl"
+              className="bg-blue disabled:opacity-[0.8] text-white px-8 py-3 rounded-2xl"
+              disabled={form.schoolLogo == null}
             >
               Finish
             </button>

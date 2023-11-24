@@ -12,7 +12,7 @@ const AddUser = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(false);
+  const [message, setMessage] = useState('');
   const [success, setSuccess] = useState(false);
   const [cover, setCover] = useState("");
   const jwt = localStorage.getItem("jwt");
@@ -74,7 +74,6 @@ const AddUser = () => {
   };
 
   const handleUpload = async () => {
-    console.log(form);
     if (form.password !== confirmPassword) {
       setMessage("Passwords do not match.");
       return;
@@ -106,14 +105,15 @@ const AddUser = () => {
           navigate("/dashboard");
         }, 2000);
       } else {
+        setLoading(false)
         const errorData = data || {};
-        setMessage(true);
+        setMessage(data);
         console.log(errorData);
         // Handle the error
       }
     } catch (error) {
       setSuccess(false)
-      setMessage(true);
+      setMessage(error);
       setLoading(false);
       console.error(error);
     }
@@ -210,7 +210,7 @@ const AddUser = () => {
             />
           </div>
         </div>
-        <p className="text-red">{message}</p>
+        {/* <p className="text-red">{message}</p> */}
         <div className="">
           <div onClick={handleCoverInput} className="flex justify-center">
           <div className="bg-lightGrey h-24 w-24 rounded-full mt-6 flex justify-center items-center">
@@ -235,7 +235,7 @@ const AddUser = () => {
             onChange={handleFileInput}
           />
         </div>
-        <div>
+        <div className='pt-4'>
           <p className="text-center text-red">{message}</p>
         </div>
           {success && <div>

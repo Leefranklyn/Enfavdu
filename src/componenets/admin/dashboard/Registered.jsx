@@ -79,7 +79,7 @@ const Registered = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {registered.map((register, index) => (
+                                {registered && registered.map((register, index) => (
                                     <tr key={index}>
                                         <td className="py-3 text-center ">{register.firstName} {register.lastName}</td>
                                         {/* <td className="py-3 text-center">Mr.</td> */}
