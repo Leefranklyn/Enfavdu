@@ -73,7 +73,7 @@ const Login = () => {
       <div className="bg-lightGrey flex flex-col justify-center md:w-[100%] h-[100vh]">
         <div className="w-[80%]  mx-auto">
           <div className=" lg:w-[550px] mx-auto">
-            <h5 className="px-2 text-lg">Login</h5>
+            <h5 className="px-2 text-lg">Admin Login</h5>
             <input
               type="text"
               placeholder="EMAIL"
