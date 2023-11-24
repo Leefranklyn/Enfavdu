@@ -67,10 +67,10 @@ const Login = () => {
 
   return (
     <div className="md:flex bg-lightGrey">
-      <div className="bg-blue flex justify-center items-center py-16 md:w-[35%] h-[100vh]">
+      {/* <div className="bg-blue flex justify-center items-center py-16 md:w-[35%] h-[100vh]">
         <img src={man} alt="" />
-      </div>
-      <div className="bg-lightGrey py-28 flex flex-col justify-center md:w-[65%] h-[100vh]">
+      </div> */}
+      <div className="bg-lightGrey flex flex-col justify-center md:w-[100%] h-[100vh]">
         <div className="w-[80%]  mx-auto">
           <div className=" lg:w-[550px] mx-auto">
             <h5 className="px-2 text-lg">Login</h5>
